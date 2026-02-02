@@ -81,7 +81,7 @@ export const Page17: React.FC<Page17Props> = ({ isActive, isPaused }) => {
                     <div className={`absolute bottom-12 right-8 md:bottom-16 md:right-16 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                         }`}>
                         <a
-                            href="https://www.linkedin.com/in/rashmika-autha"
+                            href="https://www.linkedin.com/in/unsparsh"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="group"
@@ -90,7 +90,7 @@ export const Page17: React.FC<Page17Props> = ({ isActive, isPaused }) => {
                                 MADE BY
                             </p>
                             <p className="font-display text-base md:text-lg text-white/90 tracking-[0.1em] font-light group-hover:text-primary transition-colors">
-                                AUTHA RASHMIKA
+                                unsparsh
                             </p>
                         </a>
                     </div>

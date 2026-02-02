@@ -1,109 +1,78 @@
-🎶 Music Festival Website
+# Desert Festival Experience
 
-A modern, responsive web application built for showcasing a music festival.
-The platform highlights artists, event details, schedules, and provides an engaging user experience for visitors.
+A deeply immersive, scroll-based web application designed to showcase the Desert Festival. features full-screen cinematic video backgrounds, interactive artist galleries, and a seamless narrative flow.
 
-🌟 Features
+## 🌟 Features
 
-🎤 Artist & Performer Showcase
+*   **Cinematic Experience:** Full-screen video backgrounds utilizing **Git LFS** for high-quality playback without performance compromise.
+*   **Immersive Audio:** Global background audio that persists across navigation, featuring a user-friendly mute toggle.
+*   **Interactive Design:**
+    *   Smooth scroll transitions.
+    *   Dynamic text overlays and animations.
+    *   Interactive artist and speaker cards.
+*   **Responsive Layout:** Fully optimized for different screen sizes.
+*   **Narrative Flow:** Use of "Harmonium-style" pagination and sand-themed transitions to guide the user through the journey from Jaisalmer to the festival venues.
 
-📅 Event Schedule & Lineup
+## 🛠️ Tech Stack
 
-🎟️ Festival Information & Highlights
+*   **Framework:** [React 18](https://react.dev/)
+*   **Build Tool:** [Vite](https://vitejs.dev/)
+*   **Language:** [TypeScript](https://www.typescriptlang.org/)
+*   **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+*   **UI Components:** [shadcn/ui](https://ui.shadcn.com/) (Radix UI primitives)
+*   **Icons:** [Lucide React](https://lucide.dev/)
+*   **Animation:** `tailwindcss-animate`, Custom CSS transitions
+*   **Asset Management:** Git LFS (Large File Storage) for video assets
 
-📱 Fully Responsive Design (Mobile + Desktop)
+## 🚀 Getting Started
 
-⚡ Fast loading and optimized performance
+### Prerequisites
 
-🌐 Deployed on Netlify
+*   Node.js (v16 or higher)
+*   npm or yarn
+*   Git LFS installed (`git lfs install`)
 
-🛠️ Tech Stack
+### Installation
 
-Frontend: HTML, CSS, JavaScript
-(or React / Vite – update if applicable)
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/rashmikauthaa/Final_desert-main.git
+    cd Final_desert-main
+    ```
 
-Styling: CSS / Tailwind CSS
+2.  **Pull LFS assets (Important):**
+    This project uses Git LFS for video files. You must pull them to ensure they play correctly.
+    ```bash
+    git lfs pull
+    ```
 
-Deployment: Netlify
+3.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-Domain Management: GoDaddy
+4.  **Start the development server:**
+    ```bash
+    npm run dev
+    ```
 
-📂 Project Structure
-music-festival/
-│
-├── public/
-│   └── assets/
-│       ├── images/
-│       └── icons/
-│
-├── src/
-│   ├── components/
-│   ├── pages/
-│   ├── styles/
-│   └── main.js
-│
-├── index.html
-├── README.md
-└── package.json
+5.  Open [http://localhost:8080](http://localhost:8080) (or the port shown in your terminal) to view the project.
 
+## 📂 Project Structure
 
-(Structure may vary based on framework)
+*   `public/assets`: Static assets including images, audio, and LFS-tracked videos.
+*   `src/components/pages`: Individual page components representing each section of the scroll journey.
+*   `src/components`: Shared UI components (PlayPauseToggle, BackgroundAudio, etc.).
+*   `src/pages/Index.tsx`: Main sequencer and layout controller.
 
-🚀 Getting Started
-1️⃣ Clone the repository
-git clone https://github.com/your-username/music-festival.git
+## 🤝 Contribution
 
-2️⃣ Navigate to the project
-cd music-festival
+1.  Fork the repository.
+2.  Create a feature branch (`git checkout -b feature/AmazingFeature`).
+3.  Commit your changes (`git commit -m 'Add some AmazingFeature'`).
+4.  Push to the branch (`git push origin feature/AmazingFeature`).
+5.  Open a Pull Request.
 
-3️⃣ Install dependencies (if applicable)
-npm install
+## 📄 License
 
-4️⃣ Run locally
-npm run dev
-
-🌍 Live Demo
-
-🔗 Website:
-
-https://www.music.caravana.world
-
-
-(Update if different)
-
-📸 Screenshots
-
-Add screenshots of the homepage, artist section, and schedule here.
-
-🎯 Use Case
-
-Music Festivals
-
-Cultural Events
-
-Concert Promotions
-
-Artist Showcases
-
-📈 Future Enhancements
-
-🎟️ Ticket Booking Integration
-
-🗺️ Venue Map & Directions
-
-🔔 Event Notifications
-
-🧑‍🎤 Artist Profiles with Media
-
-💳 Payment Gateway Integration
-
-👨‍💻 Author
-
-Sparsh
-Software Engineering Student
-Aspiring Full-Stack & AI Engineer
-
-📄 License
-
-This project is licensed under the MIT License.
-Feel free to use and modify it.
+This project is licensed under the MIT License - see the LICENSE file for details.
