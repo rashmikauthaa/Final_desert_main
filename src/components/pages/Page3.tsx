@@ -35,161 +35,120 @@ const GRID_DURATION = 4000;
 const ZOOM_DURATION = 4000;
 
 export const Page3: React.FC<Page3Props> = ({ isActive, onSlideshowComplete, isPaused }) => {
-  const [phase, setPhase] = useState<'sunrise' | 'grid' | 'zoom'>('sunrise');
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [activeText, setActiveText] = useState(0);
-  const [gridVisible, setGridVisible] = useState([false, false, false, false]);
-  const [zoom, setZoom] = useState(false);
+  const hasCompletedRef = useRef(false);
 
-  // We use detailed state to track progress within phases
-  const [gridStep, setGridStep] = useState(0);
+  // Consolidate images into a single slideshow array
+  const slideshowImages = [
+    sunriseConcert,
+    jaisalmerBhrama,
+    jaisalmeriStock,
+    jaisalmerBeige08,
+    jaisalmerShutterstock1,
+    jaisalmerShutterstock2
+  ];
+
+  /* 
+    Timing Calculation:
+    6 Images.
+    4 Text Blocks.
+    
+    If we want text to last ~4.5s (TEXT_DURATION), total time is ~18s.
+    6 images over 18s = 3s per image.
+  */
+  const SLIDE_DURATION = 3000;
+  const TEXT_DURATION = 4500;
 
   useEffect(() => {
     if (!isActive) {
-      setPhase('sunrise');
+      setCurrentImageIndex(0);
       setActiveText(0);
-      setGridVisible([false, false, false, false]);
-      setGridStep(0);
-      setZoom(false);
+      hasCompletedRef.current = false;
       return;
     }
   }, [isActive]);
 
-  // Main Timer Logic
+  // Image Slideshow Timer
   useEffect(() => {
     if (!isActive || isPaused) return;
 
-    let timer: NodeJS.Timeout;
-
-    if (phase === 'sunrise') {
-      // Advance text
-      timer = setTimeout(() => {
-        if (activeText < textBlocks.length - 1) {
-          setActiveText(prev => prev + 1);
-        } else {
-          // Move to Grid phase
-          setPhase('grid');
-          setGridStep(0);
-          setGridVisible([true, false, false, false]); // Show first immediately? Original code showed first immediatelyish?
-          // Original code: setPhase('grid'); setGridVisible..[0] = true immediately.
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => {
+        const next = prev + 1;
+        if (next >= slideshowImages.length) {
+          // Slideshow complete
+          if (!hasCompletedRef.current) {
+            hasCompletedRef.current = true;
+            // Delay slightly before calling complete to let last image show?
+            // Actually, if we hit length, we are done. 
+            // Page8 logic waits one cycle on last slide? 
+            // No, Page8 logic: if (next >= length) invoke complete.
+            if (onSlideshowComplete) setTimeout(onSlideshowComplete, 500);
+          }
+          return prev;
         }
-      }, TEXT_DURATION);
-    }
-    else if (phase === 'grid') {
-      // Grid has step delays: 0 (immediate), then 600ms delays for 1, 2, 3.
-      // Current step 0 is already handled by transition TO grid?
-      // Let's refine.
-      // If we just entered grid (gridStep 0), we set 0 visible. 
-      // Then we wait 600ms for step 1.
+        return next;
+      });
+    }, SLIDE_DURATION);
 
-      if (gridStep === 0) {
-        // Ensure first is visible (should be set immediately, but redundant safety)
-        setGridVisible(prev => { const n = [...prev]; n[0] = true; return n; });
+    return () => clearInterval(interval);
+  }, [isActive, isPaused, onSlideshowComplete, slideshowImages.length]);
 
-        timer = setTimeout(() => {
-          setGridStep(1);
-        }, GRID_BOX_DELAY);
-      } else if (gridStep === 1) { // 3rd item
-        setGridVisible(prev => { const n = [...prev]; n[3] = true; return n; });
-        timer = setTimeout(() => {
-          setGridStep(2);
-        }, GRID_BOX_DELAY);
-      } else if (gridStep === 2) { // 2nd item (index 2)
-        setGridVisible(prev => { const n = [...prev]; n[2] = true; return n; });
-        timer = setTimeout(() => {
-          setGridStep(3);
-        }, GRID_BOX_DELAY);
-      } else if (gridStep === 3) { // 1st item (index 1) - Wait, indices were 0, 3, 2, 1 in original?
-        // Original:
-        // immediate: 0
-        // delay: 3
-        // delay*2: 2
-        // delay*3: 1
-        setGridVisible(prev => { const n = [...prev]; n[1] = true; return n; });
-        // Wait remaining GRID_DURATION? 
-        // Original: setTimeout(zoom, GRID_DURATION) from START of grid.
-        // GRID_DURATION = 4000.
-        // Delays used so far: 0, 600, 1200, 1800.
-        // So we need to wait 4000 - 1800 = 2200ms.
-        timer = setTimeout(() => {
-          setPhase('zoom');
-        }, GRID_DURATION - (GRID_BOX_DELAY * 3));
-      }
-    }
-    else if (phase === 'zoom') {
-      // Zoom phase
-      // Zoom starts after small delay 800ms? 
-      // Original: setTimeout(() => setZoom(true), 800)
-      if (!zoom) {
-        timer = setTimeout(() => {
-          setZoom(true);
-        }, 800);
-      } else {
-        // Zoom done, complete
-        timer = setTimeout(() => {
-          if (onSlideshowComplete) onSlideshowComplete();
-        }, ZOOM_DURATION);
-      }
-    }
+  // Text Timer
+  useEffect(() => {
+    if (!isActive || isPaused) return;
 
-    return () => clearTimeout(timer);
-  }, [isActive, isPaused, phase, activeText, gridStep, zoom, onSlideshowComplete]);
+    const interval = setInterval(() => {
+      setActiveText((prev) => {
+        if (prev < textBlocks.length - 1) {
+          return prev + 1;
+        }
+        return prev;
+      });
+    }, TEXT_DURATION);
 
+    return () => clearInterval(interval);
+  }, [isActive, isPaused]);
 
   return (
     <PageWrapper isActive={isActive} overlayOpacity={0}>
       <div className="fixed inset-0 w-screen h-screen overflow-hidden">
 
-        {/* SUNRISE WITH TEXT */}
-        {phase === 'sunrise' && (
-          <>
+        {/* Slideshow Background */}
+        {slideshowImages.map((image, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-all duration-1000 ease-in-out ${index === currentImageIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+              }`}
+          >
             <img
-              src={sunriseConcert}
-              className="absolute inset-0 w-full h-full object-cover"
+              src={image}
+              className="w-full h-full object-cover"
+              alt={`Jaisalmer Slide ${index}`}
             />
+            {/* Dark Gradient Overlay for text readability */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20" />
+          </div>
+        ))}
 
-            <div className="relative z-10 h-full flex items-start justify-center px-8 pt-32">
+        {/* Text Overlay */}
+        <div className="relative z-10 h-full flex items-start justify-center px-8 pt-32">
+          <div
+            className="max-w-4xl text-center"
+          >
+            {textBlocks.map((text, index) => (
               <div
-                key={activeText}
-                className="max-w-4xl text-center text-lg md:text-xl lg:text-2xl font-light leading-relaxed text-white transition-all duration-1000 opacity-100 animate-fade-up"
+                key={index}
+                className={`absolute top-32 left-0 right-0 m-auto max-w-4xl text-lg md:text-xl lg:text-2xl font-light leading-relaxed text-white transition-all duration-1000 ${index === activeText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
+                  }`}
               >
-                {textBlocks[activeText]}
-              </div>
-            </div>
-          </>
-        )}
-
-        {/* GRID */}
-        {phase === 'grid' && (
-          <div className="absolute inset-0 grid grid-cols-2 grid-rows-2">
-            {gridImages.map((img, i) => (
-              <div
-                key={i}
-                className="transition-all duration-700"
-                style={{
-                  opacity: gridVisible[i] ? 1 : 0,
-                  transform: gridVisible[i] ? 'scale(1)' : 'scale(0.95)',
-                }}
-              >
-                <img src={img} className="w-full h-full object-cover" />
+                {text}
               </div>
             ))}
           </div>
-        )}
+        </div>
 
-        {/* ZOOM */}
-        {phase === 'zoom' && (
-          <div className="absolute inset-0 overflow-hidden">
-            <img
-              src={jaisalmerShutterstock2}
-              className="w-full h-full object-cover transition-transform ease-in-out"
-              style={{
-                transform: zoom ? 'scale(1.5)' : 'scale(1)',
-                transitionDuration: `${ZOOM_DURATION}ms`,
-              }}
-            />
-          </div>
-        )}
       </div>
     </PageWrapper>
   );
