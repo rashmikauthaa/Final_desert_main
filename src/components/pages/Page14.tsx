@@ -35,7 +35,7 @@ const artists: Artist[] = [
     {
         name: 'Hraach & Armen Miran',
         // No image
-        description: 'Music Producers & DJs \n Hraach is an Armenian music producer Known for creating deep house, melodic, and atmospheric, often with oriental. He has developed a musical world rich with melancholic tones, stellar landscapes, and magnetic, deep rhythms that captivate and elevate the experience of his listeners. \n Iran born, Los Angeles based DJ/producer/multi-instrumentalist Armen Miran has established himself as an iconic and powerful name in this industry. The two of them have been consistent sources of stability to him and guide his creative process.',
+        description: 'Music Producers & DJs \n Hraach is an Armenian music producer Known for creating deep house, melodic, and atmospheric. He has developed a musical world rich with melancholic tones, stellar landscapes, and deep rhythms that captivate and elevate the experience of his listeners. \n Iran born, Los Angeles based DJ/producer/multi-instrumentalist Armen Miran has established himself as an iconic and powerful name in this industry.',
     },
     {
         name: 'Sabo',
@@ -50,7 +50,7 @@ const artists: Artist[] = [
     {
         name: 'Nils Frahm',
         image: nils,
-        description: 'German Musician, Composer, and Record Producer based in Berlin \n He is known for combining classical and electronic music and for an unconventional approach to the piano in which he mixes a grand piano, upright piano, Berlin-based contemporary composer He has built a steady reputation for his intimate, poignant piano recordings, yet they so far only showed a fragment of what to expect from a Nils Frahm concert. Frahm’s heart lies in improvisation, inspired by the space and the audience',
+        description: 'German Musician, Composer, and Record Producer based in Berlin \n He is known for combining classical and electronic music and for an unconventional approach to the piano in which he mixes a grand piano, upright piano, He has built a steady reputation for his intimate, poignant piano recordings, yet they so far only showed a fragment of what to expect from a Nils Frahm concert. Frahm’s heart lies in improvisation, inspired by the space and the audience',
     },
     {
         name: 'Be Svendsen',
@@ -60,7 +60,7 @@ const artists: Artist[] = [
     {
         name: 'Sahale',
         image: sahale,
-        description: 'Parisian Music Producer \n Draws inspiration from world music to electronic, blending both traditional and contemporary influences in his work of Deep Ancient Persian Background Music. Sahalé presents us with a multifaceted sound paradise composed of the most varied cultural references, clearly present and evident in his compositions, His form of expression, unique in electronic music, takes us from his performances to unknown arenas of world music. By mixing analogical and electronic instruments together.'
+        description: 'Parisian Music Producer \n Draws inspiration from world music to electronic, blending both traditional and contemporary influences in his work of Deep Ancient Persian Background Music. Sahalé presents us with a multifaceted sound paradise composed of the most varied cultural references. His form of expression, unique in electronic music, takes us from his performances to unknown arenas of world music.'
     },
 ];
 
@@ -121,7 +121,7 @@ export const Page14: React.FC<Page14Props> = ({ isActive, onSlideshowComplete, i
             }, ARTIST_DISPLAY_DURATION);
         } else if (step === 2 + artists.length) {
             // Gallery View
-            timer = setTimeout(() => {
+            time = setTimeout(() => {
                 if (onSlideshowComplete) {
                     onSlideshowComplete();
                 }

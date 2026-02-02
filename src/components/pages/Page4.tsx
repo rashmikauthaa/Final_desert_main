@@ -10,8 +10,9 @@ interface Page4Props {
 // Video Configuration
 const VIDEO_SRC = '/assets/videos/suryagarg_vid.mp4';
 const VIDEO_DURATION = 12000; // 12 seconds in milliseconds
-const TEXT_DISPLAY_TIME = 6000; // Show text at 7 seconds
-const TEXT_ZOOM_DURATION = 3000; // 3 seconds for text zoom
+const TEXT_DISPLAY_TIME = 500; // Show text at 0.5 seconds
+const TEXT_HIDE_TIME = 5500; // Hide text after 5 seconds
+const TEXT_ZOOM_DURATION = 3000; // Keep for safety if references exist, but logic changes
 const ZOOM_SCALE = 1.3; // Zoom scale for text
 
 export const Page4: React.FC<Page4Props> = ({ isActive, onSlideshowComplete, isPaused }) => {
@@ -75,32 +76,19 @@ export const Page4: React.FC<Page4Props> = ({ isActive, onSlideshowComplete, isP
         if (video && !hasCompleted) {
           const currentTime = video.currentTime * 1000; // Convert to ms
 
-          // Show text at specified time (only once)
-          if (currentTime >= TEXT_DISPLAY_TIME && !textShownRef.current) {
-            textShownRef.current = true;
+          // Show text at specified time
+          if (currentTime >= TEXT_DISPLAY_TIME && currentTime < TEXT_HIDE_TIME) {
             setShowText(true);
+          } else {
+            setShowText(false);
           }
 
-          // When video reaches end, zoom text and complete
+          // When video reaches end, complete
           if (currentTime >= VIDEO_DURATION - 500) {
             setHasCompleted(true);
-            setShowText(true);
-
-            // Pause video to freeze on last frame
-            video.pause();
-
-            // Zoom in on text
-            setTimeout(() => {
-              setTextScale(ZOOM_SCALE);
-
-              // Navigate to next page after zoom
-              setTimeout(() => {
-                if (onSlideshowComplete) {
-                  onSlideshowComplete();
-                }
-              }, TEXT_ZOOM_DURATION);
-            }, 300);
-
+            if (onSlideshowComplete) {
+              onSlideshowComplete();
+            }
             if (videoTimeCheckRef.current) clearTimeout(videoTimeCheckRef.current);
             return;
           }
@@ -155,22 +143,31 @@ export const Page4: React.FC<Page4Props> = ({ isActive, onSlideshowComplete, isP
         </div>
       </div>
 
-      {/* Text Overlay */}
-      <div className="relative z-20 w-full h-full flex items-center justify-center">
+      {/* Text Overlay - Creative Glassmorphism */}
+      <div className="relative z-20 w-full h-full flex items-start justify-center pt-24 md:pt-32 pointer-events-none">
         <div
-          className="text-center transition-all ease-out"
+          className="relative transition-all ease-out"
           style={{
             opacity: showText ? 1 : 0,
             transform: showText ? 'translateY(0) scale(' + textScale + ')' : 'translateY(20px) scale(1)',
             transitionDuration: hasCompleted ? `${TEXT_ZOOM_DURATION}ms` : '1500ms',
           }}
         >
-          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-light text-foreground drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
-            Suryagarh
-          </h1>
-          <p className="font-display text-xl md:text-2xl lg:text-3xl font-light text-foreground/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] mt-4">
-            The Hotel
-          </p>
+          <div className="relative overflow-hidden group rounded-2xl md:rounded-full">
+            <div className="absolute inset-0 bg-black/40 backdrop-blur-md border border-white/10 shadow-2xl" />
+            <div className="relative px-8 py-6 md:px-16 md:py-8 flex flex-col items-center justify-center text-center">
+              <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent mb-3 opacity-60" />
+
+              <h1 className="font-display text-2xl md:text-3xl lg:text-4xl font-light text-white tracking-[0.2em] uppercase drop-shadow-md">
+                Suryagarh
+              </h1>
+              <p className="font-display text-lg md:text-xl lg:text-2xl font-light text-white/90 mt-2 tracking-widest uppercase">
+                The Hotel
+              </p>
+
+              <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-primary/80 to-transparent mt-3" />
+            </div>
+          </div>
         </div>
       </div>
     </PageWrapper>

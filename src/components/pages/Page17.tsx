@@ -6,7 +6,7 @@ interface Page17Props {
     isPaused?: boolean;
 }
 
-const BACKGROUND_IMAGE = '/assets/images/Suryagarh/790978138.jpg';
+const BACKGROUND_IMAGE = '/assets/images/Suryagarh/8...jpg';
 
 export const Page17: React.FC<Page17Props> = ({ isActive, isPaused }) => {
     const [isVisible, setIsVisible] = useState(false);
@@ -39,44 +39,6 @@ export const Page17: React.FC<Page17Props> = ({ isActive, isPaused }) => {
 
                 {/* Content Container */}
                 <div className="relative z-10 w-full h-full">
-
-                    {/* Booking Contact - Top Left */}
-                    <div className={`absolute top-12 left-8 md:top-16 md:left-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                        }`}>
-                        <div className="text-left max-w-md">
-                            <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-light text-white mb-8 tracking-[0.15em] drop-shadow-lg">
-                                BOOKING CONTACT
-                            </h2>
-
-                            <div className="space-y-4">
-                                <p className="font-display text-xl md:text-2xl text-white font-light drop-shadow-md">
-                                    NADJA REICHE
-                                </p>
-                                <p className="font-display text-sm md:text-base text-white/80 tracking-[0.15em] drop-shadow-md">
-                                    BOOKINGS
-                                </p>
-                                <p className="font-display text-lg md:text-xl text-primary font-light drop-shadow-md">
-                                    CARAVANA
-                                </p>
-
-                                <div className="pt-6 space-y-2">
-                                    <a
-                                        href="mailto:nadja@caravana.world"
-                                        className="block font-display text-base md:text-lg text-white hover:text-primary transition-colors drop-shadow-md"
-                                    >
-                                        NADJA@CARAVANA.WORLD
-                                    </a>
-                                    <a
-                                        href="tel:+4915144694744"
-                                        className="block font-display text-base md:text-lg text-white/80 hover:text-primary transition-colors drop-shadow-md"
-                                    >
-                                        +49 151 4469 4744
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     {/* Credits - Bottom Right */}
                     <div className={`absolute bottom-12 right-8 md:bottom-16 md:right-16 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                         }`}>

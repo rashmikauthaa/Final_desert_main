@@ -148,7 +148,7 @@ export const Page3: React.FC<Page3Props> = ({ isActive, onSlideshowComplete, isP
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20" />
 
-            <div className="relative z-10 h-full flex items-center justify-center px-8">
+            <div className="relative z-10 h-full flex items-start justify-center px-8 pt-32">
               <div
                 key={activeText}
                 className="max-w-4xl text-center text-lg md:text-xl lg:text-2xl font-light leading-relaxed text-white transition-all duration-1000 opacity-100 animate-fade-up"

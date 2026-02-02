@@ -152,22 +152,33 @@ export const Page9: React.FC<Page9Props> = ({ isActive, onSlideshowComplete, isP
             playsInline
             preload="auto"
           />
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-black/60" />
         </div>
       </div>
 
-      {/* Text Overlay - appears and fades */}
-      <div className="relative z-30 w-full h-full flex items-center justify-center">
+      {/* Text Overlay - Creative Glassmorphism */}
+      <div className="relative z-30 w-full h-full flex items-start justify-center pt-24 md:pt-32 pointer-events-none">
         <div
-          className="text-center transition-all ease-out"
+          className="transition-all ease-out"
           style={{
             opacity: showText ? 1 : 0,
             transform: showText ? 'translateY(0) scale(' + textScale + ')' : 'translateY(20px) scale(1)',
             transitionDuration: '1500ms',
           }}
         >
-          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-light text-foreground drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
-            The Concert Venues
-          </h1>
+          <div className="relative overflow-hidden group rounded-full">
+            <div className="absolute inset-0 bg-black/40 backdrop-blur-md border border-white/10 shadow-2xl" />
+            <div className="relative px-10 py-5 flex flex-col items-center justify-center">
+              <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent mb-2 opacity-50" />
+
+              <h1 className="font-display text-2xl md:text-3xl lg:text-4xl font-light text-white tracking-[0.2em] uppercase drop-shadow-md whitespace-nowrap">
+                The Concert Venues
+              </h1>
+
+              <div className="w-20 h-[1px] bg-gradient-to-r from-transparent via-primary/80 to-transparent mt-2" />
+            </div>
+          </div>
         </div>
       </div>
     </PageWrapper>

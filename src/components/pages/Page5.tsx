@@ -7,6 +7,9 @@ const suryagarh2 = '/assets/images/Suryagarh/2- crop.png';
 const suryagarh7 = '/assets/images/Suryagarh/7.webp';
 const suryagarh9 = '/assets/images/Suryagarh/9.jpg';
 const suryagarh10 = '/assets/images/Suryagarh/10.png';
+const suryagarh1 = '/assets/images/Suryagarh/1..webp';
+const suryagarh4 = '/assets/images/Suryagarh/4..jpeg';
+const suryagarh5 = '/assets/images/Suryagarh/790978138.jpg';
 
 interface Page5Props {
   isActive: boolean;
@@ -26,12 +29,15 @@ const suryagarhTextBlocks = [
 // Keywords for Suryagarh - "heaven of Rajasthan" and others
 const suryagarhKeywords = ['Luxury', 'Heritage', 'Palace', 'Sanctuary'];
 
-// Slideshow images (2, 7, 9, 10)
+// Slideshow images (2, 7, 9, 10, 1, 4, 5)
 const suryagarhSlideshowImages = [
+  suryagarh5,
   suryagarh2,
   suryagarh7,
   suryagarh9,
   suryagarh10,
+  suryagarh1,
+  suryagarh4
 ];
 
 const TEXT_DURATION = 4500; // Duration for each text block (like Page3)
@@ -75,14 +81,6 @@ export const Page5: React.FC<Page5Props> = ({ isActive, onSlideshowComplete, aud
         }
       }, TEXT_DURATION);
 
-      // Check for keywords visibility (show 2s after activeText becomes 1)
-      // We use a separate effect-like check here. 
-      // If we pause, this timer pauses (because the effect re-runs or holds?)
-      // Actually, if we pause, this effect cleans up and clears timeout.
-      // When we resume, activeText is still 1, but !showKeywords is true.
-      // So we restart the 2s timer. 
-      // Issue: If we pause at 1.9s, then resume, we wait another 2s.
-      // For this specific UI, that is acceptable UX.
       if (activeText === 1 && !showKeywords) {
         keywordTimer = setTimeout(() => {
           setShowKeywords(true);
@@ -129,7 +127,7 @@ export const Page5: React.FC<Page5Props> = ({ isActive, onSlideshowComplete, aud
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20" />
 
             {/* Text Content - animated like Page3 */}
-            <div className="relative z-10 h-full flex items-center justify-center px-8">
+            <div className="relative z-10 h-full flex items-start justify-center px-8 pt-32">
               <div
                 key={activeText}
                 className="max-w-4xl text-center space-y-6 animate-fade-up"

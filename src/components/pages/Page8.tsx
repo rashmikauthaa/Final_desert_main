@@ -12,21 +12,16 @@ interface Page8Props {
 }
 
 // Images from public/assets/Slideshow folder
-// Add more photos to this folder and they will be included
 const images = [
   "/assets/images/Manganiyars/1.jpg",
   "/assets/images/Manganiyars/2...jpg",
   "/assets/images/Manganiyars/3...jpg",
   "/assets/images/Manganiyars/4.jpg",
   "/assets/images/Manganiyars/5...jpg",
-  "/assets/images/Manganiyars/6....jpg",
   "/assets/images/Manganiyars/8...jpg",
-  "/assets/images/Manganiyars/9.jpg",
-  "/assets/images/Manganiyars/10.jpg",
-  "/assets/images/Manganiyars/11.jpg",
 ];
 
-const SLIDE_DURATION = 4000; // 4 seconds per slide - more time to view each image
+const SLIDE_DURATION = 2000; // 2 seconds per slide - more time to view each image
 
 export const Page8: React.FC<Page8Props> = ({ isActive, onVideoStart, onVideoEnd, onSlideshowComplete, audioRef, isPaused }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -66,8 +61,8 @@ export const Page8: React.FC<Page8Props> = ({ isActive, onVideoStart, onVideoEnd
   }, [isActive, isPaused, onSlideshowComplete]);
 
   return (
-    <PageWrapper isActive={isActive}>
-      <div className="relative w-full h-full overflow-hidden">
+    <PageWrapper isActive={isActive} overlayOpacity={0}>
+      <div className="fixed inset-0 w-screen h-screen overflow-hidden">
         {images.map((image, index) => (
           <div
             key={index}
@@ -88,13 +83,6 @@ export const Page8: React.FC<Page8Props> = ({ isActive, onVideoStart, onVideoEnd
 
         {/* Subtle vignette */}
         <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,transparent_50%,hsl(var(--background)/0.4)_100%)]" />
-
-        {/* Image counter */}
-        <div className="absolute bottom-24 left-8 md:left-16 z-20">
-          <p className="font-display text-sm tracking-[0.3em] text-foreground/60">
-            {String(currentIndex + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}
-          </p>
-        </div>
       </div>
     </PageWrapper>
   );

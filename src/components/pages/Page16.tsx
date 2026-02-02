@@ -81,12 +81,21 @@ export const Page16: React.FC<Page16Props> = ({ isActive, onSlideshowComplete, i
                             alt={slideTitles[index]}
                             className="w-full h-full object-cover"
                         />
-                        {/* Text Overlay */}
-                        <div className="absolute inset-0 flex items-center justify-center bg-black/40">
-                            <div className="text-center px-4 max-w-4xl">
-                                <h2 className="font-display text-3xl md:text-5xl lg:text-6xl font-light text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)] tracking-wide">
-                                    {slideTitles[index]}
-                                </h2>
+                        {/* Text Overlay - Creative Glassmorphism */}
+                        <div className="absolute inset-x-0 top-[15%] md:top-[20%] flex justify-center z-10 pointer-events-none">
+                            <div className="relative overflow-hidden group">
+                                <div className="absolute inset-0 bg-black/40 backdrop-blur-md rounded-full border border-white/10 shadow-2xl" />
+                                <div className="relative px-8 py-4 md:px-12 md:py-5 flex flex-col items-center justify-center">
+                                    {/* Decorative line top */}
+                                    <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent mb-2 opacity-50" />
+
+                                    <h2 className="font-display text-lg md:text-xl lg:text-2xl font-light text-white tracking-[0.2em] uppercase text-center drop-shadow-md whitespace-nowrap">
+                                        {slideTitles[index]}
+                                    </h2>
+
+                                    {/* Decorative line bottom */}
+                                    <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-primary/80 to-transparent mt-2" />
+                                </div>
                             </div>
                         </div>
                     </div>

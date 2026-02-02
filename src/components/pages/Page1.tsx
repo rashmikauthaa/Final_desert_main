@@ -168,38 +168,35 @@ export const Page1: React.FC<Page1Props> = ({ isActive, audioRef, isPaused = fal
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.78vh]"
         />
       </div>
-      
+
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-background/40" />
-      
+
       {/* Text Content */}
       <div className="relative z-10 w-full h-full">
         <div
-          className={`absolute top-12 right-12 md:top-16 md:right-16 transition-all duration-1500 ${
-            showCaravana ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
-          }`}
+          className={`absolute top-12 right-12 md:top-16 md:right-16 transition-all duration-1500 ${showCaravana ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+            }`}
         >
           <h1 className="font-display text-3xl md:text-5xl lg:text-6xl font-light tracking-[0.3em] text-foreground">
             CARAVANA
           </h1>
         </div>
-        
+
         <div
-          className={`absolute inset-0 flex items-center justify-center transition-all duration-1500 ${
-            showCenter ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-          }`}
+          className={`absolute inset-0 flex items-center justify-center transition-all duration-1500 ${showCenter ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+            }`}
         >
           <div className="text-center max-w-4xl px-8">
             <p className="font-display text-xl md:text-3xl lg:text-4xl font-light text-foreground/90 ">
-              Music of the Desert of Rajasthan
+              THE ROAD TO JAISALMER
             </p>
           </div>
         </div>
-        
+
         <div
-          className={`absolute bottom-12 right-12 md:bottom-16 md:right-16 transition-all duration-1500 ${
-            showIndia ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
+          className={`absolute bottom-12 right-12 md:bottom-16 md:right-16 transition-all duration-1500 ${showIndia ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
         >
           <p className="font-display text-xl md:text-2xl lg:text-3xl font-light tracking-[0.5em] text-foreground/80">
             INDIA
