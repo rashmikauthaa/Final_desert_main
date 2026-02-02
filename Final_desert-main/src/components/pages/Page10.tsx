@@ -198,21 +198,28 @@ export const Page10: React.FC<Page10Props> = ({ isActive, onSlideshowComplete, i
             );
           })}
         </div>
+
+        {/* Uniform overlay for text readability - covers entire screen */}
+        <div className="absolute inset-0 bg-black/60 pointer-events-none" />
       </div>
 
       {/* Text Content */}
       <div className="relative z-20 w-full h-full flex items-center justify-center px-8 md:px-16 lg:px-24">
-        {/* Subtle overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20 pointer-events-none" />
 
         <div className="relative z-10 max-w-4xl text-center space-y-6 md:space-y-8">
           {/* Intro Text */}
-          <p
-            className={`font-display text-base md:text-lg lg:text-xl font-light leading-relaxed text-foreground/95 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] transition-all duration-1500 ease-out ${showIntro ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}
-          >
-            The Festival unfolds in some of Rajasthan's most iconic heritage sites and breathtaking settings.
-          </p>
+          {/* Intro Text */}
+          <div className={`transition-all duration-1500 ease-out ${showIntro ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <p
+              className="font-display text-base md:text-lg lg:text-xl font-light leading-relaxed text-foreground/95 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] inline-block px-6 py-4 rounded-xl"
+              style={{
+                backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                backdropFilter: 'blur(4px)',
+              }}
+            >
+              The Festival unfolds in some of Rajasthan's most iconic heritage sites and breathtaking settings.
+            </p>
+          </div>
 
           {/* Royal Block Format - Venue Texts in Pill Containers */}
           <div className="flex flex-wrap justify-center gap-3 md:gap-4">
@@ -289,24 +296,34 @@ export const Page10: React.FC<Page10Props> = ({ isActive, onSlideshowComplete, i
 
           {/* Continuation text */}
           {showContinuation && (
-            <p
-              className="font-display text-base md:text-lg lg:text-xl font-light leading-relaxed text-foreground/95 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] transition-all duration-1500 ease-out opacity-100 translate-y-0"
-            >
-              These spectacular UNESCO World Heritage Sites, oozing with history and atmosphere, have been graciously and exclusively opened to us by His Highness
-            </p>
+            <div className="transition-all duration-1500 ease-out opacity-100 translate-y-0">
+              <p
+                className="font-display text-base md:text-lg lg:text-xl font-light leading-relaxed text-foreground/95 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] inline-block px-6 py-4 rounded-xl"
+                style={{
+                  backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                  backdropFilter: 'blur(4px)',
+                }}
+              >
+                These spectacular UNESCO World Heritage Sites, oozing with history and atmosphere, have been graciously and exclusively opened to us by His Highness
+              </p>
+            </div>
           )}
 
           {/* Highlighted text */}
-          <p
-            className={`font-display text-lg md:text-2xl lg:text-3xl font-light leading-relaxed text-primary drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] transition-all duration-1500 ease-out ${showHighlight ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-              }`}
-            style={{
-              textShadow: '0 4px 12px rgba(0,0,0,0.9), 0 0 20px rgba(212, 175, 55, 0.3)',
-            }}
-          >
-            Maharadjadhiraj Maharawal of
-            Jaisalmer Chaitainya Raj.
-          </p>
+          {/* Highlighted text */}
+          <div className={`transition-all duration-1500 ease-out ${showHighlight ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <p
+              className="font-display text-lg md:text-2xl lg:text-3xl font-light leading-relaxed text-primary drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] inline-block px-6 py-4 rounded-xl"
+              style={{
+                textShadow: '0 4px 12px rgba(0,0,0,0.9), 0 0 20px rgba(212, 175, 55, 0.3)',
+                backgroundColor: 'rgba(0, 0, 0, 0.6)',
+                backdropFilter: 'blur(4px)',
+              }}
+            >
+              Maharadjadhiraj Maharawal of
+              Jaisalmer Chaitainya Raj.
+            </p>
+          </div>
         </div>
       </div>
     </PageWrapper>

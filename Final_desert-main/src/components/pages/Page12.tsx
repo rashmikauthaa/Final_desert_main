@@ -7,6 +7,7 @@ const amjadAliKhan = '/assets/images/artisits/India/amjad_ali_khan.JPG';
 const anoushkaShankar = '/assets/images/artisits/India/anoushka_shankar.JPG';
 const madanGopal = '/assets/images/artisits/India/madan_gopal.JPG';
 const padmaShriAnwarKhan = '/assets/images/artisits/India/padma_shri_anwar_khan.JPG';
+const rishab = '/assets/images/artisits/India/rishab.JPG';
 
 interface Page12Props {
   isActive: boolean;
@@ -33,7 +34,7 @@ const artists: Artist[] = [
   },
   {
     name: 'Rishab Rikhiram Sharma',
-    // No image yet - will be added later
+    image: rishab,
     description: 'Multi-instrumentalist and Composer \n Rishab Rikhiram Sharma is known for his innovative approach to traditional Indian music, blending classical techniques with contemporary sounds.',
   },
   {

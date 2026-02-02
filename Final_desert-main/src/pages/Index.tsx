@@ -3,10 +3,11 @@ import { HarmoniumPagination } from '@/components/HarmoniumPagination';
 import { SandTransition } from '@/components/SandTransition';
 import { LandingScreen } from '@/components/LandingScreen';
 import { PlayPauseToggle } from '@/components/PlayPauseToggle';
+import { BackgroundAudio } from '@/components/BackgroundAudio';
 import { AudioProvider } from '@/contexts/AudioContext';
+
 import { Page1 } from '@/components/pages/Page1';
 import { Page2 } from '@/components/pages/Page2';
-import { PageCollaborations } from '@/components/pages/PageCollaborations';
 import { Page3 } from '@/components/pages/Page3';
 import { Page4 } from '@/components/pages/Page4';
 import { Page5 } from '@/components/pages/Page5';
@@ -22,9 +23,9 @@ import { Page13 } from '@/components/pages/Page13';
 import { Page14 } from '@/components/pages/Page14';
 import { Page15 } from '@/components/pages/Page15';
 import { Page16 } from '@/components/pages/Page16';
-import { PageQuotes } from '@/components/pages/PageQuotes';
+import { Page17 } from '@/components/pages/Page17';
 
-const TOTAL_PAGES = 17; // Total pages in the presentation (Page0 to Page16)
+const TOTAL_PAGES = 18; // Total pages in the presentation (Page0 to Page17)
 const SWIPE_THRESHOLD = 50;
 const WHEEL_THRESHOLD = 30;
 const DEBOUNCE_TIME = 800;
@@ -163,10 +164,17 @@ const Index = () => {
     }
   }, [navigateToPage, isPaused]);
 
-  // Handler for Page15 completion (goes to page 16 - Credits)
+  // Handler for Page15 completion (goes to page 16 - Ending Slideshow)
   const handlePage15Complete = useCallback(() => {
     if (!isPaused) {
       navigateToPage(16, 'down', true);
+    }
+  }, [navigateToPage, isPaused]);
+
+  // Handler for Page16 completion (goes to page 17 - Credits)
+  const handlePage16Complete = useCallback(() => {
+    if (!isPaused) {
+      navigateToPage(17, 'down', true);
     }
   }, [navigateToPage, isPaused]);
 
@@ -174,13 +182,6 @@ const Index = () => {
   const handlePage9Complete = useCallback(() => {
     if (!isPaused) {
       navigateToPage(10, 'down', true);
-    }
-  }, [navigateToPage, isPaused]);
-
-  // Handler for PageQuotes completion (goes to page 12)
-  const handleQuotesComplete = useCallback(() => {
-    if (!isPaused) {
-      navigateToPage(12, 'down', true);
     }
   }, [navigateToPage, isPaused]);
 
@@ -348,8 +349,14 @@ const Index = () => {
   // Determine if video should be visible (on Page 1 for audio or Page 2 for video)
   const showVideo = currentPage === 0 || currentPage === 1;
 
+
+  // ... (existing imports)
+
+  // ...
+
   return (
     <AudioProvider>
+      <BackgroundAudio />
       <div
         ref={containerRef}
         className="fixed inset-0 overflow-hidden bg-background cursor-default select-none"
@@ -402,8 +409,8 @@ const Index = () => {
         <Page13 isActive={currentPage === 13} onSlideshowComplete={handlePage13Complete} isPaused={isPaused} />
         <Page14 isActive={currentPage === 14} onSlideshowComplete={handlePage14Complete} isPaused={isPaused} />
         <Page15 isActive={currentPage === 15} onSlideshowComplete={handlePage15Complete} isPaused={isPaused} />
-        <Page16 isActive={currentPage === 16} isPaused={isPaused} />
-        {/* <PageQuotes isActive={currentPage === 12} audioRef={manganiyarsVideoRef} onSlideshowComplete={handleQuotesComplete} /> */}
+        <Page16 isActive={currentPage === 16} onSlideshowComplete={handlePage16Complete} isPaused={isPaused} />
+        <Page17 isActive={currentPage === 17} isPaused={isPaused} />
 
         {/* Harmonium-style Pagination */}
         <HarmoniumPagination

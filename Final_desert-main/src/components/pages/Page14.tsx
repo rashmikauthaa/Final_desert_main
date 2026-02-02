@@ -5,6 +5,9 @@ import { PageWrapper } from '@/components/PageWrapper';
 const nicolas = '/assets/images/artisits/Electronic/nicolas.JPG';
 const nils = '/assets/images/artisits/Electronic/nils.jpg';
 const svendsen = '/assets/images/artisits/Electronic/svedan.jpg';
+const viken = '/assets/images/artisits/Electronic/viken.jpg';
+const sabo = '/assets/images/artisits/Electronic/SABO.jpg';
+const sahale = '/assets/images/artisits/Electronic/sahale.jpg';
 
 declare module '*.JPG' {
     const value: string;
@@ -26,33 +29,38 @@ interface Artist {
 const artists: Artist[] = [
     {
         name: 'Viken Arman',
-        // No image
+        image: viken,
         description: 'French producer/ DJ and musician \n Viken Arman crafts a distinctive sound that blends the timeless and modern from a collage of samples, modular grooves, and acoustic composition. Viken reimagines tradition into a sound that surprises and captivates, always staying one step ahead of expectation.',
     },
     {
         name: 'Hraach & Armen Miran',
         // No image
-        description: 'Music Producers & DJs \n Hraach is an Armenian music producer Known for creating deep house, melodic, and atmospheric, often with oriental, ethnic influences. He has developed a musical world rich with dark, melancholic tones, stellar landscapes, magical atmospheres, and magnetic, deep rhythms that captivate and elevate the experience of his listeners. \n Iran born, Los Angeles based DJ/producer/multi-instrumentalist Armen Miran has established himself as an iconic and powerful name in this industry. His music lies on the inspirations driven from spirituality and nature, the two of them have been consistent sources of stability to him and guide his creative process.',
+        description: 'Music Producers & DJs \n Hraach is an Armenian music producer Known for creating deep house, melodic, and atmospheric, often with oriental. He has developed a musical world rich with melancholic tones, stellar landscapes, and magnetic, deep rhythms that captivate and elevate the experience of his listeners. \n Iran born, Los Angeles based DJ/producer/multi-instrumentalist Armen Miran has established himself as an iconic and powerful name in this industry. The two of them have been consistent sources of stability to him and guide his creative process.',
     },
     {
         name: 'Sabo',
-        // No image
+        image: sabo,
         description: 'DJ & Producer \n Sabo\'s sound is inspired by his extensive World travels, and will take you on a mystical journey that crosses several musical borders a sonic landscape that crosses several musical borders with mixtures of tropical poly-rhythms, warm bass frequencies, rich percussion, lush tribal vocals, and smooth organic textures.',
     },
     {
         name: 'Nicolas Jarr',
         image: nicolas,
-        description: 'Electronic Artist \n Information coming soon.',
+        description: 'A renowned Chilean-American Composer and Electronic Producer \n celebrated for reinventing downtempo, minimal techno, and ambient music with a deeply emotive, avant-garde style. Nicolas Jaar weaves together sounds with textures and eras, leading his listeners on a sojourn of sonic exploration and otherworldly experiences. Jaar is one of the finest things to happen to electronic music. He is a master and a marvel as a producer and a live musician',
     },
     {
         name: 'Nils Frahm',
         image: nils,
-        description: 'Electronic Artist \n Information coming soon.',
+        description: 'German Musician, Composer, and Record Producer based in Berlin \n He is known for combining classical and electronic music and for an unconventional approach to the piano in which he mixes a grand piano, upright piano, Berlin-based contemporary composer He has built a steady reputation for his intimate, poignant piano recordings, yet they so far only showed a fragment of what to expect from a Nils Frahm concert. Frahm’s heart lies in improvisation, inspired by the space and the audience',
     },
     {
         name: 'Be Svendsen',
         image: svendsen,
-        description: 'Electronic Artist \n Information coming soon.',
+        description: 'Danish Musician and Producer \n He has become a proponent of a uniquely organic, genre-bending sound His performance takes the audience on a deep experimental journey, providing a cinematic soundscape allowing the receivers to celebrate. It is through these playful interchanges of style that Be Svendsen expresses a profound and ever self-interrogating talent for innovation and alchemy',
+    },
+    {
+        name: 'Sahale',
+        image: sahale,
+        description: 'Parisian Music Producer \n Draws inspiration from world music to electronic, blending both traditional and contemporary influences in his work of Deep Ancient Persian Background Music. Sahalé presents us with a multifaceted sound paradise composed of the most varied cultural references, clearly present and evident in his compositions, His form of expression, unique in electronic music, takes us from his performances to unknown arenas of world music. By mixing analogical and electronic instruments together.'
     },
 ];
 

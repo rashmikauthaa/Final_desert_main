@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { PageWrapper } from '@/components/PageWrapper';
+import { Description } from '@radix-ui/react-toast';
 
 // Import artist images
-// Artist images are now static assets in public folder
+
 const naisiri = '/assets/images/artisits/World/nasiri.JPG';
 const apiChimba = '/assets/images/artisits/World/api_chimba.JPG';
 const konyaWhirling = '/assets/images/artisits/World/konya_whirling.JPG';
+const duduk = '/assets/images/artisits/World/duduk.JPG';
+const ismet = '/assets/images/artisits/World/ismet.JPG';
 
 interface Page13Props {
     isActive: boolean;
@@ -22,12 +25,12 @@ interface Artist {
 const artists: Artist[] = [
     {
         name: 'Duduk Ensemble',
-        // No image yet
+        image: duduk,
         description: 'Armenian Duduk Masters \n The Armenian duduk is a double reed woodwind instrument made of apricot wood originating from Armenia. Duduk is an incredibly emotional wind instrument, capable of penetrating with its timbre into the deepest and most secret corners of the soul.',
     },
     {
         name: 'Ismet Aydin',
-        // No image yet
+        image: ismet,
         description: 'Vocalist, Composer, Songwriter and Educator from Anatolia Turkey \n Traditional folk-inspired and Sufi inspired compositions. His profoundly emotional and heart stirring music has deeply moved people all over the globe.',
     },
     {
@@ -44,6 +47,10 @@ const artists: Artist[] = [
         name: 'Konya Whirling Dervishes',
         image: konyaWhirling,
         description: 'Sacred Sufi Dance Performers \n The Whirling Dervishes of Konya perform the Sema ceremony, a mesmerizing Sufi ritual of spiritual ecstasy and divine connection through sacred spinning dance.',
+    },
+    {
+        name: 'Bahram-Ji',
+        description: 'Kurdish New Age musician from Iran \n Having spent most of his adult life in India studying music.His music is a special combination between the old and the traditional, a fusion of Rumi\'s spiritual poems with modern and technical rhythms that invite to meditation.The fusion between spirituality and meditative rhythms, combined with traditional Persian instruments such as the santoor, has a hypnotic effect.',
     },
 ];
 

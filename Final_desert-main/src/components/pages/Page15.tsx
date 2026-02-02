@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { PageWrapper } from '@/components/PageWrapper';
 
 // Image paths
-const vandana = '/assets/images/artisits/speakers/vandana.JPG';
+const sri = '/assets/images/artisits/speakers/sri.JPG';
 const sadhguru = '/assets/images/artisits/speakers/sadhguru.JPG';
 const deepak = '/assets/images/artisits/speakers/deepak_chopra.JPG';
 const satish = '/assets/images/artisits/speakers/satish.JPG';
+const salman = '/assets/images/artisits/speakers/salman_rushdie.JPG';
+const ar = '/assets/images/artisits/speakers/ar_raman.JPG';
 
 declare module '*.JPG' {
     const value: string;
@@ -27,13 +29,13 @@ interface Artist {
 const artists: Artist[] = [
     {
         name: 'Sir Ahmed Salman Rushdie',
-        // No image found
+        image: salman,
         description: 'British-Indian Author \n Sir Ahmed Salman Rushdie is a critically acclaimed, Booker Prize-winning British-Indian author known for blending magical realism with historical fiction. Multiple winner of literary awards globally, He is a renowned novelist, essayist, and champion of free speech, knighted in 2007 as well as a Fellow of the Royal Society of Literature and member of the American Academy of Arts and Letters',
     },
     {
-        name: 'Vandana Shiva',
-        image: vandana,
-        description: 'Environmental Activist, Author, and Scholar \n Vandana Shiva is one of the world’s most respected voices for ecological sustainability and food sovereignty. Recipient of the Right Livelihood Award, she has shaped global policy and inspired movements to protect biodiversity, indigenous knowledge, and the future of our planet.',
+        name: 'Sri Sri Ravi Shankar',
+        image: sri,
+        description: 'Coming soon...'
     },
     {
         name: 'Sadhguru',
@@ -50,6 +52,11 @@ const artists: Artist[] = [
         image: satish,
         description: 'Peace activist, Author, and former Jain monk \n Satish Kumar is the long-time editor of Resurgence & Ecologist and founder of Schumacher College. A world-renowned advocate for ecology and simplicity, he has inspired millions through his walking pilgrimages for peace and his vision of a life rooted in compassion and harmony.',
     },
+    {
+        name: 'A.R. Rahman',
+        image: ar,
+        description: 'Two-time Academy Award and Grammy-winning composer \n A.R. Rahman is one of the most influential musicians of our time. Known as the "Mozart of Madras," his genre-defying work spans Indian classical, world music, and contemporary film scores, captivating global audiences from Slumdog Millionaire to symphony halls worldwide.'
+    }
 ];
 
 const ARTIST_DISPLAY_DURATION = 4000; // 4 seconds per artist
@@ -221,7 +228,7 @@ export const Page15: React.FC<Page15Props> = ({ isActive, onSlideshowComplete, i
                             </h2>
 
                             {/* Artists Grid */}
-                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 md:gap-6">
                                 {artists.map((artist, index) => (
                                     <div
                                         key={index}
