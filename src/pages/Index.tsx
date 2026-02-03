@@ -25,8 +25,9 @@ import { Page15 } from '@/components/pages/Page15';
 import { Page16 } from '@/components/pages/Page16';
 import { Page17 } from '@/components/pages/Page17';
 import { Page18 } from '@/components/pages/Page18';
+import { Page19 } from '@/components/pages/Page19';
 
-const TOTAL_PAGES = 19; // Total pages in the presentation (Page0 to Page18)
+const TOTAL_PAGES = 20; // Total pages in the presentation (Page0 to Page19)
 const SWIPE_THRESHOLD = 50;
 const WHEEL_THRESHOLD = 30;
 const DEBOUNCE_TIME = 800;
@@ -183,6 +184,13 @@ const Index = () => {
   const handlePage17Complete = useCallback(() => {
     if (!isPaused) {
       navigateToPage(18, 'down', true);
+    }
+  }, [navigateToPage, isPaused]);
+
+  // Handler for Page18 completion (goes to page 19 - Final Credits)
+  const handlePage18Complete = useCallback(() => {
+    if (!isPaused) {
+      navigateToPage(19, 'down', true);
     }
   }, [navigateToPage, isPaused]);
 
@@ -419,7 +427,8 @@ const Index = () => {
         <Page15 isActive={currentPage === 15} onSlideshowComplete={handlePage15Complete} isPaused={isPaused} />
         <Page16 isActive={currentPage === 16} onSlideshowComplete={handlePage16Complete} isPaused={isPaused} />
         <Page17 isActive={currentPage === 17} onSlideshowComplete={handlePage17Complete} isPaused={isPaused} />
-        <Page18 isActive={currentPage === 18} isPaused={isPaused} />
+        <Page18 isActive={currentPage === 18} onSlideshowComplete={handlePage18Complete} isPaused={isPaused} />
+        <Page19 isActive={currentPage === 19} isPaused={isPaused} />
 
         {/* Harmonium-style Pagination */}
         <HarmoniumPagination

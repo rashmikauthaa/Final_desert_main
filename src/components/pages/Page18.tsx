@@ -4,85 +4,69 @@ import { PageWrapper } from '@/components/PageWrapper';
 interface Page18Props {
     isActive: boolean;
     isPaused?: boolean;
+    onSlideshowComplete?: () => void;
 }
 
-const contentBlocks = [
-    {
-        title: "PREMIUM PROGRAMMING ON SITE",
-        description: "Festival talks, intimate breakfasts, long-table lunches, and the Healers Circle all hosted within Suryagarh's iconic spaces."
-    },
-    {
-        title: "ICONIC EXPERIENCES",
-        description: "Festival talks, intimate breakfasts, long-table lunches, and the Healers Circle all hosted within Suryagarh's iconic spaces."
-    },
-    {
-        title: "CONTENT THAT TRAVELS",
-        description: "High-end photography, cinematic video, and influencer-driven social media placing Suryagarh on feeds worldwide."
-    },
-    {
-        title: "INTERNATIONAL PRESS POTENTIAL",
-        description: "Coverage across European and global lifestyle media highlighting Suryagarh as the festival's home."
-    }
-];
-
-export const Page18: React.FC<Page18Props> = ({ isActive, isPaused }) => {
-    const [visibleBlocks, setVisibleBlocks] = useState<number[]>([]);
+export const Page18: React.FC<Page18Props> = ({ isActive, isPaused, onSlideshowComplete }) => {
+    const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
         if (isActive) {
-            // Stagger the animation - each block appears one by one
-            contentBlocks.forEach((_, index) => {
-                const timer = setTimeout(() => {
-                    setVisibleBlocks(prev => [...prev, index]);
-                }, 1000 + (index * 1500)); // 1.5s delay between each block
-                return () => clearTimeout(timer);
-            });
+            const timer = setTimeout(() => {
+                setIsVisible(true);
+            }, 800);
+
+            // Auto-advance after content is shown
+            const advanceTimer = setTimeout(() => {
+                if (onSlideshowComplete && !isPaused) {
+                    onSlideshowComplete();
+                }
+            }, 15000); // 15 seconds on this page
+
+            return () => {
+                clearTimeout(timer);
+                clearTimeout(advanceTimer);
+            };
         } else {
-            setVisibleBlocks([]);
+            setIsVisible(false);
         }
-    }, [isActive]);
+    }, [isActive, isPaused, onSlideshowComplete]);
 
     return (
         <PageWrapper isActive={isActive} overlayOpacity={0}>
-            {/* Dark sandy background matching theme */}
-            <div className="fixed inset-0 w-screen h-screen overflow-hidden bg-[hsl(35,25%,50%)]">
-                {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[hsl(38,28%,55%)] via-[hsl(35,25%,50%)] to-[hsl(32,22%,42%)]" />
-                
-                {/* Decorative elements */}
-                <div className="absolute inset-0 opacity-10">
-                    <div className="absolute top-1/3 right-1/3 w-80 h-80 rounded-full bg-[hsl(35,45%,40%)] blur-3xl" />
-                    <div className="absolute bottom-1/4 left-1/3 w-72 h-72 rounded-full bg-[hsl(25,35%,35%)] blur-3xl" />
-                </div>
+            {/* Darker warm background matching Page17 */}
+            <div className="fixed inset-0 w-screen h-screen overflow-hidden bg-[hsl(35,25%,55%)]">
+                {/* Subtle gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[hsl(38,28%,60%)] via-[hsl(35,25%,55%)] to-[hsl(32,22%,48%)]" />
 
                 {/* Content Container */}
-                <div className="relative z-10 w-full h-full flex flex-col justify-center px-8 md:px-16 lg:px-24 py-12">
-                    {/* Blocks Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
-                        {contentBlocks.map((block, index) => (
-                            <div
-                                key={index}
-                                className={`p-6 md:p-8 border border-[hsl(40,30%,70%)]/30 rounded-sm bg-[hsl(35,20%,45%)]/30 backdrop-blur-sm
-                                    transition-all duration-[2500ms] ease-in
-                                    ${visibleBlocks.includes(index) 
-                                        ? 'opacity-100 translate-y-0' 
-                                        : 'opacity-0 translate-y-8'
-                                    }`}
-                            >
-                                {/* Block Title */}
-                                <h2 className="font-display text-base md:text-lg lg:text-xl text-[hsl(40,35%,85%)] tracking-[0.2em] uppercase mb-4">
-                                    {block.title}
-                                </h2>
-                                
-                                {/* Decorative line */}
-                                <div className="w-16 h-[1px] bg-gradient-to-r from-[hsl(40,40%,70%)] to-transparent mb-4" />
-                                
-                                {/* Block Description */}
-                                <p className="font-display text-sm md:text-base text-[hsl(40,25%,80%)] tracking-[0.1em] leading-relaxed normal-case">
-                                    {block.description}
-                                </p>
-                            </div>
-                        ))}
+                <div className="relative z-10 w-full h-full flex flex-col justify-center px-8 md:px-16 lg:px-24 py-12 md:py-16">
+                    
+                    {/* Header */}
+                    <div
+                        className={`max-w-5xl transition-all duration-[3000ms] ease-in ${
+                            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-6'
+                        }`}
+                    >
+                        {/* Headline */}
+                        <h1 className="font-display text-2xl md:text-3xl lg:text-4xl text-[hsl(40,30%,92%)] tracking-[0.2em] uppercase mb-10">
+                            Why Partner With The Festival?
+                        </h1>
+
+                        {/* Paragraph 1 */}
+                        <p className="font-display text-base md:text-lg lg:text-xl text-[hsl(40,25%,88%)] tracking-[0.08em] leading-relaxed mb-8 normal-case">
+                            Partnering with us puts you at the center of one of the most exclusive cultural events in India, the country the entire world has fully woken up to. There is no way around India anymore, in innumerable ways, and with that, you become more than a 'partner', but rather a part of the story.
+                        </p>
+
+                        {/* Paragraph 2 */}
+                        <p className="font-display text-base md:text-lg lg:text-xl text-[hsl(40,25%,88%)] tracking-[0.08em] leading-relaxed mb-8 normal-case">
+                            The creative vision & superior implementation of the event will ensure long term awareness, prestige and opening up direct intimate channels to audience which would be very hard to curate or duplicate in any 'normal marketing strategy'.
+                        </p>
+
+                        {/* Paragraph 3 */}
+                        <p className="font-display text-base md:text-lg lg:text-xl text-[hsl(40,25%,88%)] tracking-[0.08em] leading-relaxed normal-case">
+                            High end cinematic video, photography and media placement covering the event will guarantee exposure in tightly handpicked outlets, fully aligned with the Innovators & Pioneers which are our audience.
+                        </p>
                     </div>
                 </div>
             </div>

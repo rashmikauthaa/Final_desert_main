@@ -67,12 +67,12 @@ export const Page10: React.FC<Page10Props> = ({
     const timeline = [
       { d: 500, a: () => show('intro') },
       { d: TEXT_STAGGER_DELAY, a: () => { show('forts'); setImage(1); } },
-      { d: IMAGE_DISPLAY_DURATION * 0.5, a: () => show('palaces') },
+      { d: IMAGE_DISPLAY_DURATION * 0.5, a: () => { show('palaces'); setImage(5); } },
       { d: IMAGE_DISPLAY_DURATION * 0.5, a: () => { show('lakes'); setImage(2); } },
       { d: IMAGE_DISPLAY_DURATION * 0.5, a: () => { show('stepwells'); setImage(3); } },
       { d: IMAGE_DISPLAY_DURATION * 0.5, a: () => { show('temples'); setImage(4); } },
-      { d: IMAGE_DISPLAY_DURATION * 0.3, a: () => show('continuation') },
-      { d: IMAGE_DISPLAY_DURATION * 0.5, a: () => show('highlight') },
+      { d: IMAGE_DISPLAY_DURATION * 0.5, a: () => { show('continuation'); setImage(6); } },
+      { d: IMAGE_DISPLAY_DURATION * 0.5, a: () => { show('highlight'); setImage(7); } },
       { d: 3000, a: () => onSlideshowComplete?.() },
     ];
 

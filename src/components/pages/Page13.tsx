@@ -8,7 +8,7 @@ const naisiri = '/assets/images/artisits/World/nasiri.JPG';
 const apiChimba = '/assets/images/artisits/World/api_chimba.JPG';
 const konyaWhirling = '/assets/images/artisits/World/konya_whirling.JPG';
 const duduk = '/assets/images/artisits/World/duduk.JPG';
-const ismet = '/assets/images/artisits/World/ismet.JPG';
+const ismet = '/assets/images/artisits/World/ismet.jpeg';
 
 interface Page13Props {
     isActive: boolean;
