@@ -9,7 +9,7 @@
 @layer base {
   :root {
     /* Desert earthy tones */
-    --background: 35 25% 12%;
+    --background: 27 11% 34%;
     --foreground: 40 20% 90%;
 
     --card: 35 20% 15%;
@@ -57,7 +57,7 @@
   }
 
   .dark {
-    --background: 35 25% 8%;
+    --background: 27 11% 32%;
     --foreground: 40 20% 92%;
 
     --card: 35 20% 12%;
