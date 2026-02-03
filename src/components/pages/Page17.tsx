@@ -56,10 +56,10 @@ export const Page17: React.FC<Page17Props> = ({ isActive, isPaused, onSlideshowC
 
     return (
         <PageWrapper isActive={isActive} overlayOpacity={0}>
-            {/* Darker warm background */}
-            <div className="fixed inset-0 w-screen h-screen overflow-hidden bg-[hsl(35,25%,55%)]">
+            {/* Background */}
+            <div className="fixed inset-0 w-screen h-screen overflow-hidden bg-[#60584d]">
                 {/* Subtle gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[hsl(38,28%,60%)] via-[hsl(35,25%,55%)] to-[hsl(32,22%,48%)]" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#6a625a] via-[#60584d] to-[#545049]" />
 
                 {/* Content Container */}
                 <div className="relative z-10 w-full h-full flex flex-col px-8 md:px-16 lg:px-24 py-12 md:py-16">

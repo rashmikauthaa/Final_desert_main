@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { PageWrapper } from '@/components/PageWrapper';
-import { Description } from '@radix-ui/react-toast';
+import React, { useEffect, useState } from "react";
+import { PageWrapper } from "@/components/PageWrapper";
 
-// Import artist images
-
-const naisiri = '/assets/images/artisits/World/nasiri.JPG';
-const apiChimba = '/assets/images/artisits/World/api_chimba.JPG';
-const konyaWhirling = '/assets/images/artisits/World/konya_whirling.JPG';
-const duduk = '/assets/images/artisits/World/duduk.JPG';
-const ismet = '/assets/images/artisits/World/ismet.jpeg';
+// Artist Images
+const naisiri = "/assets/images/artisits/World/nasiri.JPG";
+const apiChimba = "/assets/images/artisits/World/api_chimba.JPG";
+const konyaWhirling = "/assets/images/artisits/World/konya_whirling.JPG";
+const duduk = "/assets/images/artisits/World/duduk.JPG";
+const ismet = "/assets/images/artisits/World/ismet.jpeg";
+const bahramji = "/assets/images/artisits/World/bahramji.jpg";
 
 interface Page13Props {
     isActive: boolean;
@@ -24,258 +23,154 @@ interface Artist {
 
 const artists: Artist[] = [
     {
-        name: 'Duduk Ensemble',
-        image: duduk,
-        description: 'Armenian Duduk Masters \n The Armenian duduk is a double reed woodwind instrument made of apricot wood originating from Armenia. Duduk is an incredibly emotional wind instrument, capable of penetrating with its timbre into the deepest and most secret corners of the soul.',
-    },
-    {
-        name: 'Ismet Aydin',
-        image: ismet,
-        description: 'Vocalist, Composer, Songwriter and Educator from Anatolia Turkey \n Traditional folk-inspired and Sufi inspired compositions. His profoundly emotional and heart stirring music has deeply moved people all over the globe.',
-    },
-    {
-        name: 'Naisiri',
+        name: "Naisiri",
         image: naisiri,
-        description: 'Renowned Iranian Multi-instrumentalist and Producer \n Blending oud, flute, and clarinet with deep bass, rhythmic synths, and organic percussion. From the Pyramids to Petra, he weaves Middle Eastern Sufi traditions into a modern electronic soundscape, carrying the soulful essence of his heritage into today\'s urban world.',
+        description:
+            "Renowned Iranian multi-instrumentalist and producer blending oud, flute and clarinet with deep bass, rhythmic synths and organic percussion, weaving Sufi traditions into a modern electronic soundscape.",
     },
     {
-        name: 'Api Chimba',
-        image: apiChimba,
-        description: 'World Music Artist \n A captivating performer bringing traditional sounds and spiritual music to global audiences, bridging ancient traditions with contemporary expressions.',
+        name: "Ismet Aydin",
+        image: ismet,
+        description:
+            "Vocalist, composer and educator from Anatolia, Turkey. His folk and Sufi-inspired compositions are deeply emotional, moving audiences across the world.",
     },
     {
-        name: 'Konya Whirling Dervishes',
+        name: "Konya Whirling Dervishes",
         image: konyaWhirling,
-        description: 'Sacred Sufi Dance Performers \n The Whirling Dervishes of Konya perform the Sema ceremony, a mesmerizing Sufi ritual of spiritual ecstasy and divine connection through sacred spinning dance.',
+        description:
+            "Sacred Sufi dance performers presenting the Sema ceremony — a ritual of spiritual ecstasy and divine connection through sacred whirling.",
     },
     {
-        name: 'Bahram-Ji',
-        description: 'Kurdish New Age musician from Iran \n Having spent most of his adult life in India studying music.His music is a special combination between the old and the traditional, a fusion of Rumi\'s spiritual poems with modern and technical rhythms that invite to meditation.The fusion between spirituality and meditative rhythms, combined with traditional Persian instruments such as the santoor, has a hypnotic effect.',
+        name: "Duduk Ensemble",
+        image: duduk,
+        description:
+            "Masters of the Armenian duduk, a double-reed woodwind carved from apricot wood, known for its haunting timbre and soul-penetrating emotional depth.",
+    },
+    {
+        name: "Bahram-Ji",
+        image: bahramji,
+        description:
+            "Kurdish new-age musician from Iran whose work fuses Rumi’s poetry, Persian instruments like the santoor, and meditative rhythms into hypnotic soundscapes.",
     },
 ];
 
-const ARTIST_DISPLAY_DURATION = 4000; // 4 seconds per artist
-const TITLE_DISPLAY_DURATION = 2000; // 2 seconds for title
-const GALLERY_DISPLAY_DURATION = 4000; // 4 seconds for gallery view
+const ANIMATION_DELAY_PER_ITEM = 300; // 300ms delay between each item
+const PAGE_DISPLAY_DURATION = 8000; // 8 seconds total display time
 
-export const Page13: React.FC<Page13Props> = ({ isActive, onSlideshowComplete, isPaused }) => {
-    const [showTitle, setShowTitle] = useState(false);
-    const [currentArtistIndex, setCurrentArtistIndex] = useState(0);
-    const [showArtist, setShowArtist] = useState(false);
-    const [showGallery, setShowGallery] = useState(false);
-
-    const [step, setStep] = useState(0);
+export const Page13: React.FC<Page13Props> = ({
+    isActive,
+    onSlideshowComplete,
+    isPaused,
+}) => {
+    const [showHeader, setShowHeader] = useState(false);
+    const [visibleItems, setVisibleItems] = useState<number[]>([]);
 
     useEffect(() => {
-        if (!isActive) {
-            setShowTitle(false);
-            setCurrentArtistIndex(0);
-            setShowArtist(false);
-            setShowGallery(false);
-            setStep(0);
-            return;
+        if (isActive) {
+            setShowHeader(false);
+            setVisibleItems([]);
+
+            // Show header first
+            const headerTimer = setTimeout(() => setShowHeader(true), 300);
+
+            // Then animate each artist card one by one from right to left
+            const itemTimers: NodeJS.Timeout[] = [];
+            artists.forEach((_, index) => {
+                const timer = setTimeout(() => {
+                    setVisibleItems(prev => [...prev, index]);
+                }, 600 + (index * ANIMATION_DELAY_PER_ITEM));
+                itemTimers.push(timer);
+            });
+
+            return () => {
+                clearTimeout(headerTimer);
+                itemTimers.forEach(timer => clearTimeout(timer));
+            };
+        } else {
+            setShowHeader(false);
+            setVisibleItems([]);
         }
     }, [isActive]);
 
+    // Auto move to next page
     useEffect(() => {
         if (!isActive || isPaused) return;
 
-        let timer: NodeJS.Timeout;
-
-        // Timeline:
-        // Step 0: Initial wait (500ms) -> Show Title
-        // Step 1: Show Title (TITLE_DISPLAY_DURATION) -> Hide Title, Show Artist 0
-        // Step 2...N: Show Artist i (ARTIST_DISPLAY_DURATION) -> Show Artist i+1
-        // Step N+1: Show Gallery (GALLERY_DISPLAY_DURATION) -> Complete
-
-        if (step === 0) {
-            timer = setTimeout(() => {
-                setShowTitle(true);
-                setStep(1);
-            }, 500);
-        } else if (step === 1) {
-            timer = setTimeout(() => {
-                setShowTitle(false);
-                setShowArtist(true);
-                setCurrentArtistIndex(0);
-                setStep(2);
-            }, TITLE_DISPLAY_DURATION);
-        } else if (step >= 2 && step < 2 + artists.length) {
-            // Artist steps
-            timer = setTimeout(() => {
-                const artistIndex = step - 2;
-                const nextIndex = artistIndex + 1;
-                if (nextIndex < artists.length) {
-                    setCurrentArtistIndex(nextIndex);
-                    setStep(step + 1);
-                } else {
-                    // Done with artists, show gallery
-                    setShowArtist(false);
-                    setShowGallery(true);
-                    setStep(step + 1);
-                }
-            }, ARTIST_DISPLAY_DURATION);
-        } else if (step === 2 + artists.length) {
-            // Gallery View
-            timer = setTimeout(() => {
-                if (onSlideshowComplete) {
-                    onSlideshowComplete();
-                }
-            }, GALLERY_DISPLAY_DURATION);
-        }
+        const timer = setTimeout(() => {
+            onSlideshowComplete?.();
+        }, PAGE_DISPLAY_DURATION);
 
         return () => clearTimeout(timer);
-    }, [isActive, isPaused, step, onSlideshowComplete]);
-
-    const currentArtist = artists[currentArtistIndex];
+    }, [isActive, isPaused, onSlideshowComplete]);
 
     return (
         <PageWrapper isActive={isActive} overlayOpacity={0}>
-            <div className="fixed inset-0 w-screen h-screen overflow-hidden">
-                {/* Title Section */}
-                {showTitle && (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                        {/* Subtle blue tinted background for World section */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-blue-950/25 via-transparent to-indigo-950/20" />
-                        <div
-                            className="text-center transition-all duration-1500 ease-out relative z-10"
-                            style={{
-                                opacity: showTitle ? 1 : 0,
-                                transform: showTitle ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.95)',
-                            }}
-                        >
-                            <h1 className="font-display text-3xl md:text-5xl lg:text-6xl font-light text-foreground drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
-                                Artists In Conversation
-                            </h1>
-                            <p className="font-display text-xl md:text-2xl lg:text-3xl font-light text-foreground/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] mt-4">
-                                World
-                            </p>
-                        </div>
-                    </div>
-                )}
+            <section className="fixed inset-0 w-screen h-screen bg-gold overflow-hidden">
+                <div className="h-full w-full px-16 pt-16">
 
-                {/* Individual Artists Section */}
-                {showArtist && currentArtist && (
-                    <div className="absolute inset-0 flex items-center justify-center px-8 md:px-16 lg:px-24">
-                        <div className="max-w-6xl w-full">
-                            <div
-                                key={currentArtistIndex}
-                                className="text-center transition-all duration-1000 ease-out"
-                                style={{
-                                    opacity: showArtist ? 1 : 0,
-                                    transform: showArtist ? 'translateY(0)' : 'translateY(20px)',
-                                }}
-                            >
-                                {/* Artist Image */}
-                                {currentArtist.image ? (
-                                    <div className="mb-8 flex justify-center">
+                    {/* -------- Header -------- */}
+                    <div
+                        className="mb-12 transition-all duration-1000 ease-out"
+                        style={{
+                            opacity: showHeader ? 1 : 0,
+                            transform: showHeader ? "translateY(0)" : "translateY(12px)",
+                        }}
+                    >
+                        <h1 className="text-sm tracking-[0.35em] font-medium text-white uppercase">
+                            ARTISTS IN CONVERSATION – WORLD
+                        </h1>
+                        <div className="mt-4 h-px w-full bg-white/30" />
+                    </div>
+
+                    {/* -------- Artists Row -------- */}
+                    <div className="max-w-[1400px] mx-auto">
+                        <div className="grid grid-cols-5 gap-x-12">
+
+                            {artists.map((artist, index) => (
+                                <div
+                                    key={index}
+                                    className="flex flex-col px-3 transition-all duration-700"
+                                    style={{
+                                        opacity: visibleItems.includes(index) ? 1 : 0,
+                                        transform: visibleItems.includes(index)
+                                            ? "translateX(0)"
+                                            : "translateX(100px)",
+                                        transitionTimingFunction: "ease-in",
+                                    }}
+                                >
+
+                                    {/* Image */}
+                                    {artist.image ? (
                                         <img
-                                            src={currentArtist.image}
-                                            alt={currentArtist.name}
-                                            className="w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 object-cover rounded-lg shadow-2xl"
-                                            style={{
-                                                objectFit: 'cover',
-                                            }}
+                                            src={artist.image}
+                                            alt={artist.name}
+                                            className="w-24 h-24 rounded-full object-cover mb-5"
                                         />
-                                    </div>
-                                ) : (
-                                    <div className="mb-8 flex justify-center">
-                                        <div className="w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 bg-foreground/10 rounded-lg flex items-center justify-center border-2 border-foreground/20">
-                                            <p className="font-display text-lg text-foreground/60">Image Coming Soon</p>
+                                    ) : (
+                                        <div className="w-24 h-24 rounded-full bg-white/10 flex items-center justify-center mb-5">
+                                            <span className="text-xs text-white/60">
+                                                Coming Soon
+                                            </span>
                                         </div>
-                                    </div>
-                                )}
+                                    )}
 
-                                {/* Artist Name */}
-                                <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-light text-foreground drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] mb-6">
-                                    {currentArtist.name}
-                                </h2>
+                                    {/* Name */}
+                                    <h3 className="text-[12px] font-medium tracking-wide text-white uppercase mb-2">
+                                        {artist.name}
+                                    </h3>
 
-                                {/* Artist Title (before \n) - Highlighted, and Content (after \n) */}
-                                {(() => {
-                                    const parts = currentArtist.description.split(/\\n|\n/);
-                                    const title = parts[0]?.trim();
-                                    const content = parts[1]?.trim();
-                                    return (
-                                        <>
-                                            {/* Artist Title - Highlighted in Gold */}
-                                            {title && (
-                                                <h3 className="font-display text-lg md:text-xl lg:text-2xl font-normal text-primary drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] mb-4" style={{ color: '#D4AF37' }}>
-                                                    {title}
-                                                </h3>
-                                            )}
-                                            {/* Artist Content */}
-                                            {content && (
-                                                <p className="font-display text-sm md:text-base lg:text-lg font-light leading-relaxed text-foreground/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] max-w-3xl mx-auto">
-                                                    {content}
-                                                </p>
-                                            )}
-                                        </>
-                                    );
-                                })()}
-                            </div>
+                                    {/* Description */}
+                                    <p className="text-[11.5px] leading-relaxed text-white/70 text-left">
+                                        {artist.description}
+                                    </p>
+                                </div>
+                            ))}
+
                         </div>
                     </div>
-                )}
 
-                {/* Gallery View - All Artists */}
-                {showGallery && (
-                    <div className="absolute inset-0 flex items-center justify-center px-4 md:px-8 lg:px-16">
-                        <div
-                            className="w-full max-w-7xl transition-all duration-1000 ease-out"
-                            style={{
-                                opacity: showGallery ? 1 : 0,
-                                transform: showGallery ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.95)',
-                            }}
-                        >
-                            {/* Gallery Title */}
-                            <h2 className="font-display text-2xl md:text-3xl lg:text-4xl font-light text-foreground drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] text-center mb-8">
-                                World Artists
-                            </h2>
-
-                            {/* Artists Grid */}
-                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
-                                {artists.map((artist, index) => (
-                                    <div
-                                        key={index}
-                                        className="text-center transition-all duration-500 ease-out"
-                                        style={{
-                                            opacity: showGallery ? 1 : 0,
-                                            transform: showGallery ? 'translateY(0)' : 'translateY(20px)',
-                                            transitionDelay: `${index * 100}ms`,
-                                        }}
-                                    >
-                                        {/* Artist Image */}
-                                        {artist.image ? (
-                                            <div className="mb-3 flex justify-center">
-                                                <img
-                                                    src={artist.image}
-                                                    alt={artist.name}
-                                                    className="w-24 h-24 md:w-32 md:h-32 lg:w-36 lg:h-36 object-cover rounded-lg shadow-xl"
-                                                    style={{
-                                                        objectFit: 'cover',
-                                                    }}
-                                                />
-                                            </div>
-                                        ) : (
-                                            <div className="mb-3 flex justify-center">
-                                                <div className="w-24 h-24 md:w-32 md:h-32 lg:w-36 lg:h-36 bg-foreground/10 rounded-lg flex items-center justify-center border-2 border-foreground/20">
-                                                    <p className="font-display text-xs text-foreground/60 text-center px-2">Coming Soon</p>
-                                                </div>
-                                            </div>
-                                        )}
-
-                                        {/* Artist Name */}
-                                        <p className="font-display text-xs md:text-sm lg:text-base font-light text-foreground drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-                                            {artist.name}
-                                        </p>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                )}
-            </div>
+                </div>
+            </section>
         </PageWrapper>
     );
 };

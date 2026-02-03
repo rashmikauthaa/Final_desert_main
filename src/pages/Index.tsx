@@ -23,11 +23,12 @@ import { Page13 } from '@/components/pages/Page13';
 import { Page14 } from '@/components/pages/Page14';
 import { Page15 } from '@/components/pages/Page15';
 import { Page16 } from '@/components/pages/Page16';
+import { Page16B } from '@/components/pages/Page16B';
 import { Page17 } from '@/components/pages/Page17';
 import { Page18 } from '@/components/pages/Page18';
 import { Page19 } from '@/components/pages/Page19';
 
-const TOTAL_PAGES = 20; // Total pages in the presentation (Page0 to Page19)
+const TOTAL_PAGES = 21; // Total pages in the presentation (Page0 to Page20)
 const SWIPE_THRESHOLD = 50;
 const WHEEL_THRESHOLD = 30;
 const DEBOUNCE_TIME = 800;
@@ -94,7 +95,7 @@ const Index = () => {
 
     // Don't auto-slide if paused, on the last page, or landing screen is still showing
     // Also skip pages with internal slideshows
-    if (showLanding || isPaused || currentPage >= TOTAL_PAGES - 1 || currentPage === 2 || currentPage === 3 || currentPage === 4 || currentPage === 5 || currentPage === 8 || currentPage === 9 || currentPage === 10 || currentPage === 11 || currentPage === 12 || currentPage === 13 || currentPage === 14 || currentPage === 15 || currentPage === 16 || currentPage === 17) {
+    if (showLanding || isPaused || currentPage >= TOTAL_PAGES - 1 || currentPage === 2 || currentPage === 3 || currentPage === 4 || currentPage === 5 || currentPage === 8 || currentPage === 9 || currentPage === 10 || currentPage === 11 || currentPage === 12 || currentPage === 13 || currentPage === 14 || currentPage === 15 || currentPage === 16 || currentPage === 17 || currentPage === 18) {
       return;
     }
 
@@ -173,24 +174,31 @@ const Index = () => {
     }
   }, [navigateToPage, isPaused]);
 
-  // Handler for Page16 completion (goes to page 17)
+  // Handler for Page16 completion (goes to page 17 - WHO ARE THEY?)
   const handlePage16Complete = useCallback(() => {
     if (!isPaused) {
       navigateToPage(17, 'down', true);
     }
   }, [navigateToPage, isPaused]);
 
-  // Handler for Page17 completion (goes to page 18)
-  const handlePage17Complete = useCallback(() => {
+  // Handler for Page16B completion (goes to page 18 - Why Partner)
+  const handlePage16BComplete = useCallback(() => {
     if (!isPaused) {
       navigateToPage(18, 'down', true);
     }
   }, [navigateToPage, isPaused]);
 
-  // Handler for Page18 completion (goes to page 19 - Final Credits)
-  const handlePage18Complete = useCallback(() => {
+  // Handler for Page17 completion (goes to page 19)
+  const handlePage17Complete = useCallback(() => {
     if (!isPaused) {
       navigateToPage(19, 'down', true);
+    }
+  }, [navigateToPage, isPaused]);
+
+  // Handler for Page18 completion (goes to page 20 - Final Credits)
+  const handlePage18Complete = useCallback(() => {
+    if (!isPaused) {
+      navigateToPage(20, 'down', true);
     }
   }, [navigateToPage, isPaused]);
 
@@ -426,9 +434,10 @@ const Index = () => {
         <Page14 isActive={currentPage === 14} onSlideshowComplete={handlePage14Complete} isPaused={isPaused} />
         <Page15 isActive={currentPage === 15} onSlideshowComplete={handlePage15Complete} isPaused={isPaused} />
         <Page16 isActive={currentPage === 16} onSlideshowComplete={handlePage16Complete} isPaused={isPaused} />
-        <Page17 isActive={currentPage === 17} onSlideshowComplete={handlePage17Complete} isPaused={isPaused} />
-        <Page18 isActive={currentPage === 18} onSlideshowComplete={handlePage18Complete} isPaused={isPaused} />
-        <Page19 isActive={currentPage === 19} isPaused={isPaused} />
+        <Page16B isActive={currentPage === 17} onSlideshowComplete={handlePage16BComplete} isPaused={isPaused} />
+        <Page17 isActive={currentPage === 18} onSlideshowComplete={handlePage17Complete} isPaused={isPaused} />
+        <Page18 isActive={currentPage === 19} onSlideshowComplete={handlePage18Complete} isPaused={isPaused} />
+        <Page19 isActive={currentPage === 20} isPaused={isPaused} />
 
         {/* Harmonium-style Pagination */}
         <HarmoniumPagination

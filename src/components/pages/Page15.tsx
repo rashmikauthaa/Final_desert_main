@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { PageWrapper } from "@/components/PageWrapper";
 
 // Images
-const sri = "/assets/images/artisits/speakers/sri.JPG";
+const sri = "/assets/images/artisits/speakers/RAVI_SHANKAR.jpg";
 const sadhguru = "/assets/images/artisits/speakers/sadhguru.JPG";
 const deepak = "/assets/images/artisits/speakers/deepak_chopra.JPG";
 const satish = "/assets/images/artisits/speakers/satish.JPG";
