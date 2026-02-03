@@ -169,40 +169,41 @@ export const Page1: React.FC<Page1Props> = ({ isActive, audioRef, isPaused = fal
         />
       </div>
 
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-background/40" />
+      {/* Minimalist dark overlay */}
+      <div className="absolute inset-0 bg-background/50" />
 
-      {/* Text Content */}
-      <div className="relative z-10 w-full h-full">
+      {/* Text Content - Centered Vertical Stack */}
+      <div className="relative z-10 w-full h-full flex flex-col items-center justify-center">
+        {/* CARAVANA Title */}
         <div
-          className={`absolute top-12 right-12 md:top-16 md:right-16 transition-all duration-1500 ${showCaravana ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+          className={`transition-all duration-[3000ms] ${showCaravana ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
             }`}
         >
-          <h1 className="font-display text-3xl md:text-5xl lg:text-6xl font-light tracking-[0.3em] text-foreground">
+          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-light tracking-[0.35em] text-foreground">
             CARAVANA
           </h1>
         </div>
 
+        {/* Subtitle - THE ROAD TO JAISALMER */}
         <div
-          className={`absolute inset-0 flex items-center justify-center transition-all duration-1500 ${showCenter ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+          className={`transition-all duration-[3000ms] mt-8 md:mt-12 ${showCenter ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
         >
-          <div className="text-center max-w-4xl px-8">
-            <p className="font-display text-xl md:text-3xl lg:text-4xl font-light text-foreground/90 ">
-              THE ROAD TO JAISALMER
-            </p>
-          </div>
+          <p className="font-display text-lg md:text-2xl lg:text-3xl font-light tracking-[0.25em] text-foreground">
+            THE ROAD TO JAISALMER
+          </p>
         </div>
 
+        {/* Location & Date Info */}
         <div
-          className={`absolute bottom-12 right-12 md:bottom-16 md:right-16 transition-all duration-1500 ${showIndia ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          className={`transition-all duration-[3000ms] mt-16 md:mt-20 text-center ${showIndia ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             }`}
         >
-          <p className="font-display text-xl md:text-2xl lg:text-3xl font-light tracking-[0.5em] text-foreground/80">
+          <p className="font-display text-base md:text-lg lg:text-xl font-light tracking-[0.2em] text-foreground">
             INDIA
           </p>
-          <p className="font-display text-sm md:text-base lg:text-lg font-light tracking-[0.2em] text-foreground/70 mt-4">
-            2-5 November 2026
+          <p className="font-display text-xs md:text-sm lg:text-base font-light tracking-[0.2em] text-foreground/80 mt-3">
+            2-5 NOVEMBER 2026
           </p>
         </div>
       </div>
