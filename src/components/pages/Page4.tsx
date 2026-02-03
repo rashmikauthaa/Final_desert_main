@@ -8,8 +8,8 @@ interface Page4Props {
 }
 
 const VIDEO_SRC = '/assets/videos/suryagarg_vid.mp4';
-const TEXT_DISPLAY_TIME = 500;
-const TEXT_HIDE_TIME = 5500;
+const TEXT_DISPLAY_TIME = 3500;  // +3s from 500ms
+const TEXT_HIDE_TIME = 8500;     // +3s from 5500ms
 
 export const Page4: React.FC<Page4Props> = ({
   isActive,
@@ -62,7 +62,7 @@ export const Page4: React.FC<Page4Props> = ({
       {/* ---------------- Text Overlay ---------------- */}
       <div className="relative z-20 w-full h-full flex items-start justify-center pt-24 md:pt-32 pointer-events-none">
         <div
-          className="transition-all duration-1000 ease-out"
+          className="transition-all duration-[4000ms] ease-in"
           style={{
             opacity: showText ? 1 : 0,
             transform: showText ? 'translateY(0)' : 'translateY(20px)',

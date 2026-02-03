@@ -1,111 +1,5 @@
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground antialiased;
-    font-family: "Cormorant Garamond", serif;
-    font-weight: 300;
-    overflow: hidden;
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "Cormorant Garamond", serif;
-  }
-}
-
-@layer components {
-  .font-display {
-    font-family: "Cormorant Garamond", serif;
-  }
-
-  .font-body {
-    font-family: "Cormorant Garamond", serif;
-    font-weight: 300;
-  }
-
-  .font-devanagari {
-    font-family: "Noto Sans Devanagari", sans-serif;
-    text-transform: none;
-    letter-spacing: 0.05em;
-  }
-}
-
-/* Sand particle styles */
-@layer utilities {
-  .sand-particle {
-    position: absolute;
-    background: hsl(var(--sand));
-    border-radius: 50%;
-    pointer-events: none;
-  }
-}
-
-/* Hide YouTube info bar/title overlay */
-#youtube-player-page1 iframe {
-  clip-path: inset(10% 0 0 0);
-  /* Crop top 10% to hide title */
-}
-
-@layer components {
-  .keyword-pill {
-    padding: 0.45rem 1.2rem;
-    border-radius: 999px;
-    border: 1px solid rgba(212, 175, 55, 0.45);
-    color: #d4af37;
-    font-size: 0.75rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    background: rgba(0, 0, 0, 0.35);
-    backdrop-filter: blur(6px);
-  }
-}
-
-@layer utilities {
-  @keyframes fade-up {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .animate-fade-up {
-    animation: fade-up 1.2s ease-out;
-  }
-}
-
-@keyframes textReveal {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-    filter: blur(4px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
-  }
-}
-
-.animate-textReveal {
-  animation: textReveal 1s ease-out both;
-}
-
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Sans+Devanagari:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap");
+/* Font Import - MUST be first */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Sans+Devanagari:wght@300;400;500&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -201,9 +95,7 @@
     --sidebar-border: 35 15% 20%;
     --sidebar-ring: 35 45% 70%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
@@ -212,9 +104,10 @@
     @apply bg-background text-foreground antialiased;
     font-family: "Cormorant Garamond", serif;
     font-weight: 300;
-    overflow: hidden;
+    font-size: 14px;
     text-transform: uppercase;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.3em;
+    overflow: hidden;
   }
 
   h1,
@@ -224,17 +117,20 @@
   h5,
   h6 {
     font-family: "Cormorant Garamond", serif;
+    font-weight: 300;
   }
 }
 
 @layer components {
+  /* Typography Classes - Cormorant Garamond Light (300) */
   .font-display {
-    font-family: "Cormorant Garamond", serif;
+    font-family: "Cormorant Garamond", serif !important;
+    font-weight: 300 !important;
   }
 
   .font-body {
-    font-family: "Cormorant Garamond", serif;
-    font-weight: 300;
+    font-family: "Cormorant Garamond", serif !important;
+    font-weight: 300 !important;
   }
 
   .font-devanagari {
@@ -242,25 +138,7 @@
     text-transform: none;
     letter-spacing: 0.05em;
   }
-}
 
-/* Sand particle styles */
-@layer utilities {
-  .sand-particle {
-    position: absolute;
-    background: hsl(var(--sand));
-    border-radius: 50%;
-    pointer-events: none;
-  }
-}
-
-/* Hide YouTube info bar/title overlay */
-#youtube-player-page1 iframe {
-  clip-path: inset(10% 0 0 0);
-  /* Crop top 10% to hide title */
-}
-
-@layer components {
   .keyword-pill {
     padding: 0.45rem 1.2rem;
     border-radius: 999px;
@@ -274,13 +152,20 @@
   }
 }
 
+/* Sand particle styles */
 @layer utilities {
+  .sand-particle {
+    position: absolute;
+    background: hsl(var(--sand));
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
   @keyframes fade-up {
     from {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(30px);
     }
-
     to {
       opacity: 1;
       transform: translateY(0);
@@ -288,17 +173,21 @@
   }
 
   .animate-fade-up {
-    animation: fade-up 1.2s ease-out;
+    animation: fade-up 2.5s ease-in;
   }
+}
+
+/* Hide YouTube info bar/title overlay */
+#youtube-player-page1 iframe {
+  clip-path: inset(10% 0 0 0);
 }
 
 @keyframes textReveal {
   from {
     opacity: 0;
-    transform: translateY(6px);
-    filter: blur(4px);
+    transform: translateY(10px);
+    filter: blur(6px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
@@ -307,5 +196,10 @@
 }
 
 .animate-textReveal {
-  animation: textReveal 1s ease-out both;
+  animation: textReveal 3s ease-in both;
+}
+
+/* Global font weight override - ensures light weight everywhere */
+* {
+  font-weight: 300 !important;
 }
