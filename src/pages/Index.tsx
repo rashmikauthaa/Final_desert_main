@@ -24,8 +24,9 @@ import { Page14 } from '@/components/pages/Page14';
 import { Page15 } from '@/components/pages/Page15';
 import { Page16 } from '@/components/pages/Page16';
 import { Page17 } from '@/components/pages/Page17';
+import { Page18 } from '@/components/pages/Page18';
 
-const TOTAL_PAGES = 18; // Total pages in the presentation (Page0 to Page17)
+const TOTAL_PAGES = 19; // Total pages in the presentation (Page0 to Page18)
 const SWIPE_THRESHOLD = 50;
 const WHEEL_THRESHOLD = 30;
 const DEBOUNCE_TIME = 800;
@@ -92,7 +93,7 @@ const Index = () => {
 
     // Don't auto-slide if paused, on the last page, or landing screen is still showing
     // Also skip pages with internal slideshows
-    if (showLanding || isPaused || currentPage >= TOTAL_PAGES - 1 || currentPage === 2 || currentPage === 3 || currentPage === 4 || currentPage === 5 || currentPage === 8 || currentPage === 9 || currentPage === 10 || currentPage === 11 || currentPage === 12 || currentPage === 13 || currentPage === 14 || currentPage === 15) {
+    if (showLanding || isPaused || currentPage >= TOTAL_PAGES - 1 || currentPage === 2 || currentPage === 3 || currentPage === 4 || currentPage === 5 || currentPage === 8 || currentPage === 9 || currentPage === 10 || currentPage === 11 || currentPage === 12 || currentPage === 13 || currentPage === 14 || currentPage === 15 || currentPage === 16 || currentPage === 17) {
       return;
     }
 
@@ -171,10 +172,17 @@ const Index = () => {
     }
   }, [navigateToPage, isPaused]);
 
-  // Handler for Page16 completion (goes to page 17 - Credits)
+  // Handler for Page16 completion (goes to page 17)
   const handlePage16Complete = useCallback(() => {
     if (!isPaused) {
       navigateToPage(17, 'down', true);
+    }
+  }, [navigateToPage, isPaused]);
+
+  // Handler for Page17 completion (goes to page 18)
+  const handlePage17Complete = useCallback(() => {
+    if (!isPaused) {
+      navigateToPage(18, 'down', true);
     }
   }, [navigateToPage, isPaused]);
 
@@ -410,7 +418,8 @@ const Index = () => {
         <Page14 isActive={currentPage === 14} onSlideshowComplete={handlePage14Complete} isPaused={isPaused} />
         <Page15 isActive={currentPage === 15} onSlideshowComplete={handlePage15Complete} isPaused={isPaused} />
         <Page16 isActive={currentPage === 16} onSlideshowComplete={handlePage16Complete} isPaused={isPaused} />
-        <Page17 isActive={currentPage === 17} isPaused={isPaused} />
+        <Page17 isActive={currentPage === 17} onSlideshowComplete={handlePage17Complete} isPaused={isPaused} />
+        <Page18 isActive={currentPage === 18} isPaused={isPaused} />
 
         {/* Harmonium-style Pagination */}
         <HarmoniumPagination
