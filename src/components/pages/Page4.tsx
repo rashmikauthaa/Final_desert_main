@@ -62,7 +62,7 @@ export const Page4: React.FC<Page4Props> = ({
       {/* ---------------- Text Overlay ---------------- */}
       <div className="relative z-20 w-full h-full flex items-start justify-center pt-24 md:pt-32 pointer-events-none">
         <div
-          className="transition-all duration-[4000ms] ease-in"
+          className="transition-all duration-[7000ms] ease-in-out"
           style={{
             opacity: showText ? 1 : 0,
             transform: showText ? 'translateY(0)' : 'translateY(20px)',
@@ -71,7 +71,12 @@ export const Page4: React.FC<Page4Props> = ({
           <div className="px-8 py-6 md:px-16 md:py-8 flex flex-col items-center text-center">
             <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent mb-3 opacity-60" />
 
-            <h1 className="font-display text-2xl md:text-3xl lg:text-6xl font-light text-white tracking-[0.2em] uppercase drop-shadow-md">
+            <h1 
+              className="font-display text-2xl md:text-3xl lg:text-6xl font-light text-white tracking-[0.2em] uppercase"
+              style={{
+                textShadow: '0 2px 8px rgba(0,0,0,0.9), 0 0 30px rgba(212,175,55,0.3), 0 4px 20px rgba(0,0,0,0.7)'
+              }}
+            >
               Suryagarh Hotel
             </h1>
             <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-primary/80 to-transparent mt-3" />

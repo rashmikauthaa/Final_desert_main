@@ -165,12 +165,12 @@ export const Page9: React.FC<Page9Props> = ({
       {/* ---------------- Text Overlay ---------------- */}
       <div className="relative z-30 w-full h-full flex items-start justify-center pt-24 md:pt-32 pointer-events-none">
         <div
-          className="transition-all duration-1500 ease-out"
+          className="transition-all duration-[7000ms] ease-in-out"
           style={{
             opacity: showText ? 1 : 0,
             transform: showText
               ? 'translateY(0) scale(1)'
-              : 'translateY(20px) scale(1)',
+              : 'translateY(20px) scale(0.96)',
           }}
         >
           <div className="px-10 py-5 flex flex-col items-center text-center">
