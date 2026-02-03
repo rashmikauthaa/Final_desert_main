@@ -24,10 +24,10 @@ export const HarmoniumPagination: React.FC<HarmoniumPaginationProps> = ({
             className={cn(
               "transition-all duration-300 ease-out rounded-full",
               "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary",
-              "hover:bg-red-500/60",
+              "hover:bg-yellow-500/60",
               isActive
-                ? "w-2.5 h-2.5 bg-red-500"
-                : "w-1.5 h-1.5 bg-red-500/40"
+                ? "w-2.5 h-2.5 bg-yellow-500"
+                : "w-1.5 h-1.5 bg-yellow-500/40"
             )}
             aria-label={`Go to page ${index + 1}`}
             aria-current={isActive ? 'page' : undefined}

@@ -35,22 +35,22 @@ const artists: Artist[] = [
     {
         name: 'Hraach & Armen Miran',
         // No image
-        description: 'Music Producers & DJs \n Hraach is an Armenian music producer Known for creating deep house, melodic, and atmospheric. He has developed a musical world rich with melancholic tones, stellar landscapes, and deep rhythms that captivate and elevate the experience of his listeners. \n Iran born, Los Angeles based DJ/producer/multi-instrumentalist Armen Miran has established himself as an iconic and powerful name in this industry.',
+        description: 'Music Producers & DJs \n Hraach is an Armenian music producer Known for creating deep house, melodic, and atmospheric. He has developed a musical world rich with melancholic tones, stellar landscapes, and deep rhythms that captivate and elevate the experience of his listeners. \n Iran born, Los Angeles based DJ/producer/multi-instrumentalist Armen Miran has established himself as an iconic name in this industry.',
     },
     {
         name: 'Sabo',
         image: sabo,
-        description: 'DJ & Producer \n Sabo\'s sound is inspired by his extensive World travels, and will take you on a mystical journey that crosses several musical borders a sonic landscape that crosses several musical borders with mixtures of tropical poly-rhythms, warm bass frequencies, rich percussion, lush tribal vocals, and smooth organic textures.',
+        description: 'DJ & Producer \n Sabo\'s sound is inspired by his extensive World travels, and will take you on a mystical journey that crosses several musical borders a sonic landscape that crosses several musical borders with mixtures of tropical poly-rhythms, warm bass frequencies, rich percussion, and smooth organic textures.',
     },
     {
         name: 'Nicolas Jarr',
         image: nicolas,
-        description: 'A renowned Chilean-American Composer and Electronic Producer \n celebrated for reinventing downtempo, minimal techno, and ambient music with a deeply emotive, avant-garde style. Nicolas Jaar weaves together sounds with textures and eras, leading his listeners on a sojourn of sonic exploration and otherworldly experiences. Jaar is one of the finest things to happen to electronic music. He is a master and a marvel as a producer and a live musician',
+        description: 'A renowned Chilean-American Composer and Electronic Producer \n celebrated for reinventing downtempo, minimal techno, and ambient music with a deeply emotive, avant-garde style. Nicolas Jaar weaves together sounds with textures and eras, leading his listeners on a sojourn of sonic exploration and otherworldly experiences. Jaar is one of the finest things to happen to electronic music.',
     },
     {
         name: 'Nils Frahm',
         image: nils,
-        description: 'German Musician, Composer, and Record Producer based in Berlin \n He is known for combining classical and electronic music and for an unconventional approach to the piano in which he mixes a grand piano, upright piano, He has built a steady reputation for his intimate, poignant piano recordings, yet they so far only showed a fragment of what to expect from a Nils Frahm concert. Frahm’s heart lies in improvisation, inspired by the space and the audience',
+        description: 'German Musician, Composer, and Record Producer based in Berlin \n He is known for combining classical and electronic music and for an unconventional approach to the piano in which he mixes a grand piano, upright piano, He has built a steady reputation for his intimate, poignant piano recordings, yet they so far only showed a fragment of what to expect from a Nils Frahm concert.',
     },
     {
         name: 'Be Svendsen',

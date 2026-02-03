@@ -40,22 +40,25 @@ export const Page17: React.FC<Page17Props> = ({ isActive, isPaused }) => {
                 {/* Content Container */}
                 <div className="relative z-10 w-full h-full">
                     {/* Credits - Bottom Right */}
-                    <div className={`absolute bottom-12 right-8 md:bottom-16 md:right-16 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-                        }`}>
+                    <div
+                        className={`absolute bottom-0 right-6 md:bottom-0 md:right-6 transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                            }`}
+                    >
                         <a
                             href="https://www.linkedin.com/in/unsparsh"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group"
+                            className="group flex items-center gap-2"
                         >
-                            <p className="font-display text-xs md:text-sm text-white/50 tracking-[0.2em] mb-2 text-right group-hover:text-white/70 transition-colors">
+                            <span className="font-display text-[11px] md:text-xs text-white/50 tracking-[0.18em] group-hover:text-white/70 transition-colors">
                                 MADE BY
-                            </p>
-                            <p className="font-display text-base md:text-lg text-white/90 tracking-[0.1em] font-light group-hover:text-primary transition-colors">
+                            </span>
+                            <span className="font-display text-sm md:text-base text-white/90 tracking-[0.08em] font-light group-hover:text-primary transition-colors">
                                 unsparsh
-                            </p>
+                            </span>
                         </a>
                     </div>
+
 
                 </div>
             </div>

@@ -84,7 +84,7 @@ export const Page6: React.FC<Page6Props> = ({ isActive, isPaused }) => {
               }`}
             style={{ textShadow: '0 2px 20px hsl(var(--background) / 0.9)' }}
           >
-            CARAVANA - THE MANGANIYAR MUSICIANS
+            THE MANGANIYAR MUSICIANS
           </h2>
 
           <p

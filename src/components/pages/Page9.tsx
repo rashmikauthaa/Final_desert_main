@@ -153,7 +153,7 @@ export const Page9: React.FC<Page9Props> = ({ isActive, onSlideshowComplete, isP
             preload="auto"
           />
           {/* Dark Overlay */}
-          <div className="absolute inset-0 bg-black/60" />
+          <div className="absolute inset-0 bg-black/40" />
         </div>
       </div>
 
@@ -168,7 +168,6 @@ export const Page9: React.FC<Page9Props> = ({ isActive, onSlideshowComplete, isP
           }}
         >
           <div className="relative overflow-hidden group rounded-full">
-            <div className="absolute inset-0 bg-black/40 backdrop-blur-md border border-white/10 shadow-2xl" />
             <div className="relative px-10 py-5 flex flex-col items-center justify-center">
               <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent mb-2 opacity-50" />
 
@@ -179,6 +178,7 @@ export const Page9: React.FC<Page9Props> = ({ isActive, onSlideshowComplete, isP
               <div className="w-20 h-[1px] bg-gradient-to-r from-transparent via-primary/80 to-transparent mt-2" />
             </div>
           </div>
+
         </div>
       </div>
     </PageWrapper>

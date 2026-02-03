@@ -5,9 +5,14 @@ import { PageWrapper } from '@/components/PageWrapper';
 const sunriseConcert = '/assets/images/Jaisalmer/1-CROP +IF POSS. TEXT \'SUNRISE CONCERT STAGE\' .png';
 const jaisalmerBhrama = '/assets/images/Jaisalmer/Bhrama_3187.webp';
 const jaisalmerShutterstock1 = '/assets/images/Jaisalmer/shutterstock_1832570845.jpg';
-const jaisalmerBeige08 = '/assets/images/Jaisalmer/Beige08.webp';
+// const jaisalmerBeige08 = '/assets/images/Jaisalmer/Beige08.webp';
 const jaisalmeriStock = '/assets/images/Jaisalmer/iStock-1201530843 (1).jpg';
 const jaisalmerShutterstock2 = '/assets/images/Jaisalmer/shutterstock_645264559.jpg';
+const jaisalmer2 = '/assets/images/Jaisalmer/2.jpg';
+const jaisalmer3 = '/assets/images/Jaisalmer/3.jpg';
+const jaisalmer4 = '/assets/images/Jaisalmer/4.jpg';
+const jaisalmer5 = '/assets/images/Jaisalmer/5.jpg';
+const jaisalmer55 = '/assets/images/Jaisalmer/55.jpg';
 
 interface Page3Props {
   isActive: boolean;
@@ -15,48 +20,34 @@ interface Page3Props {
   isPaused?: boolean;
 }
 
-const gridImages = [
-  jaisalmerBhrama,
-  jaisalmeriStock,
-  jaisalmerBeige08,
-  jaisalmerShutterstock1,
-];
 
 const textBlocks = [
   `A UNESCO World Heritage site, the mystical desert town of Jaisalmer & its Fort lies in the heart of the Thar Desert in Rajasthan, India.`,
   `The city’s honey-colored sandstone architecture reflects sunlight beautifully, earning it the name “The Golden City”.`,
-  `Jaisalmer Fort is one of the world’s few living forts, with bustling bazaars, homes, folk music, and tribal culture thriving within its walls.`,
-  `Jaisalmer offers a timeless journey—where golden landscapes, intricate artistry, and enduring traditions transport visitors to another era.`,
+  `A rare living fort, where people still reside within its massive walls, creating a bustling medieval atmosphere, an ever-present rich tribal presence, to folk music on every street corner adding to the city's enigmatic charm, Jaisalmer pulsates with Rajasthani culture.`,
+  `Jaisalmer's magic is its ability to transport visitors back in time, to a bygone era, offering a sensory experience of golden landscapes, intricate artistry, and enduring traditions.`,
 ];
 
-const TEXT_DURATION = 4500;
-const GRID_BOX_DELAY = 600;
-const GRID_DURATION = 4000;
-const ZOOM_DURATION = 4000;
 
 export const Page3: React.FC<Page3Props> = ({ isActive, onSlideshowComplete, isPaused }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [activeText, setActiveText] = useState(0);
+  const [textAnimationsComplete, setTextAnimationsComplete] = useState(false);
   const hasCompletedRef = useRef(false);
 
   // Consolidate images into a single slideshow array
   const slideshowImages = [
-    sunriseConcert,
-    jaisalmerBhrama,
+    jaisalmerShutterstock2,
+    jaisalmer2,
+    jaisalmer3,
+    jaisalmer4,
+    jaisalmer5,
+    jaisalmer55,
     jaisalmeriStock,
-    jaisalmerBeige08,
     jaisalmerShutterstock1,
-    jaisalmerShutterstock2
+    jaisalmerBhrama
   ];
 
-  /* 
-    Timing Calculation:
-    6 Images.
-    4 Text Blocks.
-    
-    If we want text to last ~4.5s (TEXT_DURATION), total time is ~18s.
-    6 images over 18s = 3s per image.
-  */
   const SLIDE_DURATION = 3000;
   const TEXT_DURATION = 4500;
 
@@ -64,14 +55,34 @@ export const Page3: React.FC<Page3Props> = ({ isActive, onSlideshowComplete, isP
     if (!isActive) {
       setCurrentImageIndex(0);
       setActiveText(0);
+      setTextAnimationsComplete(false);
       hasCompletedRef.current = false;
       return;
     }
   }, [isActive]);
 
-  // Image Slideshow Timer
+  // Text Timer - runs first
   useEffect(() => {
     if (!isActive || isPaused) return;
+
+    const interval = setInterval(() => {
+      setActiveText((prev) => {
+        if (prev < textBlocks.length - 1) {
+          return prev + 1;
+        } else {
+          // All text blocks shown, mark as complete
+          setTextAnimationsComplete(true);
+        }
+        return prev;
+      });
+    }, TEXT_DURATION);
+
+    return () => clearInterval(interval);
+  }, [isActive, isPaused]);
+
+  // Image Slideshow Timer - only starts after text animations are complete
+  useEffect(() => {
+    if (!isActive || isPaused || !textAnimationsComplete) return;
 
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => {
@@ -80,10 +91,6 @@ export const Page3: React.FC<Page3Props> = ({ isActive, onSlideshowComplete, isP
           // Slideshow complete
           if (!hasCompletedRef.current) {
             hasCompletedRef.current = true;
-            // Delay slightly before calling complete to let last image show?
-            // Actually, if we hit length, we are done. 
-            // Page8 logic waits one cycle on last slide? 
-            // No, Page8 logic: if (next >= length) invoke complete.
             if (onSlideshowComplete) setTimeout(onSlideshowComplete, 500);
           }
           return prev;
@@ -93,30 +100,28 @@ export const Page3: React.FC<Page3Props> = ({ isActive, onSlideshowComplete, isP
     }, SLIDE_DURATION);
 
     return () => clearInterval(interval);
-  }, [isActive, isPaused, onSlideshowComplete, slideshowImages.length]);
-
-  // Text Timer
-  useEffect(() => {
-    if (!isActive || isPaused) return;
-
-    const interval = setInterval(() => {
-      setActiveText((prev) => {
-        if (prev < textBlocks.length - 1) {
-          return prev + 1;
-        }
-        return prev;
-      });
-    }, TEXT_DURATION);
-
-    return () => clearInterval(interval);
-  }, [isActive, isPaused]);
+  }, [isActive, isPaused, textAnimationsComplete, onSlideshowComplete, slideshowImages.length]);
 
   return (
     <PageWrapper isActive={isActive} overlayOpacity={0}>
       <div className="fixed inset-0 w-screen h-screen overflow-hidden">
 
-        {/* Slideshow Background */}
-        {slideshowImages.map((image, index) => (
+        {/* Static Background during Text Animations */}
+        <div
+          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${textAnimationsComplete ? 'opacity-0' : 'opacity-100'
+            }`}
+        >
+          <img
+            src={sunriseConcert}
+            className="w-full h-full object-cover"
+            alt="Sunrise Concert Stage"
+          />
+          {/* Dark Gradient Overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20" />
+        </div>
+
+        {/* Slideshow Background - starts after text animations */}
+        {textAnimationsComplete && slideshowImages.map((image, index) => (
           <div
             key={index}
             className={`absolute inset-0 transition-all duration-1000 ease-in-out ${index === currentImageIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
@@ -132,8 +137,9 @@ export const Page3: React.FC<Page3Props> = ({ isActive, onSlideshowComplete, isP
           </div>
         ))}
 
-        {/* Text Overlay */}
-        <div className="relative z-10 h-full flex items-start justify-center px-8 pt-32">
+        {/* Text Overlay - fades out when slideshow starts */}
+        <div className={`relative z-10 h-full flex items-start justify-center px-8 pt-32 transition-opacity duration-1000 ${textAnimationsComplete ? 'opacity-0 pointer-events-none' : 'opacity-100'
+          }`}>
           <div
             className="max-w-4xl text-center"
           >
