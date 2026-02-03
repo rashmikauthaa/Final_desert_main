@@ -53,7 +53,7 @@ export const Page17: React.FC<Page17Props> = ({ isActive, isPaused }) => {
                             <span className="font-display text-[11px] md:text-xs text-white/50 tracking-[0.18em] group-hover:text-white/70 transition-colors">
                                 MADE BY
                             </span>
-                            <span className="font-display text-sm md:text-base text-white/90 tracking-[0.08em] font-light group-hover:text-primary transition-colors">
+                            <span className="font-display text-xs md:text-sm text-white/70 tracking-[0.08em] font-light group-hover:text-primary transition-colors">
                                 unsparsh
                             </span>
                         </a>

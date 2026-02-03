@@ -71,7 +71,7 @@ export const Page4: React.FC<Page4Props> = ({
           <div className="px-8 py-6 md:px-16 md:py-8 flex flex-col items-center text-center">
             <div className="w-16 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent mb-3 opacity-60" />
 
-            <h1 className="font-display text-2xl md:text-3xl lg:text-6xl font-light text-white tracking-[0.2em] uppercase drop-shadow-md">
+            <h1 className="font-display text-2xl md:text-3xl lg:text-6xl font-light text-zinc-600 tracking-[0.2em] uppercase drop-shadow-md">
               Suryagarh
             </h1>
             <div className="w-24 h-[1px] bg-gradient-to-r from-transparent via-primary/80 to-transparent mt-3" />

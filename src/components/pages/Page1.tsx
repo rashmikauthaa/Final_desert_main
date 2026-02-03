@@ -179,7 +179,7 @@ export const Page1: React.FC<Page1Props> = ({ isActive, audioRef, isPaused = fal
           className={`transition-all duration-[3000ms] ${showCaravana ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
             }`}
         >
-          <h1 className="font-display text-5xl md:text-7xl lg:text-8xl font-light tracking-[0.35em] text-foreground">
+          <h1 className="font-display text-5xl md:text-7xl lg:text-7xl font-thin tracking-[0.35em] text-foreground">
             CARAVANA
           </h1>
         </div>

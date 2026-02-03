@@ -2,7 +2,12 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -14,8 +19,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        display: ['Cormorant Garamond', 'serif'],
-        body: ['Montserrat', 'sans-serif'],
+        display: ["Cormorant Garamond", "serif"],
+        body: ["Cormorant Garamond", "serif"],
+        devanagari: ["Noto Sans Devanagari", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -100,19 +106,33 @@ export default {
           "100%": { opacity: "1", transform: "scale(1)" },
         },
         "text-reveal": {
-          "0%": { opacity: "0", transform: "translateY(30px)", filter: "blur(10px)" },
-          "100%": { opacity: "1", transform: "translateY(0)", filter: "blur(0)" },
+          "0%": {
+            opacity: "0",
+            transform: "translateY(30px)",
+            filter: "blur(10px)",
+          },
+          "100%": {
+            opacity: "1",
+            transform: "translateY(0)",
+            filter: "blur(0)",
+          },
         },
         "sand-fall": {
           "0%": { transform: "translateY(0) rotate(0deg)", opacity: "1" },
-          "100%": { transform: "translateY(100vh) rotate(360deg)", opacity: "0" },
+          "100%": {
+            transform: "translateY(100vh) rotate(360deg)",
+            opacity: "0",
+          },
         },
         "sand-scatter": {
           "0%": { transform: "translate(0, 0) scale(1)", opacity: "1" },
           "50%": { opacity: "0.8" },
-          "100%": { transform: "translate(var(--scatter-x), var(--scatter-y)) scale(0)", opacity: "0" },
+          "100%": {
+            transform: "translate(var(--scatter-x), var(--scatter-y)) scale(0)",
+            opacity: "0",
+          },
         },
-        "float": {
+        float: {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-10px)" },
         },
@@ -131,7 +151,7 @@ export default {
         "text-reveal": "text-reveal 1s ease-out forwards",
         "sand-fall": "sand-fall 2s ease-in forwards",
         "sand-scatter": "sand-scatter 1.5s ease-out forwards",
-        "float": "float 3s ease-in-out infinite",
+        float: "float 3s ease-in-out infinite",
         "pulse-glow": "pulse-glow 2s ease-in-out infinite",
       },
     },

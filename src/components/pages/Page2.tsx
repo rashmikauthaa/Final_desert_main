@@ -94,9 +94,12 @@ export const Page2: React.FC<Page2Props> = ({ isActive, videoRef }) => {
             }`}
         >
           <div className="text-center">
-            <h1 className="font-display text-5xl md:text-7xl lg:text-9xl font-light tracking-[0.2em] text-foreground drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
+            <h1 className="font-display text-2xl md:text-4xl lg:text-6xl font-thin tracking-[0.2em] text-foreground drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
               Jaisalmer
             </h1>
+            <h2 className="font-devanagari text-xl md:text-3xl lg:text-5xl font-normal text-foreground/90 drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)] mt-6">
+              जैसलमेर
+            </h2>
           </div>
         </div>
       </div>

@@ -165,7 +165,10 @@ export const Page5Video: React.FC<Page5VideoProps> = ({ isActive, onSlideshowCom
             transitionDuration: hasCompleted ? `${TEXT_ZOOM_DURATION}ms` : '1500ms',
           }}
         >
-          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-light text-foreground drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
+          <h1 
+            className="font-display text-4xl md:text-6xl lg:text-7xl font-light text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]"
+            style={{ textShadow: '0 2px 20px hsl(var(--background) / 0.9)' }}
+          >
             The Manganiyars
           </h1>
         </div>

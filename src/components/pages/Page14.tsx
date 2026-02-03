@@ -121,7 +121,7 @@ export const Page14: React.FC<Page14Props> = ({ isActive, onSlideshowComplete, i
             }, ARTIST_DISPLAY_DURATION);
         } else if (step === 2 + artists.length) {
             // Gallery View
-            time = setTimeout(() => {
+            timer = setTimeout(() => {
                 if (onSlideshowComplete) {
                     onSlideshowComplete();
                 }
@@ -139,17 +139,19 @@ export const Page14: React.FC<Page14Props> = ({ isActive, onSlideshowComplete, i
                 {/* Title Section */}
                 {showTitle && (
                     <div className="absolute inset-0 flex items-center justify-center">
+                        {/* Subtle purple tinted background for Electronic section */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-purple-950/25 via-transparent to-fuchsia-950/20" />
                         <div
-                            className="text-center transition-all duration-1500 ease-out"
+                            className="text-center transition-all duration-1500 ease-out relative z-10"
                             style={{
                                 opacity: showTitle ? 1 : 0,
                                 transform: showTitle ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.95)',
                             }}
                         >
-                            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-light text-foreground drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
+                            <h1 className="font-display text-3xl md:text-5xl lg:text-6xl font-light text-foreground drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
                                 Artists In Conversation
                             </h1>
-                            <p className="font-display text-2xl md:text-3xl lg:text-4xl font-light text-foreground/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] mt-4">
+                            <p className="font-display text-xl md:text-2xl lg:text-3xl font-light text-foreground/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] mt-4">
                                 Electronic
                             </p>
                         </div>
@@ -202,7 +204,7 @@ export const Page14: React.FC<Page14Props> = ({ isActive, onSlideshowComplete, i
                                         <>
                                             {/* Artist Title - Highlighted in Gold */}
                                             {title && (
-                                                <h3 className="font-display text-lg md:text-xl lg:text-2xl font-semibold text-primary drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] mb-4" style={{ color: '#D4AF37' }}>
+                                                <h3 className="font-display text-lg md:text-xl lg:text-2xl font-normal text-primary drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] mb-4" style={{ color: '#D4AF37' }}>
                                                     {title}
                                                 </h3>
                                             )}

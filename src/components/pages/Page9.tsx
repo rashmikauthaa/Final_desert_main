@@ -9,9 +9,9 @@ interface Page9Props {
 
 // Video Configuration
 const VIDEO_SRC = '/assets/videos/concert_venue_vid.mp4';
-const VIDEO_DURATION = 12000; // 12 seconds in milliseconds
-const TEXT_DISPLAY_TIME = 2000; // Show text at 2 seconds
-const TEXT_FADE_TIME = 5000; // Fade text at 5 seconds
+const VIDEO_DURATION = 10000; // 10 seconds in milliseconds
+const TEXT_DISPLAY_TIME = 1500; // Show text earlier at 1.5 seconds
+const TEXT_FADE_TIME = 8000; // Hold text much longer until 8 seconds
 const TEXT_ZOOM_DURATION = 3000; // 3 seconds for text zoom
 const ZOOM_SCALE = 1.3; // Zoom scale for text
 
@@ -163,8 +163,8 @@ export const Page9: React.FC<Page9Props> = ({ isActive, onSlideshowComplete, isP
           className="transition-all ease-out"
           style={{
             opacity: showText ? 1 : 0,
-            transform: showText ? 'translateY(0) scale(' + textScale + ')' : 'translateY(20px) scale(1)',
-            transitionDuration: '1500ms',
+            transform: showText ? 'translateY(0) scale(' + textScale + ')' : 'translateY(30px) scale(1)',
+            transitionDuration: '2500ms',
           }}
         >
           <div className="relative overflow-hidden group rounded-full">

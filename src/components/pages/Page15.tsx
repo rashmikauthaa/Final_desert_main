@@ -194,7 +194,7 @@ export const Page15: React.FC<Page15Props> = ({ isActive, onSlideshowComplete, i
                                         <>
                                             {/* Artist Title - Highlighted in Gold */}
                                             {title && (
-                                                <h3 className="font-display text-lg md:text-xl lg:text-2xl font-semibold text-primary drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] mb-4" style={{ color: '#D4AF37' }}>
+                                                <h3 className="font-display text-lg md:text-xl lg:text-2xl font-normal text-primary drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] mb-4" style={{ color: '#D4AF37' }}>
                                                     {title}
                                                 </h3>
                                             )}

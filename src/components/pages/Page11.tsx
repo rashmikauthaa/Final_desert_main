@@ -51,13 +51,14 @@ export const Page11: React.FC<Page11Props> = ({ isActive, onSlideshowComplete, i
     <PageWrapper isActive={isActive} overlayOpacity={0}>
       <div className="fixed inset-0 w-screen h-screen overflow-hidden flex items-center justify-center">
         <div
-          className="text-center transition-all duration-1500 ease-out"
+          className="text-center transition-all ease-out"
           style={{
             opacity: showTitle ? 1 : 0,
-            transform: showTitle ? 'translateY(0) scale(1)' : 'translateY(20px) scale(0.95)',
+            transform: showTitle ? 'translateY(0) scale(1)' : 'translateY(40px) scale(0.95)',
+            transitionDuration: '3500ms',
           }}
         >
-          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-light text-foreground drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
+          <h1 className="font-display text-2xl md:text-4xl lg:text-5xl font-light text-foreground drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
             Artists In Conversation
           </h1>
         </div>

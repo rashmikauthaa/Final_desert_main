@@ -19,9 +19,9 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({ onStart }) => {
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center text-center px-8 max-w-3xl">
         {/* Title */}
-        <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-light text-foreground tracking-[0.2em] mb-4">
-          CARAVANA
-        </h1>
+        <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-thin text-foreground tracking-[0.2em] mb-4">
+  CARAVANA
+</h1>
         
         {/* Subtitle */}
         <p className="font-display text-base md:text-lg lg:text-xl font-light text-muted-foreground tracking-[0.15em] mb-12 max-w-xl">

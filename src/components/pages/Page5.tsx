@@ -168,18 +168,11 @@ export const Page5: React.FC<Page5Props> = ({ isActive, onSlideshowComplete, aud
           <div className="absolute inset-0 bg-black">
             {suryagarhSlideshowImages.map((image, index) => (
               <div
-                key={index}
-                className="absolute inset-0 flex items-center justify-center transition-all duration-1000 ease-in-out"
+              key={index}
+                className="absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out"
                 style={{
                   opacity: index === currentSlideIndex ? 1 : 0,
-                  transform: index === currentSlideIndex
-                    ? 'perspective(1000px) rotateY(0deg) scale(1)'
-                    : index < currentSlideIndex
-                      ? 'perspective(1000px) rotateY(-90deg) scale(1)'
-                      : 'perspective(1000px) rotateY(90deg) scale(1)',
-                  zIndex: index === currentSlideIndex ? 10 : index < currentSlideIndex ? 5 : 0,
-                  transformStyle: 'preserve-3d',
-                  backfaceVisibility: 'hidden',
+                  zIndex: index === currentSlideIndex ? 10 : 0,
                 }}
               >
                 <img
