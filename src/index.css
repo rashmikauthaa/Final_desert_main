@@ -183,23 +183,95 @@
 }
 
 @keyframes textReveal {
-  from {
+  0% {
     opacity: 0;
-    transform: translateY(10px);
-    filter: blur(6px);
+    transform: translateY(20px);
+    filter: blur(10px);
   }
-  to {
+  50% {
+    filter: blur(4px);
+  }
+  100% {
     opacity: 1;
     transform: translateY(0);
     filter: blur(0);
   }
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gentleFadeIn {
+  0% {
+    opacity: 0;
+    filter: blur(8px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+/* Premium Caravana-style text reveal */
+@keyframes premiumReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.98);
+    filter: blur(12px);
+    letter-spacing: 0.4em;
+  }
+  60% {
+    opacity: 0.8;
+    filter: blur(3px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+    letter-spacing: inherit;
+  }
+}
+
 .animate-textReveal {
-  animation: textReveal 3s ease-in both;
+  animation: textReveal 4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Global smooth text transition utilities */
+.text-fade-in {
+  animation: fadeInUp 4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.text-fade-gentle {
+  animation: gentleFadeIn 4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.text-premium-reveal {
+  animation: premiumReveal 5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 /* Global font weight override - ensures light weight everywhere */
 * {
   font-weight: 300 !important;
+}
+
+/* Global text transition - applies to all text elements for smooth appearance */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span {
+  transition:
+    opacity 3s ease-out,
+    transform 3s ease-out;
 }

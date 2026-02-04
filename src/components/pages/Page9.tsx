@@ -163,22 +163,20 @@ export const Page9: React.FC<Page9Props> = ({
       {/* ---------------- Text Overlay ---------------- */}
       <div className="relative z-30 w-full h-full flex items-start justify-center pt-24 md:pt-32 pointer-events-none">
         <div
-          className="transition-all duration-[3000ms] ease-in"
-          style={{
-            opacity: showText ? 1 : 0,
-            transform: showText
-              ? 'translateY(0) scale(1)'
-              : 'translateY(30px) scale(0.95)',
-          }}
+          className={`transition-all duration-[3000ms] ease-out ${
+            showText 
+              ? 'opacity-100 translate-y-0 scale-100' 
+              : 'opacity-0 translate-y-8 scale-95'
+          }`}
         >
           <div className="px-10 py-5 flex flex-col items-center text-center">
-            <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent mb-2 opacity-50" />
+            <div className={`w-12 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent mb-2 transition-opacity duration-[3000ms] ${showText ? 'opacity-50' : 'opacity-0'}`} />
 
             <h1 className="font-display text-2xl md:text-3xl lg:text-4xl font-light text-white tracking-[0.2em] uppercase drop-shadow-md whitespace-nowrap">
               The Concert Venues
             </h1>
 
-            <div className="w-20 h-[1px] bg-gradient-to-r from-transparent via-primary/80 to-transparent mt-2" />
+            <div className={`w-20 h-[1px] bg-gradient-to-r from-transparent via-primary/80 to-transparent mt-2 transition-opacity duration-[3000ms] ${showText ? 'opacity-100' : 'opacity-0'}`} />
           </div>
         </div>
       </div>
