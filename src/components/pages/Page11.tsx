@@ -59,7 +59,7 @@ export const Page11: React.FC<Page11Props> = ({ isActive, onSlideshowComplete, i
           }}
         >
           <h1 className="font-display text-2xl md:text-4xl lg:text-5xl font-light text-foreground drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">
-            Artists In Conversation
+            TALENT IN CONVERSATION
           </h1>
         </div>
       </div>

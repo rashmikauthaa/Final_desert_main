@@ -40,7 +40,6 @@ export const Page3: React.FC<Page3Props> = ({ isActive, onSlideshowComplete, isP
     jaisalmerShutterstock2,
     jaisalmer2,
     jaisalmer3,
-    jaisalmer4,
     jaisalmer5,
     jaisalmer55,
     jaisalmeriStock,
@@ -125,22 +124,22 @@ export const Page3: React.FC<Page3Props> = ({ isActive, onSlideshowComplete, isP
           // Don't crop these specific images
           const noCropImages = ['5.jpg', 'shutterstock_1832570845.jpg', 'Bhrama_3187.webp'];
           const shouldNotCrop = noCropImages.some(name => image.includes(name));
-          
+
           return (
-          <div
-            key={index}
-            className={`absolute inset-0 transition-all duration-[4000ms] ease-in-out ${index === currentImageIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
-              }`}
-          >
-            <img
-              src={image}
-              className={`w-full h-full ${shouldNotCrop ? 'object-contain bg-black' : 'object-cover'}`}
-              alt={`Jaisalmer Slide ${index}`}
-            />
-            {/* Dark Gradient Overlay for text readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20" />
-          </div>
-        );
+            <div
+              key={index}
+              className={`absolute inset-0 transition-all duration-[4000ms] ease-in-out ${index === currentImageIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+                }`}
+            >
+              <img
+                src={image}
+                className={`w-full h-full ${shouldNotCrop ? 'object-contain bg-black' : 'object-cover'}`}
+                alt={`Jaisalmer Slide ${index}`}
+              />
+              {/* Dark Gradient Overlay for text readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20" />
+            </div>
+          );
         })}
 
         {/* Text Overlay - fades out when slideshow starts */}

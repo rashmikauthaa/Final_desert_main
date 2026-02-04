@@ -10,6 +10,9 @@ const suryagarh10 = '/assets/images/Suryagarh/10.png';
 const suryagarh1 = '/assets/images/Suryagarh/1..webp';
 const suryagarh4 = '/assets/images/Suryagarh/4..jpeg';
 const suryagarh5 = '/assets/images/Suryagarh/790978138.jpg';
+const suryagarh12 = 'assets/images/Suryagarh/12.jpg';
+const suryagarh8 = 'assets/images/Suryagarh/8...jpg';
+const suryagarh11 = 'assets/images/Suryagarh/11.jpg';
 
 interface Page5Props {
   isActive: boolean;
@@ -21,7 +24,7 @@ interface Page5Props {
 // Text blocks for Suryagarh (like Page3 style - showing one at a time)
 const suryagarhTextBlocks = [
   "This is where the festival lives when the music stops.",
-  "A Haven of Rajasthani heritage, desert-set hotel Suryagarh is a passage into India's past.",
+  "A heaven of Rajasthani heritage, desert-set hotel Suryagarh is a passage into India's past.",
   "The festival's home is more than a place to stay, it's a desert-born palace, where history and most opulent luxury meet under golden skies.",
   "Nestled in the heart of the Thar Desert, Suryagarh offers an escape of most divine grandeur, surrounded by untouched landscapes, every moment invites reflection, connection and a sense of belonging.",
 ];
@@ -29,20 +32,21 @@ const suryagarhTextBlocks = [
 // Keywords for Suryagarh - "heaven of Rajasthan" and others
 const suryagarhKeywords = ['Luxury', 'Heritage', 'Palace', 'Sanctuary'];
 
-// Slideshow images (2, 7, 9, 10, 1, 4, 5)
+// Slideshow images 
 const suryagarhSlideshowImages = [
-  suryagarh5,
   suryagarh2,
-  suryagarh7,
-  suryagarh9,
+  suryagarh5,
+  suryagarh12,
   suryagarh10,
-  suryagarh1,
-  suryagarh4
+  suryagarh8,
+  suryagarh9,
+  suryagarh11,
+  suryagarh1
 ];
 
-const TEXT_DURATION = 4500; // Duration for each text block (like Page3)
+const TEXT_DURATION = 4000; // Duration for each text block (like Page3)
 const TEXT_TOTAL = suryagarhTextBlocks.length * TEXT_DURATION;
-const SLIDE_DURATION = 6000; // 6s per slide for smooth crossfade (4s transition overlaps)
+const SLIDE_DURATION = 3000; // 3s per slide for smooth crossfade (3.5s transition overlaps)
 const SLIDESHOW_TOTAL = suryagarhSlideshowImages.length * SLIDE_DURATION;
 
 export const Page5: React.FC<Page5Props> = ({ isActive, onSlideshowComplete, audioRef, isPaused }) => {
@@ -115,8 +119,7 @@ export const Page5: React.FC<Page5Props> = ({ isActive, onSlideshowComplete, aud
               <img
                 src={suryagarh3}
                 alt="Suryagarh Hotel"
-                className="w-full h-full object-cover"
-                style={{
+                className="w-full h-full object-contain bg-black" style={{
                   width: '100%',
                   height: '100%',
                   objectFit: 'cover',
@@ -165,7 +168,7 @@ export const Page5: React.FC<Page5Props> = ({ isActive, onSlideshowComplete, aud
           <div className="absolute inset-0 bg-black">
             {suryagarhSlideshowImages.map((image, index) => (
               <div
-              key={index}
+                key={index}
                 className="absolute inset-0 flex items-center justify-center transition-opacity duration-[4000ms] ease-in-out"
                 style={{
                   opacity: index === currentSlideIndex ? 1 : 0,
@@ -175,7 +178,7 @@ export const Page5: React.FC<Page5Props> = ({ isActive, onSlideshowComplete, aud
                 <img
                   src={image}
                   alt={`Suryagarh Slide ${index + 1}`}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-contain bg-black"
                   style={{
                     width: '100%',
                     height: '100%',

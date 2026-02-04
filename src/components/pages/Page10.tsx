@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { PageWrapper } from '@/components/PageWrapper';
 
 // Images
-const sunriseConcertStage = '/assets/images/Concert_Venues/1-CROP +IF POSS. TEXT \'SUNRISE CONCERT STAGE\' .png';
 const img2 = '/assets/images/Concert_Venues/img2.jpg';
 const img3 = '/assets/images/Concert_Venues/img3.jpg';
 const img5 = '/assets/images/Concert_Venues/img5.webp';
@@ -21,7 +20,6 @@ const TEXT_STAGGER_DELAY = 800;
 const IMAGE_DISPLAY_DURATION = 3000;
 
 const venueImages = [
-  sunriseConcertStage,
   img2,
   sunsetConcertOasis,
   img3,
@@ -48,15 +46,9 @@ export const Page10: React.FC<Page10Props> = ({
 }) => {
   const [visible, setVisible] = useState<Set<VisibleKey>>(new Set());
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [previousImageIndex, setPreviousImageIndex] = useState(0);
 
   const show = (key: VisibleKey) =>
     setVisible(v => new Set(v).add(key));
-
-  const setImage = (index: number) => {
-    setPreviousImageIndex(currentImageIndex);
-    setCurrentImageIndex(index);
-  };
 
   useEffect(() => {
     if (!isActive || isPaused) return;
@@ -66,13 +58,13 @@ export const Page10: React.FC<Page10Props> = ({
 
     const timeline = [
       { d: 500, a: () => show('intro') },
-      { d: TEXT_STAGGER_DELAY, a: () => { show('forts'); setImage(1); } },
-      { d: IMAGE_DISPLAY_DURATION * 0.5, a: () => { show('palaces'); setImage(5); } },
-      { d: IMAGE_DISPLAY_DURATION * 0.5, a: () => { show('lakes'); setImage(2); } },
-      { d: IMAGE_DISPLAY_DURATION * 0.5, a: () => { show('stepwells'); setImage(3); } },
-      { d: IMAGE_DISPLAY_DURATION * 0.5, a: () => { show('temples'); setImage(4); } },
-      { d: IMAGE_DISPLAY_DURATION * 0.5, a: () => { show('continuation'); setImage(6); } },
-      { d: IMAGE_DISPLAY_DURATION * 0.5, a: () => { show('highlight'); setImage(7); } },
+      { d: TEXT_STAGGER_DELAY, a: () => { show('forts'); setCurrentImageIndex(1); } },
+      { d: IMAGE_DISPLAY_DURATION * 0.5, a: () => { show('palaces'); setCurrentImageIndex(5); } },
+      { d: IMAGE_DISPLAY_DURATION * 0.5, a: () => { show('lakes'); setCurrentImageIndex(2); } },
+      { d: IMAGE_DISPLAY_DURATION * 0.5, a: () => { show('stepwells'); setCurrentImageIndex(3); } },
+      { d: IMAGE_DISPLAY_DURATION * 0.5, a: () => { show('temples'); setCurrentImageIndex(4); } },
+      { d: IMAGE_DISPLAY_DURATION * 0.5, a: () => { show('continuation'); setCurrentImageIndex(6); } },
+      { d: IMAGE_DISPLAY_DURATION * 0.5, a: () => show('highlight') },
       { d: 3000, a: () => onSlideshowComplete?.() },
     ];
 
@@ -85,52 +77,48 @@ export const Page10: React.FC<Page10Props> = ({
       cancelled = true;
       setVisible(new Set());
       setCurrentImageIndex(0);
-      setPreviousImageIndex(0);
     };
-  }, [isActive, isPaused]);
+  }, [isActive, isPaused, onSlideshowComplete]);
 
   return (
     <PageWrapper isActive={isActive} overlayOpacity={0}>
-      {/* FULLSCREEN IMAGE SLIDESHOW */}
+      {/* BACKGROUND SLIDESHOW */}
       <div className="fixed inset-0 overflow-hidden">
         {venueImages.map((image, index) => {
           const isActiveImg = index === currentImageIndex;
-          const wasActive = index === previousImageIndex;
 
           return (
             <div
               key={index}
-              className="absolute inset-0 transition-all duration-[4000ms] ease-in-out"
+              className="absolute inset-0 transition-opacity duration-[1800ms] ease-out"
               style={{
                 opacity: isActiveImg ? 1 : 0,
-                transform: isActiveImg
-                  ? 'scale(1)'
-                  : wasActive
-                    ? 'scale(1.1)'
-                    : 'scale(0.95)',
                 zIndex: isActiveImg ? 10 : 5,
               }}
             >
               <img
                 src={image}
                 alt="Venue"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center"
               />
             </div>
           );
         })}
 
-        {/* subtle gradient for readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent z-20" />
+        {/* BLACK FILM OVERLAY */}
+        <div className="absolute inset-0 bg-black/45 z-20" />
+
+        {/* VERY SUBTLE DEPTH GRADIENT (optional but cinematic) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent z-20" />
       </div>
 
-      {/* FLOATING TEXT OVERLAY */}
+      {/* TEXT CONTENT */}
       <div className="relative z-30 h-full flex items-center px-16 md:px-24 max-w-3xl">
         <div className="space-y-6 text-white">
 
           {visible.has('intro') && (
             <p className="text-xl font-light leading-relaxed">
-              The Festival unfolds in some of Rajasthan's most iconic heritage sites and breathtaking settings.
+              The Festival unfolds in some of Rajasthan&apos;s most iconic heritage sites and breathtaking settings.
             </p>
           )}
 
@@ -149,7 +137,7 @@ export const Page10: React.FC<Page10Props> = ({
           )}
 
           {visible.has('highlight') && (
-            <p className="text-2xl font-light text-white pt-4">
+            <p className="text-2xl font-light pt-4">
               Maharadjadhiraj Maharawal of Jaisalmer Chaitainya Raj
             </p>
           )}
@@ -159,7 +147,7 @@ export const Page10: React.FC<Page10Props> = ({
   );
 };
 
-/* ---------- Small Helper ---------- */
+/* ---------- Helper ---------- */
 const Tag = ({ children }: { children: React.ReactNode }) => (
   <span className="px-4 py-1 text-white text-lg font-thin">
     {children}
