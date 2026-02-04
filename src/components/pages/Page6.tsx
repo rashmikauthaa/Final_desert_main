@@ -80,7 +80,7 @@ export const Page6: React.FC<Page6Props> = ({ isActive, isPaused }) => {
         <div className="space-y-5 md:space-y-6">
           {/* Title */}
           <h2
-            className={`font-display text-xl md:text-2xl lg:text-3xl font-light text-primary mb-6 transition-all duration-1000 tracking-[0.15em] ${showPara1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            className={`font-display text-xl md:text-2xl lg:text-3xl font-light text-primary mb-6 transition-all duration-[4000ms] tracking-[0.15em] ${showPara1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             style={{ textShadow: '0 2px 20px hsl(var(--background) / 0.9)' }}
           >
@@ -88,7 +88,7 @@ export const Page6: React.FC<Page6Props> = ({ isActive, isPaused }) => {
           </h2>
 
           <p
-            className={`font-display text-base md:text-lg lg:text-xl font-light text-foreground/90 leading-relaxed transition-all duration-1000 ${showPara1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            className={`font-display text-base md:text-lg lg:text-xl font-light text-foreground/90 leading-relaxed transition-all duration-[4000ms] ${showPara1 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             style={{ textShadow: '0 2px 20px hsl(var(--background) / 0.9)' }}
           >
@@ -96,7 +96,7 @@ export const Page6: React.FC<Page6Props> = ({ isActive, isPaused }) => {
           </p>
 
           <p
-            className={`font-display text-sm md:text-base lg:text-lg font-light text-foreground/85 leading-relaxed transition-all duration-1000 ${showPara2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            className={`font-display text-sm md:text-base lg:text-lg font-light text-foreground/85 leading-relaxed transition-all duration-[4000ms] ${showPara2 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             style={{ textShadow: '0 2px 20px hsl(var(--background) / 0.9)' }}
           >
@@ -104,7 +104,7 @@ export const Page6: React.FC<Page6Props> = ({ isActive, isPaused }) => {
           </p>
 
           <p
-            className={`font-display text-sm md:text-base lg:text-lg font-light text-foreground/85 leading-relaxed transition-all duration-1000 ${showPara3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            className={`font-display text-sm md:text-base lg:text-lg font-light text-foreground/85 leading-relaxed transition-all duration-[4000ms] ${showPara3 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             style={{ textShadow: '0 2px 20px hsl(var(--background) / 0.9)' }}
           >
@@ -112,7 +112,7 @@ export const Page6: React.FC<Page6Props> = ({ isActive, isPaused }) => {
           </p>
 
           <p
-            className={`font-display text-sm md:text-base lg:text-lg font-light text-foreground/85 leading-relaxed transition-all duration-1000 ${showPara4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            className={`font-display text-sm md:text-base lg:text-lg font-light text-foreground/85 leading-relaxed transition-all duration-[4000ms] ${showPara4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             style={{ textShadow: '0 2px 20px hsl(var(--background) / 0.9)' }}
           >
@@ -120,7 +120,7 @@ export const Page6: React.FC<Page6Props> = ({ isActive, isPaused }) => {
           </p>
 
           <p
-            className={`font-display text-sm md:text-base lg:text-lg font-light text-foreground/80 leading-relaxed transition-all duration-1000 ${showPara4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            className={`font-display text-sm md:text-base lg:text-lg font-light text-foreground/80 leading-relaxed transition-all duration-[4000ms] ${showPara4 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             style={{ textShadow: '0 2px 20px hsl(var(--background) / 0.9)' }}
           >
@@ -128,7 +128,7 @@ export const Page6: React.FC<Page6Props> = ({ isActive, isPaused }) => {
           </p>
 
           <p
-            className={`font-display text-lg md:text-xl lg:text-2xl font-light text-primary italic leading-relaxed transition-all duration-1000 pt-4 ${showOutro ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            className={`font-display text-lg md:text-xl lg:text-2xl font-light text-primary italic leading-relaxed transition-all duration-[4000ms] pt-4 ${showOutro ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             style={{ textShadow: '0 2px 20px hsl(var(--background) / 0.9)' }}
           >

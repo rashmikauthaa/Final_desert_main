@@ -25,7 +25,7 @@ const slideTitles = [
     'Royal Stepwell Grand Finale',
 ];
 
-const SLIDE_DURATION = 4000; // 4 seconds per slide
+const SLIDE_DURATION = 6000; // 6s per slide for smooth crossfade
 
 export const Page16: React.FC<Page16Props> = ({
     isActive,
@@ -74,7 +74,7 @@ export const Page16: React.FC<Page16Props> = ({
                 {slideImages.map((img, index) => (
                     <div
                         key={index}
-                        className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlideIndex && showSlide
+                        className={`absolute inset-0 transition-opacity duration-[4000ms] ease-in-out ${index === currentSlideIndex && showSlide
                                 ? 'opacity-100'
                                 : 'opacity-0'
                             }`}

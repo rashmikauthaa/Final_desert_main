@@ -66,7 +66,7 @@ export const Page17: React.FC<Page17Props> = ({ isActive, isPaused, onSlideshowC
                     
                     {/* Header Section */}
                     <div
-                        className={`max-w-4xl mb-10 md:mb-14 transition-all duration-[3000ms] ease-in ${
+                        className={`max-w-4xl mb-10 md:mb-14 transition-all duration-[4000ms] ease-in ${
                             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-6'
                         }`}
                     >

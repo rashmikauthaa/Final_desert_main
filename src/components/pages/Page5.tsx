@@ -21,7 +21,7 @@ interface Page5Props {
 // Text blocks for Suryagarh (like Page3 style - showing one at a time)
 const suryagarhTextBlocks = [
   "This is where the festival lives when the music stops.",
-  "A heavan of Rajasthani heritage, desert-set hotel Suryagarh is a passage into India's past.",
+  "A Haven of Rajasthani heritage, desert-set hotel Suryagarh is a passage into India's past.",
   "The festival's home is more than a place to stay, it's a desert-born palace, where history and most opulent luxury meet under golden skies.",
   "Nestled in the heart of the Thar Desert, Suryagarh offers an escape of most divine grandeur, surrounded by untouched landscapes, every moment invites reflection, connection and a sense of belonging.",
 ];
@@ -42,7 +42,7 @@ const suryagarhSlideshowImages = [
 
 const TEXT_DURATION = 4500; // Duration for each text block (like Page3)
 const TEXT_TOTAL = suryagarhTextBlocks.length * TEXT_DURATION;
-const SLIDE_DURATION = 2000; // 2 seconds per slide
+const SLIDE_DURATION = 6000; // 6s per slide for smooth crossfade (4s transition overlaps)
 const SLIDESHOW_TOTAL = suryagarhSlideshowImages.length * SLIDE_DURATION;
 
 export const Page5: React.FC<Page5Props> = ({ isActive, onSlideshowComplete, audioRef, isPaused }) => {
@@ -111,7 +111,7 @@ export const Page5: React.FC<Page5Props> = ({ isActive, onSlideshowComplete, aud
         {/* Text Phase - Background Image */}
         {phase === 'text' && (
           <>
-            <div className="absolute inset-0 transition-opacity duration-1000 z-0">
+            <div className="absolute inset-0 transition-opacity duration-[4000ms] z-0">
               <img
                 src={suryagarh3}
                 alt="Suryagarh Hotel"
@@ -130,27 +130,24 @@ export const Page5: React.FC<Page5Props> = ({ isActive, onSlideshowComplete, aud
             <div className="relative z-10 h-full flex items-start justify-center px-8 pt-32">
               <div
                 key={activeText}
-                className="max-w-4xl text-center space-y-6 animate-fade-up"
+                className="max-w-4xl text-center space-y-6"
               >
-                <p className="text-lg md:text-xl lg:text-2xl font-light leading-relaxed text-white transition-all duration-1000 opacity-100">
+                <p className="text-lg md:text-xl lg:text-2xl font-thin leading-relaxed text-white transition-opacity duration-[4000ms] opacity-100">
                   {suryagarhTextBlocks[activeText]}
                 </p>
 
                 {/* Keywords in pill containers - shown when second text block is active */}
                 {activeText === 1 && (
                   <div
-                    className={`flex flex-wrap justify-center gap-3 md:gap-4 pt-6 transition-all duration-1000 ${showKeywords ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                    className={`flex flex-wrap justify-center gap-3 md:gap-4 pt-6 transition-all duration-[4000ms] ${showKeywords ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
                       }`}
                   >
                     {suryagarhKeywords.map((keyword, index) => (
                       <span
                         key={keyword}
-                        className="font-display text-lg md:text-xl lg:text-2xl font-light text-primary px-3 py-1 border border-primary/30 rounded-full"
+                        className="font-display text-lg md:text-xl lg:text-2xl font-thin text-white px-3 py-1 transition-opacity duration-[4000ms]"
                         style={{
-                          transitionDelay: showKeywords ? `${index * 150}ms` : '0ms',
-                          textShadow: '0 2px 10px hsl(var(--background) / 0.8)',
-                          backgroundColor: 'rgba(0, 0, 0, 0.6)',
-                          backdropFilter: 'blur(4px)',
+                          transitionDelay: showKeywords ? `${index * 300}ms` : '0ms',
                         }}
                       >
                         {keyword}
@@ -169,7 +166,7 @@ export const Page5: React.FC<Page5Props> = ({ isActive, onSlideshowComplete, aud
             {suryagarhSlideshowImages.map((image, index) => (
               <div
               key={index}
-                className="absolute inset-0 flex items-center justify-center transition-opacity duration-1000 ease-in-out"
+                className="absolute inset-0 flex items-center justify-center transition-opacity duration-[4000ms] ease-in-out"
                 style={{
                   opacity: index === currentSlideIndex ? 1 : 0,
                   zIndex: index === currentSlideIndex ? 10 : 0,

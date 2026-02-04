@@ -44,7 +44,7 @@ export const Page18: React.FC<Page18Props> = ({ isActive, isPaused, onSlideshowC
                     
                     {/* Header */}
                     <div
-                        className={`max-w-5xl transition-all duration-[3000ms] ease-in ${
+                        className={`max-w-5xl transition-all duration-[4000ms] ease-in ${
                             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-6'
                         }`}
                     >

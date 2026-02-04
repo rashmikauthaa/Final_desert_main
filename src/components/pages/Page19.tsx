@@ -75,7 +75,7 @@ export const Page19: React.FC<Page19Props> = ({ isActive, isPaused }) => {
 
                 {/* Credits - Bottom Left Corner */}
                 <div
-                    className={`absolute bottom-8 left-8 md:bottom-12 md:left-12 transition-all duration-[3000ms] ease-in ${
+                    className={`absolute bottom-8 left-8 md:bottom-12 md:left-12 transition-all duration-[4000ms] ease-in ${
                         showCredits ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                     }`}
                 >

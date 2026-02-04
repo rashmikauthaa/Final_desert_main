@@ -75,7 +75,7 @@ export const Page2: React.FC<Page2Props> = ({ isActive, videoRef }) => {
       <div className="fixed inset-0 w-screen h-screen overflow-hidden">
         {/* Local Video */}
         <div
-          className={`absolute inset-0 transition-opacity duration-1000 ${showVideo ? 'opacity-100' : 'opacity-0'}`}
+          className={`absolute inset-0 transition-opacity duration-[4000ms] ${showVideo ? 'opacity-100' : 'opacity-0'}`}
         >
           <video
             ref={localVideoRef}
@@ -90,7 +90,7 @@ export const Page2: React.FC<Page2Props> = ({ isActive, videoRef }) => {
 
         {/* JAISALMER Text Introduction */}
         <div
-          className={`absolute inset-0 flex items-center justify-center transition-opacity duration-1000 z-10 ${showText ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          className={`absolute inset-0 flex items-center justify-center transition-opacity duration-[4000ms] z-10 ${showText ? 'opacity-100' : 'opacity-0 pointer-events-none'
             }`}
         >
           <div className="text-center">

@@ -24,19 +24,19 @@ const artists: Artist[] = [
         name: "Nicolas Jaar",
         image: nicolas,
         description:
-            "Chilean-American composer and electronic producer celebrated for redefining downtempo, minimal techno and ambient music with deeply emotive, avant-garde soundscapes.",
+            "Chilean-American composer and electronic producer celebrated for redefining downtempo, minimal techno and ambient music with deeply emotive, avant-garde soundscapes.         Jaar continues to produce boundary pushing music, over the years his compositional achievements have very successfully extended to the world of film",
     },
     {
         name: "Nils Frahm",
         image: nils,
         description:
-            "German composer and producer known for merging classical piano with electronic textures, creating intimate and emotionally resonant performances.",
+            "German composer and producer known for merging classical piano with electronic textures, creating intimate and emotionally resonant performances.He played sold out shows at some of the biggest venues in the world, contributed a significant part in film music and active collaborations with piano builders to optimize the instrument.",
     },
     {
         name: "Be Svendsen",
         image: svendsen,
         description:
-            "Danish producer crafting organic, genre-blending electronic music with cinematic depth and playful experimentation.",
+            "Danish producer crafting organic, genre-blending electronic music with cinematic depth and playful experimentation.   “The music should ultimately connect you to a bigger picture. The goal is to express and convey a feeling, and to behold the moment.“",
     },
     {
         name: "Acid Pauli",
@@ -101,7 +101,7 @@ export const Page14: React.FC<Page14Props> = ({
 
                     {/* -------- Header -------- */}
                     <div
-                        className="mb-12 transition-all duration-1000 ease-out"
+                        className="mb-12 transition-all duration-[4000ms] ease-out"
                         style={{
                             opacity: showHeader ? 1 : 0,
                             transform: showHeader ? "translateY(0)" : "translateY(12px)",
@@ -120,7 +120,7 @@ export const Page14: React.FC<Page14Props> = ({
                             {artists.map((artist, index) => (
                                 <div
                                     key={index}
-                                    className="flex flex-col px-3 transition-all duration-700"
+                                    className="flex flex-col px-3 transition-all duration-[4000ms]"
                                     style={{
                                         opacity: visibleItems.includes(index) ? 1 : 0,
                                         transform: visibleItems.includes(index)
@@ -135,7 +135,7 @@ export const Page14: React.FC<Page14Props> = ({
                                         <img
                                             src={artist.image}
                                             alt={artist.name}
-                                            className="w-28 h-28 rounded-full object-cover mb-5"
+                                            className={`w-28 h-28 rounded-full object-cover mb-5 ${artist.name === 'Acid Pauli' ? 'grayscale' : ''}`}
                                         />
                                     ) : (
                                         <div className="w-28 h-28 rounded-full bg-white/10 flex items-center justify-center mb-5">

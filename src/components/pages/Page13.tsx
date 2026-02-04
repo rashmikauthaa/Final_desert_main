@@ -110,7 +110,7 @@ export const Page13: React.FC<Page13Props> = ({
 
                     {/* -------- Header -------- */}
                     <div
-                        className="mb-12 transition-all duration-1000 ease-out"
+                        className="mb-12 transition-all duration-[4000ms] ease-out"
                         style={{
                             opacity: showHeader ? 1 : 0,
                             transform: showHeader ? "translateY(0)" : "translateY(12px)",
@@ -129,7 +129,7 @@ export const Page13: React.FC<Page13Props> = ({
                             {artists.map((artist, index) => (
                                 <div
                                     key={index}
-                                    className="flex flex-col px-3 transition-all duration-700"
+                                    className="flex flex-col px-3 transition-all duration-[4000ms]"
                                     style={{
                                         opacity: visibleItems.includes(index) ? 1 : 0,
                                         transform: visibleItems.includes(index)

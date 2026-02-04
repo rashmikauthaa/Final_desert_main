@@ -21,7 +21,7 @@ const images = [
   "/assets/images/Manganiyars/8...jpg",
 ];
 
-const SLIDE_DURATION = 2000; // 2 seconds per slide - more time to view each image
+const SLIDE_DURATION = 6000; // 6s per slide for smooth crossfade (4s transition overlaps)
 
 export const Page8: React.FC<Page8Props> = ({ isActive, onVideoStart, onVideoEnd, onSlideshowComplete, audioRef, isPaused }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -66,7 +66,7 @@ export const Page8: React.FC<Page8Props> = ({ isActive, onVideoStart, onVideoEnd
         {images.map((image, index) => (
           <div
             key={index}
-            className={`absolute inset-0 transition-all duration-700 ease-out ${index === currentIndex
+            className={`absolute inset-0 transition-all duration-[4000ms] ease-out ${index === currentIndex
               ? 'opacity-100 scale-100'
               : 'opacity-0 scale-105'
               }`}

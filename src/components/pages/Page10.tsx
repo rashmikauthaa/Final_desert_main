@@ -100,7 +100,7 @@ export const Page10: React.FC<Page10Props> = ({
           return (
             <div
               key={index}
-              className="absolute inset-0 transition-all duration-1000 ease-in-out"
+              className="absolute inset-0 transition-all duration-[4000ms] ease-in-out"
               style={{
                 opacity: isActiveImg ? 1 : 0,
                 transform: isActiveImg
@@ -149,7 +149,7 @@ export const Page10: React.FC<Page10Props> = ({
           )}
 
           {visible.has('highlight') && (
-            <p className="text-2xl font-light text-primary pt-4">
+            <p className="text-2xl font-light text-white pt-4">
               Maharadjadhiraj Maharawal of Jaisalmer Chaitainya Raj
             </p>
           )}
@@ -161,7 +161,7 @@ export const Page10: React.FC<Page10Props> = ({
 
 /* ---------- Small Helper ---------- */
 const Tag = ({ children }: { children: React.ReactNode }) => (
-  <span className="px-4 py-1 border border-primary/40 rounded-full text-primary text-lg font-light backdrop-blur-sm bg-black/40">
+  <span className="px-4 py-1 text-white text-lg font-thin">
     {children}
   </span>
 );

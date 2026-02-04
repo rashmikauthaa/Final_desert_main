@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { PageWrapper } from "@/components/PageWrapper";
 
 // Images
@@ -59,9 +59,40 @@ const artists: Artist[] = [
     },
 ];
 
-const PAGE_DISPLAY_DURATION = 8000; // 8 seconds before auto-advance
+const ANIMATION_DELAY_PER_ITEM = 300;
+const PAGE_DISPLAY_DURATION = 8000;
 
 export const Page15: React.FC<Page15Props> = ({ isActive, onSlideshowComplete, isPaused }) => {
+    const [showHeader, setShowHeader] = useState(false);
+    const [visibleItems, setVisibleItems] = useState<number[]>([]);
+
+    useEffect(() => {
+        if (isActive) {
+            setShowHeader(false);
+            setVisibleItems([]);
+
+            // Show header first
+            const headerTimer = setTimeout(() => setShowHeader(true), 300);
+
+            // Then animate each artist card one by one
+            const itemTimers: NodeJS.Timeout[] = [];
+            artists.forEach((_, index) => {
+                const timer = setTimeout(() => {
+                    setVisibleItems(prev => [...prev, index]);
+                }, 600 + (index * ANIMATION_DELAY_PER_ITEM));
+                itemTimers.push(timer);
+            });
+
+            return () => {
+                clearTimeout(headerTimer);
+                itemTimers.forEach(timer => clearTimeout(timer));
+            };
+        } else {
+            setShowHeader(false);
+            setVisibleItems([]);
+        }
+    }, [isActive]);
+
     // Auto-advance timer
     useEffect(() => {
         if (!isActive || isPaused) return;
@@ -77,47 +108,65 @@ export const Page15: React.FC<Page15Props> = ({ isActive, onSlideshowComplete, i
 
     return (
         <PageWrapper isActive={isActive} overlayOpacity={0}>
-            <div className="fixed inset-0 w-screen h-screen flex items-center justify-center px-14">
-                <div className="max-w-7xl w-full">
+            <section className="fixed inset-0 w-screen h-screen bg-gold overflow-hidden">
+                <div className="h-full w-full px-16 pt-16">
 
-                    {/* ===== Header Section (Like PDF) ===== */}
-                    <div className="mb-12">
-                        <h1 className="text-sm md:text-base uppercase tracking-[0.35em] text-white/80 font-light">
-                            INDIA
+                    {/* -------- Header -------- */}
+                    <div
+                        className="mb-12 transition-all duration-[4000ms] ease-out"
+                        style={{
+                            opacity: showHeader ? 1 : 0,
+                            transform: showHeader ? "translateY(0)" : "translateY(12px)",
+                        }}
+                    >
+                        <h1 className="text-sm tracking-[0.35em] font-medium text-white uppercase">
+                            SPEAKERS IN CONVERSATION
                         </h1>
-
-                        {/* Divider Line */}
-                        <div className="w-full h-[1px] bg-white/20 mt-4" />
+                        <div className="mt-4 h-px w-full bg-white/30" />
                     </div>
 
-                    {/* ===== Speakers Grid ===== */}
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-x-14 gap-y-16">
+                    {/* -------- Speakers Grid -------- */}
+                    <div className="max-w-[1400px] mx-auto">
+                        <div className="grid grid-cols-6 gap-x-12">
 
-                        {artists.map((artist, index) => (
-                            <div key={index} className="flex flex-col items-start">
+                            {artists.map((artist, index) => (
+                                <div
+                                    key={index}
+                                    className="flex flex-col px-3 transition-all duration-[4000ms]"
+                                    style={{
+                                        opacity: visibleItems.includes(index) ? 1 : 0,
+                                        transform: visibleItems.includes(index)
+                                            ? "translateX(0)"
+                                            : "translateX(100px)",
+                                        transitionTimingFunction: "ease-in",
+                                    }}
+                                >
 
-                                {/* Image */}
-                                <img
-                                    src={artist.image}
-                                    alt={artist.name}
-                                    className="w-20 h-20 object-cover rounded-md mb-4 shadow-md"
-                                />
+                                    {/* Image */}
+                                    <img
+                                        src={artist.image}
+                                        alt={artist.name}
+                                        className="w-24 h-24 rounded-full object-cover mb-5"
+                                    />
 
-                                {/* Name */}
-                                <h2 className="text-sm md:text-base font-semibold uppercase tracking-wide text-white mb-2">
-                                    {artist.name}
-                                </h2>
+                                    {/* Name */}
+                                    <h3 className="text-[12px] font-medium tracking-wide text-white uppercase mb-2">
+                                        {artist.name}
+                                    </h3>
 
-                                {/* Description */}
-                                <p className="text-xs md:text-sm text-white/70 leading-snug text-left">
-                                    {artist.description}
-                                </p>
-                            </div>
-                        ))}
+                                    {/* Description */}
+                                    <p className="text-[11.5px] leading-relaxed text-white/70 text-left">
+                                        {artist.description}
+                                    </p>
 
+                                </div>
+                            ))}
+
+                        </div>
                     </div>
+
                 </div>
-            </div>
+            </section>
         </PageWrapper>
     );
 };

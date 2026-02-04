@@ -48,8 +48,8 @@ export const Page3: React.FC<Page3Props> = ({ isActive, onSlideshowComplete, isP
     jaisalmerBhrama
   ];
 
-  const SLIDE_DURATION = 3000;
-  const TEXT_DURATION = 4500;
+  const SLIDE_DURATION = 6000; // 6s per slide for smooth crossfade (4s transition overlaps)
+  const TEXT_DURATION = 6000; // 2s slow appear + 4s hold time
 
   useEffect(() => {
     if (!isActive) {
@@ -108,7 +108,7 @@ export const Page3: React.FC<Page3Props> = ({ isActive, onSlideshowComplete, isP
 
         {/* Static Background during Text Animations */}
         <div
-          className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${textAnimationsComplete ? 'opacity-0' : 'opacity-100'
+          className={`absolute inset-0 transition-opacity duration-[4000ms] ease-in-out ${textAnimationsComplete ? 'opacity-0' : 'opacity-100'
             }`}
         >
           <img
@@ -121,24 +121,30 @@ export const Page3: React.FC<Page3Props> = ({ isActive, onSlideshowComplete, isP
         </div>
 
         {/* Slideshow Background - starts after text animations */}
-        {textAnimationsComplete && slideshowImages.map((image, index) => (
+        {textAnimationsComplete && slideshowImages.map((image, index) => {
+          // Don't crop these specific images
+          const noCropImages = ['5.jpg', 'shutterstock_1832570845.jpg', 'Bhrama_3187.webp'];
+          const shouldNotCrop = noCropImages.some(name => image.includes(name));
+          
+          return (
           <div
             key={index}
-            className={`absolute inset-0 transition-all duration-1000 ease-in-out ${index === currentImageIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+            className={`absolute inset-0 transition-all duration-[4000ms] ease-in-out ${index === currentImageIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
               }`}
           >
             <img
               src={image}
-              className="w-full h-full object-cover"
+              className={`w-full h-full ${shouldNotCrop ? 'object-contain bg-black' : 'object-cover'}`}
               alt={`Jaisalmer Slide ${index}`}
             />
             {/* Dark Gradient Overlay for text readability */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20" />
           </div>
-        ))}
+        );
+        })}
 
         {/* Text Overlay - fades out when slideshow starts */}
-        <div className={`relative z-10 h-full flex items-start justify-center px-8 pt-32 transition-opacity duration-1000 ${textAnimationsComplete ? 'opacity-0 pointer-events-none' : 'opacity-100'
+        <div className={`relative z-10 h-full flex items-start justify-center px-8 pt-[2rem] transition-opacity duration-[4000ms] ${textAnimationsComplete ? 'opacity-0 pointer-events-none' : 'opacity-100'
           }`}>
           <div
             className="max-w-4xl text-center"
@@ -146,7 +152,7 @@ export const Page3: React.FC<Page3Props> = ({ isActive, onSlideshowComplete, isP
             {textBlocks.map((text, index) => (
               <div
                 key={index}
-                className={`absolute top-32 left-0 right-0 m-auto max-w-4xl text-lg md:text-xl lg:text-2xl font-light leading-relaxed text-white transition-all duration-1000 ${index === activeText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
+                className={`absolute top-[2rem] left-0 right-0 m-auto max-w-4xl px-8 text-lg md:text-xl lg:text-2xl font-thin leading-relaxed text-white transition-all duration-[3000ms] ease-out ${index === activeText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8 pointer-events-none'
                   }`}
               >
                 {text}

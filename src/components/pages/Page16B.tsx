@@ -64,52 +64,11 @@ export const Page16B: React.FC<Page16BProps> = ({ isActive, isPaused, onSlidesho
                 {/* Content Container */}
                 <div className="relative z-10 w-full h-full flex px-10 md:px-16 lg:px-20 py-10 md:py-14">
                     
-                    {/* Left Column */}
+                    {/* Left Column - THE CROWD */}
                     <div className="flex-1 pr-8 flex flex-col justify-center">
-                        {/* Heading */}
-                        <h1 
-                            className={`font-display text-2xl md:text-3xl lg:text-4xl text-white tracking-[0.25em] uppercase mb-6 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transition-all duration-1000 ease-out ${
-                                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
-                            }`}
-                        >
-                            WHO ARE THEY?
-                        </h1>
-
-                        {/* Paragraph 1 */}
-                        <p 
-                            className={`font-display text-sm md:text-base text-white leading-relaxed mb-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)] transition-all duration-1000 ease-out delay-200 ${
-                                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                            }`}
-                        >
-                            The single biggest global community of diversely cultural trend setters from around the world. 
-                            International tastemakers, cultural nomads and change-makers aged 25–60.
-                        </p>
-
-                        {/* Paragraph 2 */}
-                        <p 
-                            className={`font-display text-sm md:text-base text-white leading-relaxed mb-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)] transition-all duration-1000 ease-out delay-300 ${
-                                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                            }`}
-                        >
-                            From wealthy to ultra-high-net-worth, they span 52+ nationalities — all gathering in one intimate space. 
-                            They're visionary philanthropists: people with influence, resources and the will to make a mark on the world.
-                        </p>
-
-                        {/* Paragraph 3 */}
-                        <p 
-                            className={`font-display text-sm md:text-base text-white/95 leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)] transition-all duration-1000 ease-out delay-500 ${
-                                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                            }`}
-                        >
-                            Our tight selection process keeps the circle intentionally exclusive, attracting those who value discretion and command influence on a global stage.
-                        </p>
-                    </div>
-
-                    {/* Right Column */}
-                    <div className="flex-1 pl-8 flex flex-col justify-center border-l border-white/20">
                         {/* The Crowd Header */}
                         <h2 
-                            className={`font-display text-lg md:text-xl text-white tracking-[0.2em] uppercase mb-5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transition-all duration-1000 ease-out ${
+                            className={`font-display text-lg md:text-xl text-white tracking-[0.2em] uppercase mb-5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transition-all duration-[4000ms] ease-out ${
                                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
                             }`}
                         >
@@ -118,7 +77,7 @@ export const Page16B: React.FC<Page16BProps> = ({ isActive, isPaused, onSlidesho
 
                         {/* Crowd Description */}
                         <p 
-                            className={`font-display text-sm md:text-base text-white/95 leading-relaxed mb-5 drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)] transition-all duration-1000 ease-out delay-200 ${
+                            className={`font-display text-sm md:text-base text-white/95 leading-relaxed mb-5 drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)] transition-all duration-[4000ms] ease-out delay-200 ${
                                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
                             }`}
                         >
@@ -127,7 +86,7 @@ export const Page16B: React.FC<Page16BProps> = ({ isActive, isPaused, onSlidesho
 
                         {/* "Our crowd brings together" label */}
                         <p 
-                            className={`font-display text-xs md:text-sm text-white/70 tracking-wide uppercase mb-3 transition-all duration-1000 ease-out delay-300 ${
+                            className={`font-display text-xs md:text-sm text-white/70 tracking-wide uppercase mb-3 transition-all duration-[4000ms] ease-out delay-300 ${
                                 isVisible ? 'opacity-100' : 'opacity-0'
                             }`}
                         >
@@ -148,6 +107,47 @@ export const Page16B: React.FC<Page16BProps> = ({ isActive, isPaused, onSlidesho
                                 </p>
                             ))}
                         </div>
+                    </div>
+
+                    {/* Right Column - WHO ARE THEY */}
+                    <div className="flex-1 pl-8 flex flex-col justify-center border-l border-white/20">
+                        {/* Heading */}
+                        <h1 
+                            className={`font-display text-2xl md:text-3xl lg:text-4xl text-white tracking-[0.25em] uppercase mb-6 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] transition-all duration-[4000ms] ease-out ${
+                                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
+                            }`}
+                        >
+                            WHO ARE THEY?
+                        </h1>
+
+                        {/* Paragraph 1 */}
+                        <p 
+                            className={`font-display text-sm md:text-base text-white leading-relaxed mb-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)] transition-all duration-[4000ms] ease-out delay-200 ${
+                                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                            }`}
+                        >
+                            The single biggest global community of diversely cultural trend setters from around the world. 
+                            International tastemakers, cultural nomads and change-makers aged 25–60.
+                        </p>
+
+                        {/* Paragraph 2 */}
+                        <p 
+                            className={`font-display text-sm md:text-base text-white leading-relaxed mb-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)] transition-all duration-[4000ms] ease-out delay-300 ${
+                                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                            }`}
+                        >
+                            From wealthy to ultra-high-net-worth, they span 52+ nationalities — all gathering in one intimate space. 
+                            They're visionary philanthropists: people with influence, resources and the will to make a mark on the world.
+                        </p>
+
+                        {/* Paragraph 3 */}
+                        <p 
+                            className={`font-display text-sm md:text-base text-white/95 leading-relaxed drop-shadow-[0_1px_2px_rgba(0,0,0,0.6)] transition-all duration-[4000ms] ease-out delay-500 ${
+                                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                            }`}
+                        >
+                            Our tight selection process keeps the circle intentionally exclusive, attracting those who value discretion and command influence on a global stage.
+                        </p>
                     </div>
                 </div>
             </div>

@@ -137,10 +137,10 @@ export const Page1: React.FC<Page1Props> = ({ isActive, audioRef, isPaused = fal
 
   useEffect(() => {
     if (isActive) {
-      // Staggered text animations - SLOWER, 3 stages
-      setTimeout(() => setShowCaravana(true), 1000);  // Stage 1: 1s
-      setTimeout(() => setShowCenter(true), 2500);    // Stage 2: 2.5s
-      setTimeout(() => setShowIndia(true), 4000);     // Stage 3: 4s
+      // Staggered text animations - each text takes 3s to move up slowly
+      setTimeout(() => setShowCaravana(true), 1000);   // CARAVANA at 1s
+      setTimeout(() => setShowIndia(true), 4000);      // INDIA + date at 4s
+      setTimeout(() => setShowCenter(true), 7000);     // Road to Jaisalmer at 7s
 
       // Start playing video if player is ready and not paused
       if (playerRef.current && playerRef.current.playVideo && !isPaused) {
@@ -172,37 +172,41 @@ export const Page1: React.FC<Page1Props> = ({ isActive, audioRef, isPaused = fal
       {/* Minimalist dark overlay */}
       <div className="absolute inset-0 bg-background/50" />
 
-      {/* Text Content - Centered Vertical Stack */}
-      <div className="relative z-10 w-full h-full flex flex-col items-center justify-center">
-        {/* CARAVANA Title */}
+      {/* Text Content - Positioned Layout */}
+      <div className="relative z-10 w-full h-full">
+        
+        {/* CARAVANA Title - Top Right Corner */}
         <div
-          className={`transition-all duration-[3000ms] ${showCaravana ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'
-            }`}
+          className={`absolute top-6 md:top-8 lg:top-10 right-6 md:right-8 lg:right-10 transition-all duration-[3000ms] ease-out ${
+            showCaravana ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
         >
-          <h1 className="font-display text-5xl md:text-7xl lg:text-7xl font-thin tracking-[0.35em] text-foreground">
+          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-thin tracking-[0.3em] text-foreground text-right">
             CARAVANA
           </h1>
         </div>
 
-        {/* Subtitle - THE ROAD TO JAISALMER */}
+        {/* Subtitle - THE ROAD TO JAISALMER - Center */}
         <div
-          className={`transition-all duration-[3000ms] mt-8 md:mt-12 ${showCenter ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}
+          className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-[3000ms] ease-out ${
+            showCenter ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
         >
-          <p className="font-display text-lg md:text-2xl lg:text-3xl font-light tracking-[0.25em] text-foreground">
+          <p className="font-display text-lg md:text-xl lg:text-2xl font-thin tracking-[0.25em] text-foreground text-center whitespace-nowrap">
             THE ROAD TO JAISALMER
           </p>
         </div>
 
-        {/* Location & Date Info */}
+        {/* Location & Date Info - Bottom Right Corner */}
         <div
-          className={`transition-all duration-[3000ms] mt-16 md:mt-20 text-center ${showIndia ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}
+          className={`absolute bottom-6 md:bottom-8 lg:bottom-10 right-6 md:right-8 lg:right-10 text-right transition-all duration-[3000ms] ease-out ${
+            showIndia ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}
         >
-          <p className="font-display text-base md:text-lg lg:text-xl font-light tracking-[0.2em] text-foreground">
+          <p className="font-display text-base md:text-lg lg:text-xl font-thin tracking-[0.2em] text-foreground">
             INDIA
           </p>
-          <p className="font-display text-xs md:text-sm lg:text-base font-light tracking-[0.2em] text-foreground/80 mt-3">
+          <p className="font-display text-xs md:text-sm lg:text-base font-thin tracking-[0.2em] text-foreground/80 mt-2">
             2-5 NOVEMBER 2026
           </p>
         </div>

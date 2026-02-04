@@ -37,7 +37,7 @@ export const PageFounder: React.FC<PageFounderProps> = ({ isActive, isPaused, on
             {/* Background Image with Fade */}
             <div className="fixed inset-0 w-screen h-screen overflow-hidden">
                  <div 
-                    className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000"
+                    className="absolute inset-0 bg-cover bg-center transition-opacity duration-[4000ms]"
                     style={{ 
                         backgroundImage: "url('/assets/images/Founder_Page/founder_bg.jpg')",
                         opacity: 0.4 // "Make it fade" - interpreting as a faded background image or overlay
@@ -54,7 +54,7 @@ export const PageFounder: React.FC<PageFounderProps> = ({ isActive, isPaused, on
                     <div className="flex-1 flex flex-col justify-center max-w-3xl pr-4">
                         {/* "The founder" - appears first */}
                         <span 
-                            className={`font-display text-base md:text-lg text-[hsl(40,30%,92%)] tracking-[0.2em] uppercase mb-1 block transition-all duration-[3000ms] ease-out ${
+                            className={`font-display text-base md:text-lg text-[hsl(40,30%,92%)] tracking-[0.2em] uppercase mb-1 block transition-all duration-[4000ms] ease-out ${
                                 isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
                             }`}
                         >
@@ -63,7 +63,7 @@ export const PageFounder: React.FC<PageFounderProps> = ({ isActive, isPaused, on
                         
                         {/* "Nadja Reiche" - appears second (delay 2s) */}
                         <h2 
-                            className={`font-display text-3xl md:text-4xl lg:text-5xl text-white mb-1 transition-all duration-[3000ms] delay-[2000ms] ease-out ${
+                            className={`font-display text-3xl md:text-4xl lg:text-5xl text-white mb-1 transition-all duration-[4000ms] delay-[2000ms] ease-out ${
                                 isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
                             }`}
                         >
@@ -72,7 +72,7 @@ export const PageFounder: React.FC<PageFounderProps> = ({ isActive, isPaused, on
                         
                         {/* "Founder" - appears third (delay 4s) */}
                         <span 
-                            className={`font-display text-lg md:text-xl text-[hsl(40,25%,88%)] uppercase tracking-widest mb-4 block transition-all duration-[3000ms] delay-[4000ms] ease-out ${
+                            className={`font-display text-lg md:text-xl text-[hsl(40,25%,88%)] uppercase tracking-widest mb-4 block transition-all duration-[4000ms] delay-[4000ms] ease-out ${
                                 isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
                             }`}
                         >
@@ -113,11 +113,11 @@ export const PageFounder: React.FC<PageFounderProps> = ({ isActive, isPaused, on
                     {/* Right Bottom Image - smaller, positioned bottom right above buttons */}
                     <div className="absolute right-8 md:right-12 lg:right-16 bottom-20 md:bottom-24">
                         <div
-                             className={`transition-all duration-[2000ms] delay-[1000ms] ease-out ${
+                             className={`transition-all duration-[4000ms] delay-[1000ms] ease-out ${
                                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                             }`}
                         >
-                            <div className="w-52 md:w-64 lg:w-80 h-52 md:h-64 lg:h-80 rounded-full overflow-hidden border-4 border-[hsl(40,25%,88%)]/30 shadow-2xl">
+                            <div className="w-52 md:w-64 lg:w-80 h-52 md:h-64 lg:h-80 rounded-xl overflow-hidden border-4 border-[hsl(40,25%,88%)]/30 shadow-2xl">
                                 <img 
                                     src="/assets/images/Founder_Page/nadja-removebg-preview.png" 
                                     alt="Nadja Reiche" 
