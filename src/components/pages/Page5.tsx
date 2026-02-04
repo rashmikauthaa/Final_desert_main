@@ -36,7 +36,7 @@ const suryagarhKeywords = ['Luxury', 'Heritage', 'Palace', 'Sanctuary'];
 const suryagarhSlideshowImages = [
   suryagarh1,
   suryagarh2,
-  suryagarh3,
+  // suryagarh3,
   suryagarh4,
   suryagarh5,
   suryagarh7,
