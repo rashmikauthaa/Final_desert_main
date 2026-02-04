@@ -16,12 +16,12 @@ export const PageFounder: React.FC<PageFounderProps> = ({ isActive, isPaused, on
                 setIsVisible(true);
             }, 500);
 
-            // Auto-advance after reading time (approx 25 seconds for this amount of text)
+            // Auto-advance after reading time (approx 18 seconds)
             const advanceTimer = setTimeout(() => {
                 if (onSlideshowComplete && !isPaused) {
                     onSlideshowComplete();
                 }
-            }, 25000);
+            }, 18000);
 
             return () => {
                 clearTimeout(timer);

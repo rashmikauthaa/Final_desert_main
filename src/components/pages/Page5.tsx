@@ -1,15 +1,18 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { PageWrapper } from '@/components/PageWrapper';
 
-// Import Suryagarh images
-const suryagarh3 = '/assets/images/Suryagarh/3..jpg';
+// Import all Suryagarh images
+const suryagarh1 = '/assets/images/Suryagarh/1..webp';
 const suryagarh2 = '/assets/images/Suryagarh/2- crop.png';
+const suryagarh3 = '/assets/images/Suryagarh/3..jpg';
+const suryagarh4 = '/assets/images/Suryagarh/4..jpeg';
+const suryagarh5 = '/assets/images/Suryagarh/5.png';
 const suryagarh7 = '/assets/images/Suryagarh/7.webp';
+const suryagarh8 = '/assets/images/Suryagarh/8...jpg';
 const suryagarh9 = '/assets/images/Suryagarh/9.jpg';
 const suryagarh10 = '/assets/images/Suryagarh/10.png';
-const suryagarh1 = '/assets/images/Suryagarh/1..webp';
-const suryagarh4 = '/assets/images/Suryagarh/4..jpeg';
-const suryagarh5 = '/assets/images/Suryagarh/790978138.jpg';
+const suryagarh11 = '/assets/images/Suryagarh/11.jpg';
+const suryagarh790 = '/assets/images/Suryagarh/790978138.jpg';
 
 interface Page5Props {
   isActive: boolean;
@@ -29,18 +32,22 @@ const suryagarhTextBlocks = [
 // Keywords for Suryagarh - "heaven of Rajasthan" and others
 const suryagarhKeywords = ['Luxury', 'Heritage', 'Palace', 'Sanctuary'];
 
-// Slideshow images (2, 7, 9, 10, 1, 4, 5)
+// Slideshow images - all 11 images from Suryagarh folder
 const suryagarhSlideshowImages = [
-  suryagarh5,
+  suryagarh1,
   suryagarh2,
+  // suryagarh3,
+  suryagarh4,
+  suryagarh5,
   suryagarh7,
+  suryagarh8,
   suryagarh9,
   suryagarh10,
-  suryagarh1,
-  suryagarh4
+  suryagarh11,
+  suryagarh790
 ];
 
-const TEXT_DURATION = 4500; // Duration for each text block (like Page3)
+const TEXT_DURATION = 7000; // Duration for each text block (3s fade-in + 4s hold)
 const TEXT_TOTAL = suryagarhTextBlocks.length * TEXT_DURATION;
 const SLIDE_DURATION = 6000; // 6s per slide for smooth crossfade (4s transition overlaps)
 const SLIDESHOW_TOTAL = suryagarhSlideshowImages.length * SLIDE_DURATION;
@@ -126,15 +133,17 @@ export const Page5: React.FC<Page5Props> = ({ isActive, onSlideshowComplete, aud
             </div>
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20" />
 
-            {/* Text Content - animated like Page3 */}
+            {/* Text Content - animated like Page3 with crossfade */}
             <div className="relative z-10 h-full flex items-start justify-center px-8 pt-32">
-              <div
-                key={activeText}
-                className="max-w-4xl text-center space-y-6"
-              >
-                <p className="text-lg md:text-xl lg:text-2xl font-thin leading-relaxed text-white transition-opacity duration-[4000ms] opacity-100">
-                  {suryagarhTextBlocks[activeText]}
-                </p>
+              <div className="max-w-4xl text-center space-y-6">
+                {suryagarhTextBlocks.map((text, index) => (
+                  <p 
+                    key={index}
+                    className={`absolute left-0 right-0 mx-8 text-lg md:text-xl lg:text-2xl font-thin leading-relaxed text-white transition-all duration-[3000ms] ease-out ${index === activeText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6 pointer-events-none'}`}
+                  >
+                    {text}
+                  </p>
+                ))}
 
                 {/* Keywords in pill containers - shown when second text block is active */}
                 {activeText === 1 && (
