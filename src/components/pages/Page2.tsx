@@ -10,8 +10,8 @@ interface Page2Props {
 const VIDEO_SRC = '/assets/videos/jaisalmer_vid.mp4';
 
 // Text overlay timing (in seconds from video start)
-const TEXT_APPEAR_TIME = 1; // Text appears 1 second after video starts
-const TEXT_FADE_TIME = 4; // Text fades out 4 seconds after video starts
+const TEXT_APPEAR_TIME = 0.5; // Text starts appearing 0.5 seconds after video starts
+const TEXT_FADE_TIME = 10; // Text stays until 10 seconds (5s appear + 5s stay)
 
 export const Page2: React.FC<Page2Props> = ({ isActive, videoRef }) => {
   const [showText, setShowText] = useState(false);
@@ -90,7 +90,7 @@ export const Page2: React.FC<Page2Props> = ({ isActive, videoRef }) => {
 
         {/* JAISALMER Text Introduction */}
         <div
-          className={`absolute inset-0 flex items-center justify-center transition-opacity duration-[4000ms] z-10 ${showText ? 'opacity-100' : 'opacity-0 pointer-events-none'
+          className={`absolute inset-0 flex items-center justify-center transition-all duration-[5000ms] ease-[cubic-bezier(0.22,1,0.36,1)] z-10 ${showText ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6 pointer-events-none'
             }`}
         >
           <div className="text-center">

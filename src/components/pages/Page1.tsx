@@ -137,10 +137,10 @@ export const Page1: React.FC<Page1Props> = ({ isActive, audioRef, isPaused = fal
 
   useEffect(() => {
     if (isActive) {
-      // Staggered text animations - each text takes 3s to move up slowly
-      setTimeout(() => setShowCaravana(true), 1000);   // CARAVANA at 1s
-      setTimeout(() => setShowIndia(true), 4000);      // INDIA + date at 4s
-      setTimeout(() => setShowCenter(true), 7000);     // Road to Jaisalmer at 7s
+      // Staggered text animations - reduced timing by 3 seconds total
+      setTimeout(() => setShowCaravana(true), 2500);    // CARAVANA at 0.5s
+      setTimeout(() => setShowIndia(true), 2500);      // INDIA + date at 2.5s
+      setTimeout(() => setShowCenter(true), 3500);     // Road to Jaisalmer at 4.5s
 
       // Start playing video if player is ready and not paused
       if (playerRef.current && playerRef.current.playVideo && !isPaused) {
