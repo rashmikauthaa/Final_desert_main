@@ -17,8 +17,9 @@ interface Page10Props {
   isPaused?: boolean;
 }
 
-const TEXT_STAGGER_DELAY = 800;
-const IMAGE_DISPLAY_DURATION = 3000;
+const TEXT_STAGGER_DELAY = 1500; // Increased for slower appearance
+const TEXT_HOLD_DURATION = 4000; // Time to hold each text for reading
+const IMAGE_DISPLAY_DURATION = 4000; // Longer image display
 
 const venueImages = [
   sunriseConcertStage,
@@ -65,15 +66,15 @@ export const Page10: React.FC<Page10Props> = ({
     let totalDelay = 0;
 
     const timeline = [
-      { d: 500, a: () => show('intro') },
-      { d: TEXT_STAGGER_DELAY, a: () => { show('forts'); setImage(1); } },
-      { d: IMAGE_DISPLAY_DURATION * 0.5, a: () => { show('palaces'); setImage(5); } },
-      { d: IMAGE_DISPLAY_DURATION * 0.5, a: () => { show('lakes'); setImage(2); } },
-      { d: IMAGE_DISPLAY_DURATION * 0.5, a: () => { show('stepwells'); setImage(3); } },
-      { d: IMAGE_DISPLAY_DURATION * 0.5, a: () => { show('temples'); setImage(4); } },
-      { d: IMAGE_DISPLAY_DURATION * 0.5, a: () => { show('continuation'); setImage(6); } },
-      { d: IMAGE_DISPLAY_DURATION * 0.5, a: () => { show('highlight'); setImage(7); } },
-      { d: 3000, a: () => onSlideshowComplete?.() },
+      { d: 1000, a: () => show('intro') },
+      { d: TEXT_HOLD_DURATION, a: () => { show('forts'); setImage(1); } },
+      { d: TEXT_STAGGER_DELAY, a: () => { show('palaces'); setImage(5); } },
+      { d: TEXT_STAGGER_DELAY, a: () => { show('lakes'); setImage(2); } },
+      { d: TEXT_STAGGER_DELAY, a: () => { show('stepwells'); setImage(3); } },
+      { d: TEXT_STAGGER_DELAY, a: () => { show('temples'); setImage(4); } },
+      { d: TEXT_HOLD_DURATION, a: () => { show('continuation'); setImage(6); } },
+      { d: TEXT_HOLD_DURATION, a: () => { show('highlight'); setImage(7); } },
+      { d: 4000, a: () => onSlideshowComplete?.() },
     ];
 
     timeline.forEach(item => {
@@ -100,28 +101,28 @@ export const Page10: React.FC<Page10Props> = ({
           return (
             <div
               key={index}
-              className="absolute inset-0 transition-all duration-[4000ms] ease-in-out"
+              className="absolute inset-0 transition-all duration-[4000ms] ease-in"
               style={{
                 opacity: isActiveImg ? 1 : 0,
                 transform: isActiveImg
                   ? 'scale(1)'
                   : wasActive
-                    ? 'scale(1.1)'
-                    : 'scale(0.95)',
+                    ? 'scale(1.05)'
+                    : 'scale(0.98)',
                 zIndex: isActiveImg ? 10 : 5,
               }}
             >
               <img
                 src={image}
                 alt="Venue"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover blur-[2px]"
               />
             </div>
           );
         })}
 
-        {/* subtle gradient for readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent z-20" />
+        {/* Dark gradient overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/30 z-20" />
       </div>
 
       {/* FLOATING TEXT OVERLAY */}
@@ -129,7 +130,8 @@ export const Page10: React.FC<Page10Props> = ({
         <div className="space-y-6 text-white">
 
           {visible.has('intro') && (
-            <p className="text-xl font-light leading-relaxed">
+            <p className="text-xl font-light leading-relaxed transition-all duration-[3000ms] ease-out opacity-100 translate-y-0"
+               style={{ animation: 'fadeInUp 3s ease-out forwards' }}>
               The Festival unfolds in some of Rajasthan's most iconic heritage sites and breathtaking settings.
             </p>
           )}
@@ -143,13 +145,15 @@ export const Page10: React.FC<Page10Props> = ({
           </div>
 
           {visible.has('continuation') && (
-            <p className="text-lg font-light pt-4">
+            <p className="text-lg font-light pt-4 transition-all duration-[3000ms] ease-out"
+               style={{ animation: 'fadeInUp 3s ease-out forwards' }}>
               These spectacular UNESCO World Heritage Sites have been exclusively opened to us by His Highness
             </p>
           )}
 
           {visible.has('highlight') && (
-            <p className="text-2xl font-light text-white pt-4">
+            <p className="text-2xl font-light text-white pt-4 transition-all duration-[3000ms] ease-out"
+               style={{ animation: 'fadeInUp 3s ease-out forwards' }}>
               Maharadjadhiraj Maharawal of Jaisalmer Chaitainya Raj
             </p>
           )}
@@ -161,7 +165,10 @@ export const Page10: React.FC<Page10Props> = ({
 
 /* ---------- Small Helper ---------- */
 const Tag = ({ children }: { children: React.ReactNode }) => (
-  <span className="px-4 py-1 text-white text-lg font-thin">
+  <span 
+    className="px-4 py-1 text-white text-lg font-thin transition-all duration-[2000ms] ease-out"
+    style={{ animation: 'fadeInUp 2s ease-out forwards' }}
+  >
     {children}
   </span>
 );

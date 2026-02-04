@@ -9,9 +9,9 @@ interface Page9Props {
 
 // Video Configuration
 const VIDEO_SRC = '/assets/videos/concert_venue_vid.mp4';
-const VIDEO_DURATION = 12000; // ms
-const TEXT_DISPLAY_TIME = 2000;
-const TEXT_FADE_TIME = 5000;
+const VIDEO_DURATION = 10000; // Reduced to 10s to prevent stuck feeling
+const TEXT_DISPLAY_TIME = 1500; // Text appears at 1.5s
+const TEXT_FADE_TIME = 8000; // Text stays until 8s (more hold time)
 
 export const Page9: React.FC<Page9Props> = ({
   isActive,
@@ -96,15 +96,13 @@ export const Page9: React.FC<Page9Props> = ({
           setShowText(false);
         }
 
-        // Finish
-        if (currentTime >= VIDEO_DURATION - 500) {
+        // Finish - trigger earlier to prevent stuck feeling
+        if (currentTime >= VIDEO_DURATION - 200) {
           setHasCompleted(true);
           video.pause();
-          video.currentTime = VIDEO_DURATION / 1000; // lock last frame
 
-          setTimeout(() => {
-            onSlideshowComplete?.();
-          }, 500);
+          // Immediately call onSlideshowComplete
+          onSlideshowComplete?.();
 
           if (videoTimeCheckRef.current)
             clearTimeout(videoTimeCheckRef.current);
@@ -165,12 +163,12 @@ export const Page9: React.FC<Page9Props> = ({
       {/* ---------------- Text Overlay ---------------- */}
       <div className="relative z-30 w-full h-full flex items-start justify-center pt-24 md:pt-32 pointer-events-none">
         <div
-          className="transition-all duration-[7000ms] ease-in-out"
+          className="transition-all duration-[3000ms] ease-in"
           style={{
             opacity: showText ? 1 : 0,
             transform: showText
               ? 'translateY(0) scale(1)'
-              : 'translateY(20px) scale(0.96)',
+              : 'translateY(30px) scale(0.95)',
           }}
         >
           <div className="px-10 py-5 flex flex-col items-center text-center">
