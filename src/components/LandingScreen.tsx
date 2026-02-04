@@ -24,44 +24,33 @@ export const LandingScreen: React.FC<LandingScreenProps> = ({ onStart }) => {
 </h1>
         
         {/* Subtitle */}
-        <p className="font-display text-base md:text-lg lg:text-xl font-light text-muted-foreground tracking-[0.15em] mb-12 max-w-xl">
+        <p className="font-display text-base md:text-lg lg:text-xl font-light text-muted-foreground tracking-[0.15em] mb-16 max-w-xl uppercase">
           A musical caravan journeying through the sands of Rajasthan
         </p>
         
-        {/* Start Button */}
+        {/* Animated Play Button */}
         <button
           onClick={onStart}
-          className="group relative px-10 py-5 md:px-14 md:py-6 border border-primary/50 rounded-full 
+          className="group relative w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-full 
+                     border-2 border-primary/50 
                      bg-gradient-to-b from-primary/10 to-transparent backdrop-blur-sm
                      hover:border-primary hover:bg-primary/20 
                      transition-all duration-500 ease-out
-                     hover:scale-105 active:scale-100"
+                     hover:scale-110 active:scale-100
+                     flex items-center justify-center"
         >
           {/* Button glow effect */}
-          <span className="absolute inset-0 rounded-full bg-primary/10 blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-500" />
+          <span className="absolute inset-0 rounded-full bg-primary/20 blur-xl opacity-0 group-hover:opacity-70 transition-opacity duration-500" />
           
-          {/* Button text */}
-          <span className="relative font-display text-sm md:text-base lg:text-lg font-light text-primary tracking-[0.25em] uppercase">
-            Press to dive in
-          </span>
-          
-          {/* Animated sub-text */}
-          <span className="block relative font-display text-xs md:text-sm font-light text-muted-foreground tracking-[0.15em] mt-2 opacity-70 group-hover:opacity-100 transition-opacity">
-            the soothing waves of Rajasthani classical music
-          </span>
-        </button>
-        
-        {/* Pulsing indicator */}
-        <div className="mt-16 flex flex-col items-center animate-bounce opacity-40">
+          {/* Play Icon */}
           <svg 
-            className="w-6 h-6 text-primary/60" 
-            fill="none" 
-            viewBox="0 0 24 24" 
-            stroke="currentColor"
+            className="relative w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 text-primary ml-1 group-hover:scale-110 transition-transform duration-300" 
+            fill="currentColor" 
+            viewBox="0 0 24 24"
           >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            <path d="M8 5v14l11-7z" />
           </svg>
-        </div>
+        </button>
       </div>
       
       {/* Decorative bottom line */}
