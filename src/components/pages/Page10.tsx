@@ -16,8 +16,8 @@ interface Page10Props {
   isPaused?: boolean;
 }
 
-const TEXT_STAGGER_DELAY = 800;
-const IMAGE_DISPLAY_DURATION = 3000;
+const TEXT_STAGGER_DELAY = 1200; // Slower text stagger
+const IMAGE_DISPLAY_DURATION = 4000; // Slower image transitions
 
 const venueImages = [
   img2,
@@ -90,7 +90,7 @@ export const Page10: React.FC<Page10Props> = ({
           return (
             <div
               key={index}
-              className="absolute inset-0 transition-opacity duration-[1800ms] ease-out"
+              className="absolute inset-0 transition-all duration-[4000ms] ease-out"
               style={{
                 opacity: isActiveImg ? 1 : 0,
                 zIndex: isActiveImg ? 10 : 5,
@@ -105,11 +105,11 @@ export const Page10: React.FC<Page10Props> = ({
           );
         })}
 
-        {/* BLACK FILM OVERLAY */}
-        <div className="absolute inset-0 bg-black/45 z-20" />
+        {/* BLACK FILM OVERLAY for better text readability */}
+        <div className="absolute inset-0 bg-black/55 z-20" />
 
-        {/* VERY SUBTLE DEPTH GRADIENT (optional but cinematic) */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-transparent z-20" />
+        {/* DEPTH GRADIENT for text area */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent z-20" />
       </div>
 
       {/* TEXT CONTENT */}
@@ -117,7 +117,7 @@ export const Page10: React.FC<Page10Props> = ({
         <div className="space-y-6 text-white">
 
           {visible.has('intro') && (
-            <p className="text-xl font-light leading-relaxed">
+            <p className="text-xl md:text-2xl font-light leading-relaxed drop-shadow-lg">
               The Festival unfolds in some of Rajasthan&apos;s most iconic heritage sites and breathtaking settings.
             </p>
           )}
@@ -131,13 +131,13 @@ export const Page10: React.FC<Page10Props> = ({
           </div>
 
           {visible.has('continuation') && (
-            <p className="text-lg font-light pt-4">
+            <p className="text-lg md:text-xl font-light pt-4 drop-shadow-lg">
               These spectacular UNESCO World Heritage Sites have been exclusively opened to us by His Highness
             </p>
           )}
 
           {visible.has('highlight') && (
-            <p className="text-2xl font-light pt-4">
+            <p className="text-2xl md:text-3xl font-light pt-4 drop-shadow-lg">
               Maharadjadhiraj Maharawal of Jaisalmer Chaitainya Raj
             </p>
           )}
@@ -149,7 +149,7 @@ export const Page10: React.FC<Page10Props> = ({
 
 /* ---------- Helper ---------- */
 const Tag = ({ children }: { children: React.ReactNode }) => (
-  <span className="px-4 py-1 text-white text-lg font-thin">
+  <span className="px-4 py-1 text-white text-lg md:text-xl font-thin drop-shadow-lg">
     {children}
   </span>
 );
