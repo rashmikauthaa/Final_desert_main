@@ -21,7 +21,7 @@ const images = [
   "/assets/images/Manganiyars/8...jpg",
 ];
 
-const SLIDE_DURATION = 3000; // 3s per slide for smooth crossfade (4s transition overlaps)
+const SLIDE_DURATION = 2000; // 2s per slide for faster sliding
 
 export const Page8: React.FC<Page8Props> = ({ isActive, onVideoStart, onVideoEnd, onSlideshowComplete, audioRef, isPaused }) => {
   const [currentIndex, setCurrentIndex] = useState(0);

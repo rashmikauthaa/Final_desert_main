@@ -47,7 +47,7 @@ export const Page3: React.FC<Page3Props> = ({ isActive, onSlideshowComplete, isP
     jaisalmerBhrama
   ];
 
-  const SLIDE_DURATION = 6000; // 6s per slide for smooth crossfade (4s transition overlaps)
+  const SLIDE_DURATION = 4000; // 4s per slide for faster sliding
   const TEXT_DURATION = 6000; // 2s slow appear + 4s hold time
 
   useEffect(() => {

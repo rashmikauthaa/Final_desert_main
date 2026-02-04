@@ -3,16 +3,14 @@ import { PageWrapper } from '@/components/PageWrapper';
 
 // Import Suryagarh images
 const suryagarh3 = '/assets/images/Suryagarh/3..jpg';
-const suryagarh2 = '/assets/images/Suryagarh/2- crop.png';
-const suryagarh7 = '/assets/images/Suryagarh/7.webp';
-const suryagarh9 = '/assets/images/Suryagarh/9.jpg';
-const suryagarh10 = '/assets/images/Suryagarh/10.png';
-const suryagarh1 = '/assets/images/Suryagarh/1..webp';
-const suryagarh4 = '/assets/images/Suryagarh/4..jpeg';
-const suryagarh5 = '/assets/images/Suryagarh/790978138.jpg';
-const suryagarh12 = 'assets/images/Suryagarh/12.jpg';
-const suryagarh8 = 'assets/images/Suryagarh/8...jpg';
-const suryagarh11 = 'assets/images/Suryagarh/11.jpg';
+const slide1 = '/assets/images/Suryagarh/SLIDESHOW 1..png';
+const slide2 = '/assets/images/Suryagarh/SLIDESHOW 2.png';
+const slide3 = '/assets/images/Suryagarh/SLIDESHOW 3.jpg';
+const slide4 = '/assets/images/Suryagarh/SLIDESHOW 4.png';
+const slide5 = '/assets/images/Suryagarh/SLIDESHOW 5.jpg';
+const slide6 = '/assets/images/Suryagarh/SLIDESHOW 6.jpg';
+const slide7 = '/assets/images/Suryagarh/SLIDESHOW 7.jpg';
+const slide8 = '/assets/images/Suryagarh/SLIDESHOW 8.webp';
 
 interface Page5Props {
   isActive: boolean;
@@ -34,17 +32,14 @@ const suryagarhKeywords = ['Luxury', 'Heritage', 'Palace', 'Sanctuary'];
 
 // Slideshow images 
 const suryagarhSlideshowImages = [
-  suryagarh1,
-  suryagarh2,
-  // suryagarh3,
-  suryagarh4,
-  suryagarh5,
-  suryagarh7,
-  suryagarh8,
-  suryagarh9,
-  suryagarh10,
-  suryagarh11,
-  suryagarh12
+  slide1,
+  slide2,
+  slide3,
+  slide4,
+  slide5,
+  slide6,
+  slide7,
+  slide8
 ];
 
 const TEXT_DURATION = 4000; // Duration for each text block (like Page3)
