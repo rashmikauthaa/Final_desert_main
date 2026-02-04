@@ -13,15 +13,31 @@ const VIDEO_END_TIME = 18;   // End at 18 seconds
 export const Page19: React.FC<Page19Props> = ({ isActive, isPaused }) => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [showCredits, setShowCredits] = useState(false);
+    const [videoReady, setVideoReady] = useState(false);
 
     useEffect(() => {
         const video = videoRef.current;
-        if (!video || !isActive) return;
+        if (!video || !isActive) {
+            setVideoReady(false);
+            return;
+        }
 
         // Reset and start video at the specified time
         video.currentTime = VIDEO_START_TIME;
-        if (!isPaused) {
-            video.play().catch(() => {});
+        
+        // Wait for video to be ready before showing
+        const handleCanPlay = () => {
+            setVideoReady(true);
+            if (!isPaused) {
+                video.play().catch(() => {});
+            }
+        };
+        
+        video.addEventListener('canplay', handleCanPlay);
+        
+        // If already can play, show immediately
+        if (video.readyState >= 3) {
+            handleCanPlay();
         }
 
         // Show credits after a delay
@@ -29,10 +45,13 @@ export const Page19: React.FC<Page19Props> = ({ isActive, isPaused }) => {
             setShowCredits(true);
         }, 2000);
 
-        // Handle time update to stop at end time
+        // Handle time update to loop smoothly
         const handleTimeUpdate = () => {
             if (video.currentTime >= VIDEO_END_TIME) {
+                // Fade out effect by briefly hiding before seeking
+                setVideoReady(false);
                 video.currentTime = VIDEO_START_TIME;
+                setTimeout(() => setVideoReady(true), 100);
             }
         };
 
@@ -41,7 +60,9 @@ export const Page19: React.FC<Page19Props> = ({ isActive, isPaused }) => {
         return () => {
             video.pause();
             video.removeEventListener('timeupdate', handleTimeUpdate);
+            video.removeEventListener('canplay', handleCanPlay);
             clearTimeout(creditsTimer);
+            setShowCredits(false);
         };
     }, [isActive, isPaused]);
 
@@ -64,7 +85,7 @@ export const Page19: React.FC<Page19Props> = ({ isActive, isPaused }) => {
                 <video
                     ref={videoRef}
                     src={VIDEO_SRC}
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
                     playsInline
                     muted
                     preload="auto"
