@@ -5,7 +5,7 @@ import { PageWrapper } from "@/components/PageWrapper";
 const nicolas = "/assets/images/artisits/Electronic/nicolas.JPG";
 const nils = "/assets/images/artisits/Electronic/nils.jpg";
 const svendsen = "/assets/images/artisits/Electronic/svedan.jpg";
-const paul = "/assets/images/artisits/Electronic/paul.jpg";
+const paul = "/assets/images/artisits/Electronic/acid_pauli.jpg";
 
 interface Page14Props {
     isActive: boolean;
@@ -41,7 +41,7 @@ const artists: Artist[] = [
     {
         name: "Acid Pauli",
         image: paul,
-        description: "Coming soon...",
+        description: "Berlin based German electronic musician, one of the most prominent and pioneering figure worldwide. He known for a genre-bending fusion of psychedelic techno, house, and eclectic samples, taking the listener on a deepest emotional sensory journey.",
     },
 ];
 

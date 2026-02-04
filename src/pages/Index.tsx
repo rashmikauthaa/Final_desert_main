@@ -26,9 +26,10 @@ import { Page16 } from '@/components/pages/Page16';
 import { Page16B } from '@/components/pages/Page16B';
 import { Page17 } from '@/components/pages/Page17';
 import { Page18 } from '@/components/pages/Page18';
+import { PageFounder } from '@/components/pages/PageFounder';
 import { Page19 } from '@/components/pages/Page19';
 
-const TOTAL_PAGES = 21; // Total pages in the presentation (Page0 to Page20)
+const TOTAL_PAGES = 22; // Total pages in the presentation (Page0 to Page21)
 const SWIPE_THRESHOLD = 50;
 const WHEEL_THRESHOLD = 30;
 const DEBOUNCE_TIME = 800;
@@ -95,7 +96,7 @@ const Index = () => {
 
     // Don't auto-slide if paused, on the last page, or landing screen is still showing
     // Also skip pages with internal slideshows
-    if (showLanding || isPaused || currentPage >= TOTAL_PAGES - 1 || currentPage === 2 || currentPage === 3 || currentPage === 4 || currentPage === 5 || currentPage === 8 || currentPage === 9 || currentPage === 10 || currentPage === 11 || currentPage === 12 || currentPage === 13 || currentPage === 14 || currentPage === 15 || currentPage === 16 || currentPage === 17 || currentPage === 18) {
+    if (showLanding || isPaused || currentPage >= TOTAL_PAGES - 1 || currentPage === 2 || currentPage === 3 || currentPage === 4 || currentPage === 5 || currentPage === 8 || currentPage === 9 || currentPage === 10 || currentPage === 11 || currentPage === 12 || currentPage === 13 || currentPage === 14 || currentPage === 15 || currentPage === 16 || currentPage === 17 || currentPage === 18 || currentPage === 20) {
       return;
     }
 
@@ -198,7 +199,14 @@ const Index = () => {
   // Handler for Page18 completion (goes to page 20 - Final Credits)
   const handlePage18Complete = useCallback(() => {
     if (!isPaused) {
-      navigateToPage(20, 'down', true);
+      navigateToPage(20, 'down', true); // Founder Page
+    }
+  }, [navigateToPage, isPaused]);
+
+  // Handler for PageFounder completion (goes to page 21 - Final Credits/Page19)
+  const handlePageFounderComplete = useCallback(() => {
+    if (!isPaused) {
+      navigateToPage(21, 'down', true); 
     }
   }, [navigateToPage, isPaused]);
 
@@ -437,7 +445,8 @@ const Index = () => {
         <Page16B isActive={currentPage === 17} onSlideshowComplete={handlePage16BComplete} isPaused={isPaused} />
         <Page17 isActive={currentPage === 18} onSlideshowComplete={handlePage17Complete} isPaused={isPaused} />
         <Page18 isActive={currentPage === 19} onSlideshowComplete={handlePage18Complete} isPaused={isPaused} />
-        <Page19 isActive={currentPage === 20} isPaused={isPaused} />
+        <PageFounder isActive={currentPage === 20} onSlideshowComplete={handlePageFounderComplete} isPaused={isPaused} />
+        <Page19 isActive={currentPage === 21} isPaused={isPaused} />
 
         {/* Harmonium-style Pagination */}
         <HarmoniumPagination

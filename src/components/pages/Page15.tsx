@@ -55,7 +55,7 @@ const artists: Artist[] = [
     {
         name: "Sri Sri Ravi Shankar",
         image: sri,
-        description: "Coming soon...",
+        description: "An Indian spiritual leader,peace ambassador & globally leading humanitarian.Founder of the Art of living Foundation,operates in over 180 countries.",
     },
 ];
 
