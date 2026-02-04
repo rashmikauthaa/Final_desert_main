@@ -34,14 +34,17 @@ const suryagarhKeywords = ['Luxury', 'Heritage', 'Palace', 'Sanctuary'];
 
 // Slideshow images 
 const suryagarhSlideshowImages = [
+  suryagarh1,
   suryagarh2,
+  suryagarh3,
+  suryagarh4,
   suryagarh5,
-  suryagarh12,
-  suryagarh10,
+  suryagarh7,
   suryagarh8,
   suryagarh9,
+  suryagarh10,
   suryagarh11,
-  suryagarh1
+  suryagarh12
 ];
 
 const TEXT_DURATION = 4000; // Duration for each text block (like Page3)
