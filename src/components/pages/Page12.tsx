@@ -25,7 +25,7 @@ const artists: Artist[] = [
     name: "Amjad Ali Khan",
     image: amjadAliKhan,
     description:
-      "Sarod Master, Grammy Award winner. Recipient of India's highest civilian honors including Padma Shri, Padma Bhushan and Padma Vibhushan. Double awardee of the Indian Lifetime Achievement Award.",
+      "Sarod Master, Grammy Award winner. Recipient of India's highest civilian honors incl. Padma Bhushan & Padma Vibhushan. Double awardee of the Indian Lifetime Achievement Award.",
   },
   {
     name: "Anoushka Shankar",

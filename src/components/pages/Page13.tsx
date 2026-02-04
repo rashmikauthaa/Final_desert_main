@@ -26,7 +26,7 @@ const artists: Artist[] = [
         name: "Naisiri",
         image: naisiri,
         description:
-            "Renowned Iranian multi-instrumentalist and producer blending oud, flute and clarinet with deep bass, rhythmic synths and organic percussion, weaving Sufi traditions into a modern electronic soundscape.",
+            "Renowned Iranian multi-instrumentalist & producer blending oud, flute & clarinet with deep bass & rhythmic synths, weaving Sufi traditions into a modern electronic soundscape.",
     },
     {
         name: "Ismet Aydin",

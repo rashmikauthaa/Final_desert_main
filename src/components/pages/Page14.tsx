@@ -24,13 +24,13 @@ const artists: Artist[] = [
         name: "Nicolas Jaar",
         image: nicolas,
         description:
-            "Chilean-American composer and electronic producer celebrated for redefining downtempo, minimal techno and ambient music with deeply emotive, avant-garde soundscapes.         Jaar continues to produce boundary pushing music, over the years his compositional achievements have very successfully extended to the world of film",
+            "Chilean-American composer & electronic producer celebrated for redefining downtempo, minimal techno & ambient music with deeply emotive soundscapes. Over the years his compositional achievements have very successfully extended to the world of film.",
     },
     {
         name: "Nils Frahm",
         image: nils,
         description:
-            "German composer and producer known for merging classical piano with electronic textures, creating intimate and emotionally resonant performances.He played sold out shows at some of the biggest venues in the world, contributed a significant part in film music and active collaborations with piano builders to optimize the instrument.",
+            "German composer & producer known for merging classical piano with electronic textures, creating intimate & emotionally resonant performances. He played sold out shows at some of the biggest venues in the world & contributed a significant part in film music.",
     },
     {
         name: "Be Svendsen",

@@ -26,7 +26,7 @@ const artists: Artist[] = [
         name: "Sir Ahmed Salman Rushdie",
         image: salman,
         description:
-            "Critically acclaimed British Indian Booker prize-winning author blending magical realism with historical fiction. Champion of free speech, knighted in 2007.",
+            "Critically acclaimed British Indian Booker prize-winning author blending magical realism with historical fiction.",
     },
     {
         name: "Satish Kumar",
