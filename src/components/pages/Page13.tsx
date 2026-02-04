@@ -144,10 +144,10 @@ export const Page13: React.FC<Page13Props> = ({
                                         <img
                                             src={artist.image}
                                             alt={artist.name}
-                                            className="w-24 h-24 rounded-full object-cover mb-5"
+                                            className="w-24 h-24 rounded-none object-cover mb-5"
                                         />
                                     ) : (
-                                        <div className="w-24 h-24 rounded-full bg-white/10 flex items-center justify-center mb-5">
+                                        <div className="w-24 h-24 rounded-none bg-white/10 flex items-center justify-center mb-5">
                                             <span className="text-xs text-white/60">
                                                 Coming Soon
                                             </span>
@@ -155,7 +155,7 @@ export const Page13: React.FC<Page13Props> = ({
                                     )}
 
                                     {/* Name */}
-                                    <h3 className="text-[12px] font-medium tracking-wide text-white uppercase mb-2">
+                                    <h3 className="text-[15px] font-bold tracking-wide text-white uppercase mb-2">
                                         {artist.name}
                                     </h3>
 
