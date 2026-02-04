@@ -104,8 +104,8 @@ export const Page1: React.FC<Page1Props> = ({ isActive, audioRef, isPaused = fal
   // Animation order: CARAVANA first, then INDIA+date, then center text
   useEffect(() => {
     if (isActive) {
-      setTimeout(() => setShowCaravana(true), 1000);  // CARAVANA (first)
-      setTimeout(() => setShowIndia(true), 4000);     // INDIA + DATE (second)
+      setTimeout(() => setShowCaravana(true), 3000);  // CARAVANA (first)
+      setTimeout(() => setShowIndia(true), 5000);     // INDIA + DATE (second)
       setTimeout(() => setShowCenter(true), 7000);    // THE ROAD TO JAISALMER (third)
 
       if (!isPaused) playClipSequence();
