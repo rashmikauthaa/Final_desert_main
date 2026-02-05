@@ -74,9 +74,21 @@ const Index = () => {
     lastNavigationTime.current = now;
     setIsTransitioning(true);
     setTransitionDirection(direction || (targetPage > currentPage ? 'down' : 'up'));
-    setShowSandTransition(true);
+    
+    // Use SandTransition generally, but maybe skip for specific smooth video->image transitions if requested
+    // "after page2... smooth like fade in... not show grey screen"
+    // Page 2 is index 1. Page 3 is index 2.
+    const isPage2To3 = currentPage === 1 && targetPage === 2;
+    
+    if (!isPage2To3) {
+      setShowSandTransition(true);
+    }
 
-    // Change page after sand animation starts
+    // Change page
+    // If skipping sand transition, maybe change immediately or with slight delay to allow crossfade?
+    // SandTransition hides the change. Without it, PageWrapper fades. 
+    // We stick to the standard 300ms delay to sync with potential fade starts?
+    // Or just change it.
     setTimeout(() => {
       setCurrentPage(targetPage);
     }, 300);
@@ -391,7 +403,7 @@ const Index = () => {
       <BackgroundAudio />
       <div
         ref={containerRef}
-        className="fixed inset-0 overflow-hidden bg-background cursor-default select-none"
+        className="fixed inset-0 overflow-hidden bg-black cursor-default select-none"
         onClick={handleFirstInteraction}
       >
         {/* Shared Manganiyars Video Element - plays audio on Page1, video+audio on Page2 */}

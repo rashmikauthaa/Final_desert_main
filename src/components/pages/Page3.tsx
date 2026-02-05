@@ -51,12 +51,11 @@ export const Page3: React.FC<Page3Props> = ({ isActive, onSlideshowComplete, isP
   const TEXT_DURATION = 4000; // 1s slow appear + 3s hold time
 
   useEffect(() => {
-    if (!isActive) {
+    if (isActive) {
       setCurrentImageIndex(0);
       setActiveText(0);
       setTextAnimationsComplete(false);
       hasCompletedRef.current = false;
-      return;
     }
   }, [isActive]);
 
@@ -105,10 +104,9 @@ export const Page3: React.FC<Page3Props> = ({ isActive, onSlideshowComplete, isP
     <PageWrapper isActive={isActive} overlayOpacity={0}>
       <div className="fixed inset-0 w-screen h-screen overflow-hidden">
 
-        {/* Static Background during Text Animations */}
+        {/* Static Background during Text Animations - Keeps opaque to prevent grey gap */}
         <div
-          className={`absolute inset-0 transition-opacity duration-[4000ms] ease-in-out ${textAnimationsComplete ? 'opacity-0' : 'opacity-100'
-            }`}
+          className="absolute inset-0"
         >
           <img
             src={sunriseConcert}
@@ -119,16 +117,19 @@ export const Page3: React.FC<Page3Props> = ({ isActive, onSlideshowComplete, isP
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20" />
         </div>
 
-        {/* Slideshow Background - starts after text animations */}
-        {textAnimationsComplete && slideshowImages.map((image, index) => {
+        {/* Slideshow Background - Fades in over static background */}
+        {slideshowImages.map((image, index) => {
           // Don't crop these specific images
           const noCropImages = ['5.jpg', 'shutterstock_1832570845.jpg', 'Bhrama_3187.webp'];
           const shouldNotCrop = noCropImages.some(name => image.includes(name));
 
+          // Only show slideshow images when text animations are complete
+          const isVisible = textAnimationsComplete && index === currentImageIndex;
+
           return (
             <div
               key={index}
-              className={`absolute inset-0 transition-all duration-[4000ms] ease-in-out ${index === currentImageIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+              className={`absolute inset-0 transition-all duration-[4000ms] ease-in-out ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
                 }`}
             >
               <img
