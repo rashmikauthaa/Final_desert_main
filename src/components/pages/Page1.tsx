@@ -6,6 +6,7 @@ interface Page1Props {
   isActive: boolean;
   audioRef?: React.RefObject<HTMLVideoElement>;
   isPaused?: boolean;
+  hasInteracted: boolean;
 }
 
 const YOUTUBE_CLIPS = [
@@ -15,7 +16,7 @@ const YOUTUBE_CLIPS = [
 
 const YOUTUBE_VIDEO_ID = 'TQrxavU5dTI';
 
-export const Page1: React.FC<Page1Props> = ({ isActive, audioRef, isPaused = false }) => {
+export const Page1: React.FC<Page1Props> = ({ isActive, audioRef, isPaused = false, hasInteracted }) => {
   const [showCaravana, setShowCaravana] = useState(false);
   const [showCenter, setShowCenter] = useState(false);
   const [showIndia, setShowIndia] = useState(false);
@@ -47,7 +48,7 @@ export const Page1: React.FC<Page1Props> = ({ isActive, audioRef, isPaused = fal
           events: {
             onReady: (event: any) => {
               event.target.mute();
-              if (isActive && !isPaused) playClipSequence();
+              if (isActive && !isPaused && hasInteracted) playClipSequence();
             },
           },
         });
@@ -103,10 +104,10 @@ export const Page1: React.FC<Page1Props> = ({ isActive, audioRef, isPaused = fal
 
   // Animation order: CARAVANA first, then INDIA+date, then center text
   useEffect(() => {
-    if (isActive) {
-      setTimeout(() => setShowCaravana(true), 3000);  // CARAVANA (first)
-      setTimeout(() => setShowIndia(true), 5000);     // INDIA + DATE (second)
-      setTimeout(() => setShowCenter(true), 7000);    // THE ROAD TO JAISALMER (third)
+    if (isActive && hasInteracted) {
+      setTimeout(() => setShowCaravana(true), 1000);  // CARAVANA (first)
+      setTimeout(() => setShowIndia(true), 3000);     // INDIA + DATE (second)
+      setTimeout(() => setShowCenter(true), 5000);    // THE ROAD TO JAISALMER (third)
 
       if (!isPaused) playClipSequence();
     } else {
@@ -116,7 +117,9 @@ export const Page1: React.FC<Page1Props> = ({ isActive, audioRef, isPaused = fal
       playerRef.current?.pauseVideo();
       if (clipTimerRef.current) clearTimeout(clipTimerRef.current);
     }
-  }, [isActive]);
+  }, [isActive, hasInteracted]);
+
+  if (!isActive) return null;
 
   return (
     <PageWrapper isActive={isActive} overlayOpacity={0.3}>
@@ -145,7 +148,7 @@ export const Page1: React.FC<Page1Props> = ({ isActive, audioRef, isPaused = fal
         </div>
 
         {/* INDIA */}
-        <div className={`absolute bottom-28 right-10 text-right transition-all duration-[3000ms] ease-out ${showIndia ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
+        <div className={`absolute bottom-48 right-10 text-right transition-all duration-[3000ms] ease-out ${showIndia ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}>
           <p className="font-display text-xl font-thin tracking-[0.2em] text-foreground">
             INDIA
           </p>

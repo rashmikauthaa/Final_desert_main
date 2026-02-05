@@ -146,11 +146,11 @@ export const Page15: React.FC<Page15Props> = ({ isActive, onSlideshowComplete, i
                                     <img
                                         src={artist.image}
                                         alt={artist.name}
-                                        className="w-24 h-24 rounded-full object-cover mb-5"
+                                        className="w-24 h-24 rounded-none object-cover mb-5"
                                     />
 
                                     {/* Name */}
-                                    <h3 className="text-[12px] font-medium tracking-wide text-white uppercase mb-2">
+                                    <h3 className="text-[16px] font-bold tracking-wide text-white uppercase mb-2">
                                         {artist.name}
                                     </h3>
 

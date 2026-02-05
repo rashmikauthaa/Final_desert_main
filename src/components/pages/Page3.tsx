@@ -47,8 +47,8 @@ export const Page3: React.FC<Page3Props> = ({ isActive, onSlideshowComplete, isP
     jaisalmerBhrama
   ];
 
-  const SLIDE_DURATION = 4000; // 4s per slide for faster sliding
-  const TEXT_DURATION = 6000; // 2s slow appear + 4s hold time
+  const SLIDE_DURATION = 2500; // 2.5s per slide for faster sliding
+  const TEXT_DURATION = 4000; // 1s slow appear + 3s hold time
 
   useEffect(() => {
     if (!isActive) {

@@ -44,7 +44,7 @@ const suryagarhSlideshowImages = [
 
 const TEXT_DURATION = 4000; // Duration for each text block (like Page3)
 const TEXT_TOTAL = suryagarhTextBlocks.length * TEXT_DURATION;
-const SLIDE_DURATION = 3000; // 3s per slide for smooth crossfade (3.5s transition overlaps)
+const SLIDE_DURATION = 2000; // 2 s per slide for smooth crossfade (2.5s transition overlaps)
 const SLIDESHOW_TOTAL = suryagarhSlideshowImages.length * SLIDE_DURATION;
 
 export const Page5: React.FC<Page5Props> = ({ isActive, onSlideshowComplete, audioRef, isPaused }) => {

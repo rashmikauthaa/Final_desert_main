@@ -25,7 +25,7 @@ const slideTitles = [
     'Royal Stepwell Grand Finale',
 ];
 
-const SLIDE_DURATION = 6000; // 6s per slide for smooth crossfade
+const SLIDE_DURATION = 3000; // 4s per slide for smooth crossfade
 
 export const Page16: React.FC<Page16Props> = ({
     isActive,
@@ -51,21 +51,20 @@ export const Page16: React.FC<Page16Props> = ({
     useEffect(() => {
         if (!isActive || isPaused || isComplete) return;
 
-        const timer = setTimeout(() => {
-            if (currentSlideIndex < slideImages.length - 1) {
-                setShowSlide(false);
-                setTimeout(() => {
-                    setCurrentSlideIndex((prev) => prev + 1);
-                    setShowSlide(true);
-                }, 500);
-            } else {
-                setIsComplete(true);
-                onSlideshowComplete?.();
-            }
+        const timer = setInterval(() => {
+            setCurrentSlideIndex((prev) => {
+                if (prev < slideImages.length - 1) {
+                    return prev + 1;
+                } else {
+                    setIsComplete(true);
+                    onSlideshowComplete?.();
+                    return prev;
+                }
+            });
         }, SLIDE_DURATION);
 
-        return () => clearTimeout(timer);
-    }, [isActive, isPaused, currentSlideIndex, isComplete, onSlideshowComplete]);
+        return () => clearInterval(timer);
+    }, [isActive, isPaused, isComplete, onSlideshowComplete]);
 
     return (
         <PageWrapper isActive={isActive} overlayOpacity={0}>
@@ -74,7 +73,7 @@ export const Page16: React.FC<Page16Props> = ({
                 {slideImages.map((img, index) => (
                     <div
                         key={index}
-                        className={`absolute inset-0 transition-opacity duration-[4000ms] ease-in-out ${index === currentSlideIndex && showSlide
+                        className={`absolute inset-0 transition-opacity duration-[4000ms] ease-in-out ${index === currentSlideIndex
                                 ? 'opacity-100'
                                 : 'opacity-0'
                             }`}

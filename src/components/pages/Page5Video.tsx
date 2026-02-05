@@ -72,42 +72,23 @@ export const Page5Video: React.FC<Page5VideoProps> = ({ isActive, onSlideshowCom
           return;
         }
 
-        if (video && !hasCompleted) {
-          const currentTime = video.currentTime * 1000; // Convert to ms
-
-          // Show text at specified time
-          if (currentTime >= TEXT_DISPLAY_TIME && !textShownRef.current) {
-            textShownRef.current = true;
-            setShowText(true);
+          if (video && !hasCompleted) {
+             const currentTime = video.currentTime * 1000; // Convert to ms
+            
+             // Show text at specified time
+             if (currentTime >= TEXT_DISPLAY_TIME && !textShownRef.current) {
+               textShownRef.current = true;
+               setShowText(true);
+               
+               // Hide text after 3 seconds
+               setTimeout(() => {
+                 setShowText(false);
+               }, 3000);
+             }
+             
+             videoTimeCheckRef.current = setTimeout(checkVideoTime, 100);
           }
-
-          // When video reaches end, zoom text and complete
-          if (currentTime >= VIDEO_DURATION - 500) {
-            setHasCompleted(true);
-            setShowText(true);
-
-            // Pause video to freeze on last frame
-            video.pause();
-
-            // Zoom in on text
-            setTimeout(() => {
-              setTextScale(ZOOM_SCALE);
-
-              // Navigate to next page after zoom
-              setTimeout(() => {
-                if (onSlideshowComplete) {
-                  onSlideshowComplete();
-                }
-              }, TEXT_ZOOM_DURATION);
-            }, 300);
-
-            if (videoTimeCheckRef.current) clearTimeout(videoTimeCheckRef.current);
-            return;
-          }
-
-          videoTimeCheckRef.current = setTimeout(checkVideoTime, 100);
-        }
-      };
+        };
 
       videoTimeCheckRef.current = setTimeout(checkVideoTime, 100);
     };
@@ -123,7 +104,7 @@ export const Page5Video: React.FC<Page5VideoProps> = ({ isActive, onSlideshowCom
       video.removeEventListener('playing', handlePlaying);
       if (videoTimeCheckRef.current) clearTimeout(videoTimeCheckRef.current);
     };
-  }, [isActive, hasCompleted, onSlideshowComplete, isPaused]);
+  }, [isActive, isPaused]);
 
   return (
     <PageWrapper isActive={isActive} overlayOpacity={0}>
@@ -151,6 +132,18 @@ export const Page5Video: React.FC<Page5VideoProps> = ({ isActive, onSlideshowCom
             src={VIDEO_SRC}
             playsInline
             preload="auto"
+            onEnded={() => {
+              if (hasCompleted) return;
+              setHasCompleted(true);
+              
+              const video = videoRef.current;
+              if (video) video.pause();
+
+              // Navigate to next page immediately
+              if (onSlideshowComplete) {
+                onSlideshowComplete();
+              }
+            }}
           />
         </div>
       </div>

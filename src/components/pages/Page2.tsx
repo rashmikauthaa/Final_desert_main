@@ -11,7 +11,7 @@ const VIDEO_SRC = '/assets/videos/jaisalmer_vid.mp4';
 
 // Text overlay timing (in seconds from video start)
 const TEXT_APPEAR_TIME = 0.5; // Text starts appearing 0.5 seconds after video starts
-const TEXT_FADE_TIME = 10; // Text stays until 10 seconds (5s appear + 5s stay)
+const TEXT_FADE_TIME = 8; // Text stays until 10 seconds (5s appear + 5s stay)
 
 export const Page2: React.FC<Page2Props> = ({ isActive, videoRef }) => {
   const [showText, setShowText] = useState(false);

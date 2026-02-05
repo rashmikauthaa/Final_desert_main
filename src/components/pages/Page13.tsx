@@ -155,7 +155,7 @@ export const Page13: React.FC<Page13Props> = ({
                                     )}
 
                                     {/* Name */}
-                                    <h3 className="text-[15px] font-bold tracking-wide text-white uppercase mb-2">
+                                    <h3 className="text-[16px] font-bold tracking-wide text-white uppercase mb-2">
                                         {artist.name}
                                     </h3>
 

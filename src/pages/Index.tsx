@@ -424,6 +424,7 @@ const Index = () => {
           isActive={currentPage === 0}
           audioRef={manganiyarsVideoRef}
           isPaused={isPaused}
+          hasInteracted={hasInteracted}
         />
         <Page2 isActive={currentPage === 1} videoRef={manganiyarsVideoRef} />
         {/* <PageCollaborations isActive={currentPage === 2} /> */}

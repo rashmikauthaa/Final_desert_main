@@ -29,13 +29,11 @@ export const Page8: React.FC<Page8Props> = ({ isActive, onVideoStart, onVideoEnd
   const hasCompletedRef = useRef(false);
 
   useEffect(() => {
-    if (!isActive) {
+    if (isActive) {
       setCurrentIndex(0);
       hasCompletedRef.current = false;
-      return;
+      onVideoStart?.();
     }
-
-    onVideoStart?.();
   }, [isActive, onVideoStart]);
 
   // Slideshow Timer
