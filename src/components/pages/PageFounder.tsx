@@ -88,12 +88,9 @@ export const PageFounder: React.FC<PageFounderProps> = ({ isActive, isPaused, on
                                 with her main focus finally landing her into Rajasthan.
                             </p>
                             <p>
-                                In the Middle East,
-                                she has produced projects commissioned by Crown Prince Sheikh Hamdan
-                                bin Mohammed Al Maktoum and in India she has holds very close relations
-                                with HH Maharaja Gai Singh of Jodhpur of RIFF & Sacred World Music
-                                Festival and recently presented her work to the Trustees of Mehrangarh Fort,
-                                reflecting the deep trust she holds within global artistic circles.
+                                In the Middle East, she has produced projects commissioned by Crown Prince Sheikh Hamdan
+                                bin Mohammed Al Maktoum and in India she holds very close relations
+                                to HH Maharawal Chaitanya Raj, having collaborated on heritage preservation projects for the music communities in the desert region. 
                             </p>
                         </div>
                     </div>
