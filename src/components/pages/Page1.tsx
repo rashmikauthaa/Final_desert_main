@@ -9,7 +9,7 @@ interface Page1Props {
   hasInteracted: boolean;
 }
 
-const VIDEO_CLIPS = ['/videos/clip1.mp4', '/videos/clip2.mp4'];
+const VIDEO_CLIPS = ['https://ik.imagekit.io/c2g5xtzznq/clip1.mp4', 'https://ik.imagekit.io/c2g5xtzznq/clip2.mp4'];
 
 export const Page1: React.FC<Page1Props> = ({ isActive, audioRef, isPaused = false, hasInteracted }) => {
   const [showCaravana, setShowCaravana] = useState(false);
@@ -17,8 +17,21 @@ export const Page1: React.FC<Page1Props> = ({ isActive, audioRef, isPaused = fal
   const [showIndia, setShowIndia] = useState(false);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const preloadVideoRef = useRef<HTMLVideoElement>(null);
   const clipIndexRef = useRef(0);
   const { isMuted } = useAudio();
+
+  // Eagerly preload both video clips into browser cache on mount
+  useEffect(() => {
+    VIDEO_CLIPS.forEach((src) => {
+      const preloadEl = document.createElement('video');
+      preloadEl.preload = 'auto';
+      preloadEl.muted = true;
+      preloadEl.src = src;
+      // Trigger loading by calling load()
+      preloadEl.load();
+    });
+  }, []);
 
   const playNextClip = useCallback(() => {
     const video = videoRef.current;
@@ -27,6 +40,13 @@ export const Page1: React.FC<Page1Props> = ({ isActive, audioRef, isPaused = fal
     clipIndexRef.current = (clipIndexRef.current + 1) % VIDEO_CLIPS.length;
     video.src = VIDEO_CLIPS[clipIndexRef.current];
     video.play().catch(console.error);
+
+    // Pre-buffer the next clip in the hidden preload element  
+    const nextIndex = (clipIndexRef.current + 1) % VIDEO_CLIPS.length;
+    if (preloadVideoRef.current) {
+      preloadVideoRef.current.src = VIDEO_CLIPS[nextIndex];
+      preloadVideoRef.current.load();
+    }
   }, []);
 
   const startPlayback = useCallback(() => {
@@ -36,6 +56,12 @@ export const Page1: React.FC<Page1Props> = ({ isActive, audioRef, isPaused = fal
     clipIndexRef.current = 0;
     video.src = VIDEO_CLIPS[0];
     video.play().catch(console.error);
+
+    // Pre-buffer clip 2 while clip 1 plays
+    if (preloadVideoRef.current) {
+      preloadVideoRef.current.src = VIDEO_CLIPS[1];
+      preloadVideoRef.current.load();
+    }
 
     if (audioRef?.current) {
       audioRef.current.currentTime = 195;
@@ -101,6 +127,14 @@ export const Page1: React.FC<Page1Props> = ({ isActive, audioRef, isPaused = fal
         <video
           ref={videoRef}
           className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-cover transition-opacity duration-700 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
+          muted
+          playsInline
+          preload="auto"
+        />
+        {/* Hidden preload element for next clip */}
+        <video
+          ref={preloadVideoRef}
+          className="hidden"
           muted
           playsInline
           preload="auto"
