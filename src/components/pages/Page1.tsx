@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { PageWrapper } from '@/components/PageWrapper';
 import { useAudio } from '@/contexts/AudioContext';
 
@@ -9,136 +9,101 @@ interface Page1Props {
   hasInteracted: boolean;
 }
 
-const YOUTUBE_CLIPS = [
-  { start: 42, end: 51 },
-  { start: 69, end: 77 },
-];
-
-const YOUTUBE_VIDEO_ID = 'TQrxavU5dTI';
+const VIDEO_CLIPS = ['/videos/clip1.mp4', '/videos/clip2.mp4'];
 
 export const Page1: React.FC<Page1Props> = ({ isActive, audioRef, isPaused = false, hasInteracted }) => {
   const [showCaravana, setShowCaravana] = useState(false);
   const [showCenter, setShowCenter] = useState(false);
   const [showIndia, setShowIndia] = useState(false);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-  const playerRef = useRef<any>(null);
-  const clipTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const clipIndexRef = useRef(0);
   const { isMuted } = useAudio();
 
-  useEffect(() => {
-    if (!window.YT) {
-      const tag = document.createElement('script');
-      tag.src = 'https://www.youtube.com/iframe_api';
-      document.getElementsByTagName('script')[0].parentNode?.insertBefore(tag, null);
-    }
+  const playNextClip = useCallback(() => {
+    const video = videoRef.current;
+    if (!video) return;
 
-    const initPlayer = () => {
-      if (window.YT && window.YT.Player && !playerRef.current) {
-        playerRef.current = new window.YT.Player('youtube-player-page1', {
-          videoId: YOUTUBE_VIDEO_ID,
-          playerVars: {
-            autoplay: 0,
-            controls: 0,
-            mute: 1,
-            start: YOUTUBE_CLIPS[0].start,
-            playsinline: 1,
-            modestbranding: 1,
-            rel: 0,
-            enablejsapi: 1,
-          },
-          events: {
-            onReady: (event: any) => {
-              event.target.mute();
-              if (isActive && !isPaused && hasInteracted) playClipSequence();
-            },
-            onStateChange: (event: any) => {
-              // YT.PlayerState.PLAYING = 1
-              if (event.data === 1) {
-                setIsVideoLoaded(true);
-              }
-            },
-          },
-        });
-      }
-    };
-
-    if (window.YT?.Player) initPlayer();
-    else (window as any).onYouTubeIframeAPIReady = initPlayer;
-
-    return () => {
-      if (clipTimerRef.current) clearTimeout(clipTimerRef.current);
-    };
+    clipIndexRef.current = (clipIndexRef.current + 1) % VIDEO_CLIPS.length;
+    video.src = VIDEO_CLIPS[clipIndexRef.current];
+    video.play().catch(console.error);
   }, []);
 
-  const playClipSequence = () => {
-    if (!playerRef.current) return;
+  const startPlayback = useCallback(() => {
+    const video = videoRef.current;
+    if (!video) return;
 
-    const playClip = (index: number) => {
-      const clip = YOUTUBE_CLIPS[index % YOUTUBE_CLIPS.length];
-      const duration = (clip.end - clip.start) * 1000;
-
-      playerRef.current.seekTo(clip.start, true);
-      playerRef.current.playVideo();
-
-      clipTimerRef.current = setTimeout(() => playClip(index + 1), duration);
-    };
-
-    playClip(0);
+    clipIndexRef.current = 0;
+    video.src = VIDEO_CLIPS[0];
+    video.play().catch(console.error);
 
     if (audioRef?.current) {
       audioRef.current.currentTime = 195;
       audioRef.current.muted = isMuted;
       audioRef.current.play().catch(console.error);
     }
-  };
+  }, [audioRef, isMuted]);
 
+  // Handle video events
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleCanPlay = () => setIsVideoLoaded(true);
+    const handleEnded = () => playNextClip();
+
+    video.addEventListener('canplay', handleCanPlay);
+    video.addEventListener('ended', handleEnded);
+
+    return () => {
+      video.removeEventListener('canplay', handleCanPlay);
+      video.removeEventListener('ended', handleEnded);
+    };
+  }, [playNextClip]);
+
+  // Pause/resume
   useEffect(() => {
     if (!isActive) return;
 
     if (isPaused) {
-      playerRef.current?.pauseVideo();
+      videoRef.current?.pause();
       audioRef?.current?.pause();
-      if (clipTimerRef.current) clearTimeout(clipTimerRef.current);
     } else {
-      playerRef.current?.playVideo();
+      videoRef.current?.play().catch(console.error);
       if (audioRef?.current?.paused) audioRef.current.play().catch(console.error);
     }
-  }, [isPaused, isActive]);
+  }, [isPaused, isActive, audioRef]);
 
+  // Mute sync
   useEffect(() => {
     if (audioRef?.current) audioRef.current.muted = isMuted;
-  }, [isMuted]);
+  }, [isMuted, audioRef]);
 
-  // Animation order: CARAVANA first, then INDIA+date, then center text
+  // Animation order + start playback when active
   useEffect(() => {
     if (isActive && hasInteracted) {
-      setTimeout(() => setShowCaravana(true), 1000);  // CARAVANA (first)
-      setTimeout(() => setShowIndia(true), 3000);     // INDIA + DATE (second)
-      setTimeout(() => setShowCenter(true), 5000);    // THE ROAD TO JAISALMER (third)
+      setTimeout(() => setShowCaravana(true), 1000);
+      setTimeout(() => setShowIndia(true), 3000);
+      setTimeout(() => setShowCenter(true), 5000);
 
-      if (!isPaused) playClipSequence();
+      if (!isPaused) startPlayback();
     } else {
       setShowCaravana(false);
       setShowIndia(false);
       setShowCenter(false);
-      playerRef.current?.pauseVideo();
-      if (clipTimerRef.current) clearTimeout(clipTimerRef.current);
+      videoRef.current?.pause();
     }
-  }, [isActive, hasInteracted]);
-
-
+  }, [isActive, hasInteracted, isPaused, startPlayback]);
 
   return (
     <PageWrapper isActive={isActive} overlayOpacity={0.3}>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.78vh] scale-[1.35]">
-        <div
-          id="youtube-player-page1"
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.78vh]"
-        />
-        {/* Thumbnail Overlay */}
-        <div 
-          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-700 ${isVideoLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
-          style={{ backgroundImage: `url(https://img.youtube.com/vi/${YOUTUBE_VIDEO_ID}/maxresdefault.jpg)` }}
+        <video
+          ref={videoRef}
+          className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full object-cover transition-opacity duration-700 ${isVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
+          muted
+          playsInline
+          preload="auto"
         />
       </div>
 
@@ -172,10 +137,3 @@ export const Page1: React.FC<Page1Props> = ({ isActive, audioRef, isPaused = fal
     </PageWrapper>
   );
 };
-
-declare global {
-  interface Window {
-    YT: any;
-    onYouTubeIframeAPIReady: () => void;
-  }
-}
