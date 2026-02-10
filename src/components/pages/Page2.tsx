@@ -7,7 +7,7 @@ interface Page2Props {
 }
 
 // Video Configuration
-const VIDEO_SRC = '/assets/videos/jaisalmer_vid.mp4';
+const VIDEO_SRC = 'https://ik.imagekit.io/c2g5xtzznq/videos/jaisalmer_vid.mp4';
 
 // Text overlay timing (in seconds from video start)
 const TEXT_APPEAR_TIME = 0.5; // Text starts appearing 0.5 seconds after video starts

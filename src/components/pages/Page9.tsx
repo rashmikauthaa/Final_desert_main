@@ -8,7 +8,7 @@ interface Page9Props {
 }
 
 // Video Configuration
-const VIDEO_SRC = '/assets/videos/concert_venue_vid.mp4';
+const VIDEO_SRC = 'https://ik.imagekit.io/c2g5xtzznq/videos/concert_venue_vid.mp4';
 const VIDEO_DURATION = 10000; // Reduced to 10s to prevent stuck feeling
 const TEXT_DISPLAY_TIME = 1500; // Text appears at 1.5s
 const TEXT_FADE_TIME = 8000; // Text stays until 8s (more hold time)

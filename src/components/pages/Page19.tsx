@@ -6,7 +6,7 @@ interface Page19Props {
     isPaused?: boolean;
 }
 
-const VIDEO_SRC = '/assets/videos/FINAL PAGE VIDEO OF WEBSITE.mov';
+const VIDEO_SRC = 'https://ik.imagekit.io/c2g5xtzznq/videos/FINAL%20PAGE%20VIDEO%20OF%20WEBSITE.mov';
 const VIDEO_START_TIME = 5;  // Start at 5 seconds
 const VIDEO_END_TIME = 18;   // End at 18 seconds
 

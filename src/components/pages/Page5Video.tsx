@@ -8,7 +8,7 @@ interface Page5VideoProps {
 }
 
 // Video Configuration
-const VIDEO_SRC = '/assets/videos/managniyars_vid.mp4';
+const VIDEO_SRC = 'https://ik.imagekit.io/c2g5xtzznq/videos/managniyars_vid.mp4';
 const VIDEO_DURATION = 12000; // 12 seconds in milliseconds
 const TEXT_DISPLAY_TIME = 1000; // Show text at 1 second
 const TEXT_ZOOM_DURATION = 3000; // 3 seconds for text zoom
