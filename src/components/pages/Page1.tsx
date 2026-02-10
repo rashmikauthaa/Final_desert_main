@@ -20,6 +20,7 @@ export const Page1: React.FC<Page1Props> = ({ isActive, audioRef, isPaused = fal
   const [showCaravana, setShowCaravana] = useState(false);
   const [showCenter, setShowCenter] = useState(false);
   const [showIndia, setShowIndia] = useState(false);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const playerRef = useRef<any>(null);
   const clipTimerRef = useRef<NodeJS.Timeout | null>(null);
   const { isMuted } = useAudio();
@@ -49,6 +50,12 @@ export const Page1: React.FC<Page1Props> = ({ isActive, audioRef, isPaused = fal
             onReady: (event: any) => {
               event.target.mute();
               if (isActive && !isPaused && hasInteracted) playClipSequence();
+            },
+            onStateChange: (event: any) => {
+              // YT.PlayerState.PLAYING = 1
+              if (event.data === 1) {
+                setIsVideoLoaded(true);
+              }
             },
           },
         });
@@ -119,7 +126,7 @@ export const Page1: React.FC<Page1Props> = ({ isActive, audioRef, isPaused = fal
     }
   }, [isActive, hasInteracted]);
 
-  if (!isActive) return null;
+
 
   return (
     <PageWrapper isActive={isActive} overlayOpacity={0.3}>
@@ -127,6 +134,11 @@ export const Page1: React.FC<Page1Props> = ({ isActive, audioRef, isPaused = fal
         <div
           id="youtube-player-page1"
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.78vh]"
+        />
+        {/* Thumbnail Overlay */}
+        <div 
+          className={`absolute inset-0 bg-cover bg-center transition-opacity duration-700 ${isVideoLoaded ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+          style={{ backgroundImage: `url(https://img.youtube.com/vi/${YOUTUBE_VIDEO_ID}/maxresdefault.jpg)` }}
         />
       </div>
 
